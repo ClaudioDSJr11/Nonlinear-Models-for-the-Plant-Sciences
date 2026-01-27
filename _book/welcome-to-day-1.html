@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Welcome to day 1! | Day 3</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Welcome to day 1! | Day 3" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Welcome to day 1! | Day 3" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="" />
+
+
+<meta name="date" content="2026-01-27" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hello-bookdown.html"/>
+<link rel="next" href="welcome-to-day-2.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/codefolding-lua-1.1/codefolding-lua.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#usage"><i class="fa fa-check"></i>Usage</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#render-book"><i class="fa fa-check"></i>Render book</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#preview-book"><i class="fa fa-check"></i>Preview book</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i>Hello bookdown</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i>A section</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-1.html"><a href="welcome-to-day-1.html"><i class="fa fa-check"></i>Welcome to day 1!</a>
+<ul>
+<li class="chapter" data-level="" data-path="welcome-to-day-1.html"><a href="welcome-to-day-1.html#linear-models"><i class="fa fa-check"></i>Linear models</a>
+<ul>
+<li class="chapter" data-level="" data-path="welcome-to-day-1.html"><a href="welcome-to-day-1.html#what-is-and-what-isnt-a-linear-model"><i class="fa fa-check"></i>1. What is and what isn’t a linear model</a></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-1.html"><a href="welcome-to-day-1.html#estimation-and-inference-a-linear-model-example"><i class="fa fa-check"></i>2. Estimation and Inference: A linear model example</a></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-1.html"><a href="welcome-to-day-1.html#i.-loss-function-approach"><i class="fa fa-check"></i>I. Loss function approach</a></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-1.html"><a href="welcome-to-day-1.html#ii.-likelihood-based-approach"><i class="fa fa-check"></i>II. Likelihood-based approach</a></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-1.html"><a href="welcome-to-day-1.html#iii.-bayesian-approach"><i class="fa fa-check"></i>III. Bayesian approach</a></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-1.html"><a href="welcome-to-day-1.html#why-use-bayesian"><i class="fa fa-check"></i>3. Why use Bayesian?</a></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-1.html"><a href="welcome-to-day-1.html#practice-for-day-1"><i class="fa fa-check"></i>4. Practice for day 1</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-2.html"><a href="welcome-to-day-2.html"><i class="fa fa-check"></i>Welcome to Day 2!!</a>
+<ul>
+<li class="chapter" data-level="" data-path="welcome-to-day-2.html"><a href="welcome-to-day-2.html#non-linear-models"><i class="fa fa-check"></i>Non-linear models</a>
+<ul>
+<li class="chapter" data-level="" data-path="welcome-to-day-2.html"><a href="welcome-to-day-2.html#exercises-from-day-1"><i class="fa fa-check"></i>1. Exercises from day 1</a></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-2.html"><a href="welcome-to-day-2.html#working-with-weakly-identifiable-parameters"><i class="fa fa-check"></i>2. Working with weakly identifiable parameters</a></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-2.html"><a href="welcome-to-day-2.html#summary"><i class="fa fa-check"></i>3. Summary</a></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-2.html"><a href="welcome-to-day-2.html#practice-questions"><i class="fa fa-check"></i>4. Practice questions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-3.html"><a href="welcome-to-day-3.html"><i class="fa fa-check"></i>Welcome to day 3!!!</a>
+<ul>
+<li class="chapter" data-level="" data-path="welcome-to-day-3.html"><a href="welcome-to-day-3.html#bayesian-non-linear-models"><i class="fa fa-check"></i>Bayesian Non-linear models</a>
+<ul>
+<li class="chapter" data-level="" data-path="welcome-to-day-3.html"><a href="welcome-to-day-3.html#exercises-from-day-2"><i class="fa fa-check"></i>1. Exercises from day 2</a></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-3.html"><a href="welcome-to-day-3.html#bayesian-non-linear-models-1"><i class="fa fa-check"></i>2. Bayesian non-linear models</a></li>
+<li class="chapter" data-level="" data-path="welcome-to-day-3.html"><a href="welcome-to-day-3.html#wrap-up"><i class="fa fa-check"></i>3. Wrap-up</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Day 3</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="welcome-to-day-1" class="section level1 hasAnchor">
+<h1>Welcome to day 1!<a href="welcome-to-day-1.html#welcome-to-day-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li><p>In this workshop, we will try to mix theory and R coding, but our main focus will be on understanding the <em>why</em>. All applications should be driven by thinking first.</p></li>
+<li><p>We will follow a step-wise structure:</p>
+<ul>
+<li><p>Day 1: Linear models</p></li>
+<li><p>Day 2: Non-linear models</p></li>
+<li><p>Day 3: Bayesian non-linear models</p></li>
+</ul></li>
+<li><p>More importantly, <strong>don’t panic!</strong> We will be learning together, slowly. We do not expect you to come into the workshop (or leave it) knowing everything.</p></li>
+<li><p>Our goal is to provide an immersion into the topic and some initial guidance, so you can move forward with your own projects and continued learning.</p></li>
+<li><p>Please feel free to stop me and ask questions at any time. I will answer to the best of my knowledge, and if I don’t know the answer, either Trevor will jump in or I will make sure to come back to you with a clear explanation later.</p></li>
+</ul>
+<p><br><br></p>
+<div id="linear-models" class="section level2 hasAnchor">
+<h2>Linear models<a href="welcome-to-day-1.html#linear-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div>
+<p><strong>Outline:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>What is and what isn’t a linear model</p></li>
+<li><p>Estimation and Inference: A linear model example using:</p>
+<ul>
+<li><p>Loss function approach</p></li>
+<li><p>Likelihood-based approach</p></li>
+<li><p>Bayesian approach</p></li>
+</ul></li>
+<li><p>When Bayesian improves</p></li>
+<li><p>Practice questions</p>
+<ul>
+<li><p>Fixation day 1</p></li>
+<li><p>Pre-day 2</p></li>
+</ul></li>
+</ol>
+<p><strong>What is day 1 about?</strong></p>
+<p>Understanding linear models and estimation conceptually</p>
+</div>
+<p><br><br></p>
+<div id="what-is-and-what-isnt-a-linear-model" class="section level3 hasAnchor">
+<h3>1. What is and what isn’t a linear model<a href="welcome-to-day-1.html#what-is-and-what-isnt-a-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="recap-on-linear-models" class="section level4 hasAnchor">
+<h4>Recap on linear models<a href="welcome-to-day-1.html#recap-on-linear-models" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Recall the famous intercept-and-slope model, written in the “model equation form”<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
+<p><span class="math display">\[
+y_i = \beta_0 + x_i\beta_1 + \varepsilon_i
+\]</span></p>
+<p>Here we have the observed value of the <span class="math inline">\(i\)</span>th observation (<span class="math inline">\(y_i\)</span>), the intercept (<span class="math inline">\(\beta_0\)</span>), representing the level of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> = 0, the slope (<span class="math inline">\(\beta_1\)</span>), which for a continuous <span class="math inline">\(x_i\)</span>, it represents the change in <span class="math inline">\(y\)</span> given a one unit change in <span class="math inline">\(x\)</span>, and the residual (<span class="math inline">\(\varepsilon_i\)</span>) that represents the different between the observation and the model line for each point.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" alt="" width="672" /></p>
+</div>
+<div id="now-what-makes-a-model-linear" class="section level4 hasAnchor">
+<h4>Now, what makes a model linear?<a href="welcome-to-day-1.html#now-what-makes-a-model-linear" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<center>
+<strong>A model is linear if it is linear in its parameters.</strong>
+</center>
+<p>Other examples of linear models are:</p>
+<p><strong>Polynomial regression:</strong></p>
+<p>Extend the linear regression in a way that the relationship between the predictors and the response is non-linear. A polynomial function is a special case of base function<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1x_i+\beta_2x_i^2+\varepsilon_i
+\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" /></p>
+<p><strong>Regression splines:</strong></p>
+<p>In this type of model, <span class="math inline">\(x\)</span> is partitioned by <span class="math inline">\(K\)</span> points and within each space between these points, a polynomial model is fitted. Splines are a special case of piecewise degree-d polynomial, in which a constraint ensures that it is continuous. This means that at each “knot” (<span class="math inline">\(K\)</span>), that define a breaks in <span class="math inline">\(x\)</span>, the line remains continuous. Simple piecewise polynomial regression exist, but they do not ensure this continuity.</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1b_1(x_i) + \beta_2b_{K + 2}(x_i) + \varepsilon_i
+\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" alt="" width="672" /></p>
+<center>
+<p>Yes, this is linear!</p>
+<p>Linearity is about the geometry of the parameter space, not about the shape of the curve in the data.</p>
+<p>Shape <span class="math inline">\(\neq\)</span> Linearity</p>
+<p>Linear models <span class="math inline">\(\neq\)</span> Simplicity</p>
+</center>
+<p><strong>Simple rule: A model is linear if:</strong></p>
+<ul>
+<li><p><strong>All unknown parameter only multiplies known quantities</strong></p></li>
+<li><p><strong>All parameters are added together</strong></p></li>
+<li><p><strong>All parameters are outside nonlinear functions.</strong></p></li>
+</ul>
+<p><span class="math display">\[
+\mathbf{\hat{y}} = \sum_i\beta_ib_i(\mathbf{x})
+\]</span></p>
+</div>
+<div id="what-about-nonlinear-models" class="section level4 hasAnchor">
+<h4>What about nonlinear models?<a href="welcome-to-day-1.html#what-about-nonlinear-models" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In simple terms, in nonlinear models, parameters are inside nonlinear functions.</p>
+<p>Example:</p>
+<center>
+<strong>Exponential model:</strong>
+</center>
+<p><span class="math display">\[
+y_i = \beta_0*e^{\beta_1x_i} + \varepsilon_i
+\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" alt="" width="672" /></p>
+<p>Checklist:</p>
+<ul>
+<li><p>All unknown parameters only multiply known quantities? X -&gt; <span class="math inline">\(\beta_0*e^{\beta_1x_i}\)</span></p></li>
+<li><p>All parameters are added together? X -&gt; <span class="math inline">\(\beta_0*e^{\beta_1x_i}\)</span></p></li>
+<li><p>All parameters are outside nonlinear functions? X -&gt; <span class="math inline">\(e^{\beta_1x_i}\)</span></p></li>
+</ul>
+<p>How do we work with non-linear models?</p>
+<ul>
+<li><p>Fit it as it is.</p></li>
+<li><p>Linearization.</p>
+<ul>
+<li>More about both on day 2!</li>
+</ul></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="how-do-we-chose-a-a-model" class="section level4 hasAnchor">
+<h4>How do we chose a a model?<a href="welcome-to-day-1.html#how-do-we-chose-a-a-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p>What is your research question?</p>
+<ul>
+<li>Pattern (phenomenological) vs Process (mechanistic)</li>
+</ul></li>
+<li><p>What do you know about what you are investigating?</p></li>
+<li><p>What do you want from the parameters?</p>
+<ul>
+<li>Focus: Inference? Prediction? Both?</li>
+</ul></li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="estimation-and-inference-a-linear-model-example" class="section level3 hasAnchor">
+<h3>2. Estimation and Inference: A linear model example<a href="welcome-to-day-1.html#estimation-and-inference-a-linear-model-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Estimation: Getting actual numbers for the model parameters</p>
+<p>Inference: Making sense of these numbers regarding the population being studied</p>
+<p><br><br></p>
+<div id="example-understanding-nitrogen-balance-in-grain-legumes" class="section level4 hasAnchor">
+<h4>Example: Understanding nitrogen balance in grain legumes<a href="welcome-to-day-1.html#example-understanding-nitrogen-balance-in-grain-legumes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Details from <a href="https://link.springer.com/article/10.1186/s13007-024-01261-9">Palmero et al. 2024</a></p>
+<p>A simple intercept-slope linear model:</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1x_i + \varepsilon
+\]</span></p>
+<p>in which:</p>
+<ul>
+<li><p><span class="math inline">\(y_i\)</span> represents the proportion (%) of nitrogen (N) derived from the atmosphere (Ndfa)</p></li>
+<li><p><span class="math inline">\(x_i\)</span> represents the partial N balance (fixed N - removed N by grains) in kg/ha</p></li>
+</ul>
+<p>The research question: Which Ndfa (<span class="math inline">\(y_i\)</span>) leads to a neutral N balance (<span class="math inline">\(x_i = 0\)</span>)?</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="welcome-to-day-1.html#cb3-1" tabindex="-1"></a><span class="co"># Data preparation</span></span>
+<span id="cb3-2"><a href="welcome-to-day-1.html#cb3-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Palmero_data.csv&quot;</span>)</span>
+<span id="cb3-3"><a href="welcome-to-day-1.html#cb3-3" tabindex="-1"></a>df_a <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>Scenario <span class="sc">==</span> <span class="st">&quot;Scenario A&quot;</span>),]</span>
+<span id="cb3-4"><a href="welcome-to-day-1.html#cb3-4" tabindex="-1"></a><span class="fu">plot</span>(df_a<span class="sc">$</span>Ndfa, df_a<span class="sc">$</span>PartNbalance, <span class="at">ylab =</span> <span class="st">&quot;Partial N balance (kg/ha)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Ndfa (%)&quot;</span>)</span>
+<span id="cb3-5"><a href="welcome-to-day-1.html#cb3-5" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;gold&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span></code></pre></div>
+</details>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="i.-loss-function-approach" class="section level3 hasAnchor">
+<h3>I. Loss function approach<a href="welcome-to-day-1.html#i.-loss-function-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>How does it works?</strong></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" alt="" width="672" /></p>
+<p>Loss function: How we calculate the distance between observed and predicted by the model.</p>
+<ul>
+<li>Several different options, the most famous: Least Square - <span class="math inline">\(\sum_{i = 1}^n(y_i - \beta_0 - \beta_1x_i)^2\)</span></li>
+</ul>
+<p>This approach produces a line of best fit based on values for <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> that minimizes the distance.</p>
+<center>
+<strong>No uncertainty around estimation, no p-values, no inference, only parameter values!</strong>
+</center>
+<p><br><br></p>
+<p><strong>For our example:</strong></p>
+<p>Fit a simple intercept-slope linear model to data using least squares and calculate the value of Ndfa that is needed to achieve a neutral N balance (<span class="math inline">\(\theta\)</span>).</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1x_i + \varepsilon_i
+\]</span></p>
+<p>Theta is a derived quantity<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> calculated as:</p>
+<p><span class="math display">\[
+Ndfa = -\frac{\beta_0}{\beta_1}
+\]</span></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="welcome-to-day-1.html#cb4-1" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb4-2"><a href="welcome-to-day-1.html#cb4-2" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(PartNbalance <span class="sc">~</span> Ndfa, <span class="at">data =</span> df_a)</span>
+<span id="cb4-3"><a href="welcome-to-day-1.html#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="welcome-to-day-1.html#cb4-4" tabindex="-1"></a><span class="co"># Ndfa to achieve neutral N balance</span></span>
+<span id="cb4-5"><a href="welcome-to-day-1.html#cb4-5" tabindex="-1"></a>b0hat_loss <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">coef</span>(m1)[<span class="dv">1</span>]) <span class="co"># extract the intercept</span></span>
+<span id="cb4-6"><a href="welcome-to-day-1.html#cb4-6" tabindex="-1"></a>b1hat_loss <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">coef</span>(m1)[<span class="dv">2</span>]) <span class="co"># extract the slope</span></span>
+<span id="cb4-7"><a href="welcome-to-day-1.html#cb4-7" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="welcome-to-day-1.html#cb4-8" tabindex="-1"></a>thetahat_loss <span class="ot">&lt;-</span> <span class="sc">-</span>b0hat_loss<span class="sc">/</span>b1hat_loss <span class="co"># calculate theta</span></span>
+<span id="cb4-9"><a href="welcome-to-day-1.html#cb4-9" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="welcome-to-day-1.html#cb4-10" tabindex="-1"></a>thetahat_loss</span></code></pre></div>
+</details>
+<pre><code>## [1] 58.26843</code></pre>
+<p>Visual representation of our line of best fit and <span class="math inline">\(\theta\)</span>:</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="welcome-to-day-1.html#cb6-1" tabindex="-1"></a><span class="fu">plot</span>(df_a<span class="sc">$</span>Ndfa, df_a<span class="sc">$</span>PartNbalance, <span class="at">xlab =</span> <span class="st">&quot;Ndfa (%)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Partial N balance (kg/ha)&quot;</span>)</span>
+<span id="cb6-2"><a href="welcome-to-day-1.html#cb6-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;gold&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb6-3"><a href="welcome-to-day-1.html#cb6-3" tabindex="-1"></a><span class="fu">abline</span>(m1, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb6-4"><a href="welcome-to-day-1.html#cb6-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> thetahat_loss, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+</details>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" /></p>
+<p><br><br></p>
+</div>
+<div id="ii.-likelihood-based-approach" class="section level3 hasAnchor">
+<h3>II. Likelihood-based approach<a href="welcome-to-day-1.html#ii.-likelihood-based-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>How does it work?</strong></p>
+<p>Instead of minimizing the distance, we now maximize the likelihood function.</p>
+<ul>
+<li><p>The question is: “If these parameter values were true, how plausible is the data I actually observe?”.</p></li>
+<li><p>Likelihood is about explaining the data you already have<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p></li>
+<li><p>No more a line of best fit, but an expectation!</p></li>
+</ul>
+<p>To define a likelihood, we must introduce assumptions about how the data were generated. We make a <strong>distributional assumption</strong> for the random error term:</p>
+<p><span class="math display">\[
+\varepsilon_i \sim N(0, \sigma^2)
+\]</span></p>
+<ul>
+<li>This distributional assumption is about how the data is generated, it means we believe the deviations between the observed data and the model predictions arise from a normal distribution with mean 0 and variance <span class="math inline">\(\sigma^2\)</span>.</li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" alt="" width="672" /></p>
+<center>
+<strong>Here we have full likelihood based statistical inference (p-values, confidence intervals, etc).</strong>
+</center>
+<p><br><br></p>
+<p><strong>For our example:</strong></p>
+<p>Fit a simple intercept-slope linear model to data using least squares and calculate the value of Ndfa that is needed to achieve a neutral N balance (<span class="math inline">\(\theta\)</span>).</p>
+<p><span class="math display">\[ y_i = \beta_0 + \beta_1x_i + \varepsilon_i \\ \varepsilon_i \sim N(0, \sigma^2) \]</span></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="welcome-to-day-1.html#cb7-1" tabindex="-1"></a><span class="fu">library</span>(nlme)</span>
+<span id="cb7-2"><a href="welcome-to-day-1.html#cb7-2" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb7-3"><a href="welcome-to-day-1.html#cb7-3" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">gls</span>(PartNbalance <span class="sc">~</span> Ndfa, <span class="at">data =</span> df_a, <span class="at">method =</span> <span class="st">&quot;ML&quot;</span>)</span>
+<span id="cb7-4"><a href="welcome-to-day-1.html#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="welcome-to-day-1.html#cb7-5" tabindex="-1"></a><span class="co"># Ndfa to achieve neutral N balance</span></span>
+<span id="cb7-6"><a href="welcome-to-day-1.html#cb7-6" tabindex="-1"></a>b0hat_ml <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">coef</span>(m2)[<span class="dv">1</span>]) <span class="co"># extract the intercept</span></span>
+<span id="cb7-7"><a href="welcome-to-day-1.html#cb7-7" tabindex="-1"></a>b1hat_ml <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">coef</span>(m2)[<span class="dv">2</span>]) <span class="co"># extract the slope</span></span>
+<span id="cb7-8"><a href="welcome-to-day-1.html#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="welcome-to-day-1.html#cb7-9" tabindex="-1"></a>thetahat_ml <span class="ot">&lt;-</span> <span class="sc">-</span>b0hat_ml<span class="sc">/</span>b1hat_ml <span class="co"># calculate theta</span></span>
+<span id="cb7-10"><a href="welcome-to-day-1.html#cb7-10" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="welcome-to-day-1.html#cb7-11" tabindex="-1"></a>thetahat_ml</span></code></pre></div>
+</details>
+<pre><code>## [1] 58.26843</code></pre>
+<p>Here we can construct confidence intervals by approximating the standard errors using delta method<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="welcome-to-day-1.html#cb9-1" tabindex="-1"></a><span class="fu">library</span>(msm)</span>
+<span id="cb9-2"><a href="welcome-to-day-1.html#cb9-2" tabindex="-1"></a>theta_se <span class="ot">&lt;-</span> <span class="fu">deltamethod</span>(<span class="sc">~-</span>x1<span class="sc">/</span>x2, <span class="at">mean =</span> <span class="fu">coef</span>(m2), <span class="at">cov =</span> <span class="fu">vcov</span>(m2))</span>
+<span id="cb9-3"><a href="welcome-to-day-1.html#cb9-3" tabindex="-1"></a>theta_ci <span class="ot">&lt;-</span> <span class="fu">c</span>(thetahat_ml<span class="fl">-1.96</span><span class="sc">*</span>theta_se, thetahat_ml<span class="fl">+1.96</span><span class="sc">*</span>theta_se)</span>
+<span id="cb9-4"><a href="welcome-to-day-1.html#cb9-4" tabindex="-1"></a>theta_ci</span></code></pre></div>
+</details>
+<pre><code>## [1] 52.88317 63.65370</code></pre>
+<p>Visual representation of our expected values and <span class="math inline">\(\hat{\theta}\)</span>:</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="welcome-to-day-1.html#cb11-1" tabindex="-1"></a><span class="fu">plot</span>(df_a<span class="sc">$</span>Ndfa, df_a<span class="sc">$</span>PartNbalance, <span class="at">xlab =</span> <span class="st">&quot;Ndfa (%)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Partial N balance (kg/ha)&quot;</span>)</span>
+<span id="cb11-2"><a href="welcome-to-day-1.html#cb11-2" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;gold&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb11-3"><a href="welcome-to-day-1.html#cb11-3" tabindex="-1"></a><span class="fu">abline</span>(m2, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb11-4"><a href="welcome-to-day-1.html#cb11-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> thetahat_ml, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb11-5"><a href="welcome-to-day-1.html#cb11-5" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> theta_ci[<span class="dv">1</span>], <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb11-6"><a href="welcome-to-day-1.html#cb11-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> theta_ci[<span class="dv">2</span>], <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+</details>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" /></p>
+<p>What are we gaining here?</p>
+<ul>
+<li><p>More complexity;</p></li>
+<li><p>Uncertainty around estimated <span class="math inline">\(\hat{\theta}\)</span>;</p></li>
+<li><p>We could also explore uncertainty for the expected value (red line).</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="iii.-bayesian-approach" class="section level3 hasAnchor">
+<h3>III. Bayesian approach<a href="welcome-to-day-1.html#iii.-bayesian-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>How does it work?</strong></p>
+<p>Now, we do not focus on the most likely value of the parameter, we focus on it’s whole distribution, all values it can assume.</p>
+<p>In this approach, we have additional assumptions concerning our unknown parameters.</p>
+<center>
+“Bayesian statistical models provide a useful way to obtain inference and predictions for <strong>unobserved quantities</strong> [parameters] in nature based on a solid foundation of mathematical rules pertaining to probability.” ()
+</center>
+<p>Through Bayesian approach, it is very straight forward to account for and explicitly demonstrate uncertainty.</p>
+<p>We use <strong>prior knowledge</strong> about the system, to inform our parameters to be estimated.</p>
+<p>Bayesian estimation does not contradict Maximum Likelihood, it extends it!</p>
+<center>
+<strong>More on day 3</strong>
+</center>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" alt="" width="672" /></p>
+<p><strong>For our example:</strong></p>
+<p>Fit a simple intercept-slope linear model to data using least squares and calculate the value of Ndfa that is needed to achieve a neutral N balance (<span class="math inline">\(\theta\)</span>).</p>
+<p><span class="math display">\[ y_i = \beta_0 + \beta_1x_i + \varepsilon_i \\ \varepsilon_i \sim N(0, \sigma^2)\]</span></p>
+<p>We will re-write this model, using a different notation:</p>
+<p><span class="math display">\[
+\mathbf{y} \sim N(\boldsymbol{\beta_0} + \boldsymbol{\beta_1}\mathbf{x}, \boldsymbol{\sigma}^2) \\ \boldsymbol{\beta_0} \sim N(0, 10^6) \\ \boldsymbol{\beta_1} \sim N(0, 10^6) \\ \boldsymbol{\sigma} \sim Gamma(2.5, 0.05)
+\]</span><br />
+This notation helps to clearly identify our assumptions!</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="welcome-to-day-1.html#cb12-1" tabindex="-1"></a><span class="fu">library</span>(rjags)</span>
+<span id="cb12-2"><a href="welcome-to-day-1.html#cb12-2" tabindex="-1"></a><span class="fu">library</span>(coda)</span>
+<span id="cb12-3"><a href="welcome-to-day-1.html#cb12-3" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="welcome-to-day-1.html#cb12-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb12-5"><a href="welcome-to-day-1.html#cb12-5" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="welcome-to-day-1.html#cb12-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> df_a<span class="sc">$</span>PartNbalance</span>
+<span id="cb12-7"><a href="welcome-to-day-1.html#cb12-7" tabindex="-1"></a>x <span class="ot">&lt;-</span> df_a<span class="sc">$</span>Ndfa</span>
+<span id="cb12-8"><a href="welcome-to-day-1.html#cb12-8" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="welcome-to-day-1.html#cb12-9" tabindex="-1"></a><span class="co"># JAGS code</span></span>
+<span id="cb12-10"><a href="welcome-to-day-1.html#cb12-10" tabindex="-1"></a>data_line <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;y&quot;</span> <span class="ot">=</span> y, <span class="st">&quot;x&quot;</span> <span class="ot">=</span> x, <span class="st">&quot;N&quot;</span> <span class="ot">=</span> <span class="fu">nrow</span>(df_a))</span>
+<span id="cb12-11"><a href="welcome-to-day-1.html#cb12-11" tabindex="-1"></a>initials <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb12-12"><a href="welcome-to-day-1.html#cb12-12" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;b0&quot;</span> <span class="ot">=</span> <span class="fl">0.1</span>, <span class="st">&quot;b1&quot;</span> <span class="ot">=</span> <span class="fl">0.1</span>, <span class="st">&quot;sigma&quot;</span> <span class="ot">=</span> <span class="fl">0.1</span>)</span>
+<span id="cb12-13"><a href="welcome-to-day-1.html#cb12-13" tabindex="-1"></a>)</span>
+<span id="cb12-14"><a href="welcome-to-day-1.html#cb12-14" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="welcome-to-day-1.html#cb12-15" tabindex="-1"></a>model_string <span class="ot">&lt;-</span> <span class="st">&quot;model {</span></span>
+<span id="cb12-16"><a href="welcome-to-day-1.html#cb12-16" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb12-17"><a href="welcome-to-day-1.html#cb12-17" tabindex="-1"></a><span class="st">    # Likelihood</span></span>
+<span id="cb12-18"><a href="welcome-to-day-1.html#cb12-18" tabindex="-1"></a><span class="st">    for(i in 1:N){</span></span>
+<span id="cb12-19"><a href="welcome-to-day-1.html#cb12-19" tabindex="-1"></a><span class="st">      y[i] ~ dnorm(mu[i], tau)</span></span>
+<span id="cb12-20"><a href="welcome-to-day-1.html#cb12-20" tabindex="-1"></a><span class="st">      mu[i] &lt;- b0 + b1*(x[i])</span></span>
+<span id="cb12-21"><a href="welcome-to-day-1.html#cb12-21" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb12-22"><a href="welcome-to-day-1.html#cb12-22" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb12-23"><a href="welcome-to-day-1.html#cb12-23" tabindex="-1"></a><span class="st">    # Priors</span></span>
+<span id="cb12-24"><a href="welcome-to-day-1.html#cb12-24" tabindex="-1"></a><span class="st">    b0 ~ dnorm(0, 1/10^6)</span></span>
+<span id="cb12-25"><a href="welcome-to-day-1.html#cb12-25" tabindex="-1"></a><span class="st">    b1 ~ dnorm(0, 1/10^6)</span></span>
+<span id="cb12-26"><a href="welcome-to-day-1.html#cb12-26" tabindex="-1"></a><span class="st">    sigma ~ dgamma(2.5, 0.05)</span></span>
+<span id="cb12-27"><a href="welcome-to-day-1.html#cb12-27" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb12-28"><a href="welcome-to-day-1.html#cb12-28" tabindex="-1"></a><span class="st">    # Derived quantity</span></span>
+<span id="cb12-29"><a href="welcome-to-day-1.html#cb12-29" tabindex="-1"></a><span class="st">    theta &lt;- -b0/b1</span></span>
+<span id="cb12-30"><a href="welcome-to-day-1.html#cb12-30" tabindex="-1"></a><span class="st">    tau &lt;- 1/(sigma^2)</span></span>
+<span id="cb12-31"><a href="welcome-to-day-1.html#cb12-31" tabindex="-1"></a><span class="st">}&quot;</span></span>
+<span id="cb12-32"><a href="welcome-to-day-1.html#cb12-32" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="welcome-to-day-1.html#cb12-33" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">jags.model</span>(<span class="fu">textConnection</span>(model_string), <span class="at">inits =</span> initials, <span class="at">data =</span> data_line, <span class="at">n.chains =</span> <span class="dv">1</span>)</span>
+<span id="cb12-34"><a href="welcome-to-day-1.html#cb12-34" tabindex="-1"></a></span>
+<span id="cb12-35"><a href="welcome-to-day-1.html#cb12-35" tabindex="-1"></a><span class="fu">update</span>(m3, <span class="at">n.iter =</span> <span class="dv">1000</span>)</span>
+<span id="cb12-36"><a href="welcome-to-day-1.html#cb12-36" tabindex="-1"></a></span>
+<span id="cb12-37"><a href="welcome-to-day-1.html#cb12-37" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">coda.samples</span>(m3, <span class="at">variable.names =</span> <span class="fu">c</span>(<span class="st">&quot;b0&quot;</span>, <span class="st">&quot;b1&quot;</span>, <span class="st">&quot;tau&quot;</span>, <span class="st">&quot;theta&quot;</span>, <span class="st">&quot;sigma&quot;</span>), <span class="at">n.iter =</span> <span class="dv">1000</span>)</span>
+<span id="cb12-38"><a href="welcome-to-day-1.html#cb12-38" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="welcome-to-day-1.html#cb12-39" tabindex="-1"></a><span class="co">#summary(samples)</span></span>
+<span id="cb12-40"><a href="welcome-to-day-1.html#cb12-40" tabindex="-1"></a><span class="co">#plot(samples)</span></span>
+<span id="cb12-41"><a href="welcome-to-day-1.html#cb12-41" tabindex="-1"></a></span>
+<span id="cb12-42"><a href="welcome-to-day-1.html#cb12-42" tabindex="-1"></a><span class="co"># Extract draws and calculate expected line</span></span>
+<span id="cb12-43"><a href="welcome-to-day-1.html#cb12-43" tabindex="-1"></a>draws <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(samples)</span>
+<span id="cb12-44"><a href="welcome-to-day-1.html#cb12-44" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="welcome-to-day-1.html#cb12-45" tabindex="-1"></a>b0_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(draws[, <span class="st">&quot;b0&quot;</span>])</span>
+<span id="cb12-46"><a href="welcome-to-day-1.html#cb12-46" tabindex="-1"></a>b1_hat <span class="ot">&lt;-</span> <span class="fu">mean</span>(draws[, <span class="st">&quot;b1&quot;</span>])</span>
+<span id="cb12-47"><a href="welcome-to-day-1.html#cb12-47" tabindex="-1"></a></span>
+<span id="cb12-48"><a href="welcome-to-day-1.html#cb12-48" tabindex="-1"></a>pred_mean <span class="ot">&lt;-</span> b0_hat <span class="sc">+</span> b1_hat<span class="sc">*</span>x</span></code></pre></div>
+</details>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="welcome-to-day-1.html#cb13-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb13-2"><a href="welcome-to-day-1.html#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="welcome-to-day-1.html#cb13-3" tabindex="-1"></a><span class="fu">hist</span>(draws[, <span class="st">&quot;b0&quot;</span>], <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Posterior dist. b0&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;b0&quot;</span>)</span>
+<span id="cb13-4"><a href="welcome-to-day-1.html#cb13-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(draws[, <span class="st">&quot;b0&quot;</span>]), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb13-5"><a href="welcome-to-day-1.html#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="welcome-to-day-1.html#cb13-6" tabindex="-1"></a><span class="fu">hist</span>(draws[, <span class="st">&quot;b1&quot;</span>], <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Posterior dist. b1&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;b1&quot;</span>)</span>
+<span id="cb13-7"><a href="welcome-to-day-1.html#cb13-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(draws[, <span class="st">&quot;b1&quot;</span>]), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb13-8"><a href="welcome-to-day-1.html#cb13-8" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="welcome-to-day-1.html#cb13-9" tabindex="-1"></a><span class="fu">hist</span>(draws[, <span class="st">&quot;theta&quot;</span>], <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Posterior dist. theta&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;theta&quot;</span>)</span>
+<span id="cb13-10"><a href="welcome-to-day-1.html#cb13-10" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(draws[, <span class="st">&quot;theta&quot;</span>]), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb13-11"><a href="welcome-to-day-1.html#cb13-11" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="welcome-to-day-1.html#cb13-12" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+</details>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" /></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="welcome-to-day-1.html#cb14-1" tabindex="-1"></a>theta_CrI <span class="ot">&lt;-</span> <span class="fu">quantile</span>(draws[, <span class="st">&quot;theta&quot;</span>], <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb14-2"><a href="welcome-to-day-1.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="welcome-to-day-1.html#cb14-3" tabindex="-1"></a><span class="fu">plot</span>(df_a<span class="sc">$</span>Ndfa, df_a<span class="sc">$</span>PartNbalance, <span class="at">xlab =</span> <span class="st">&quot;Ndfa (%)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Partial N balance (kg/ha)&quot;</span>)</span>
+<span id="cb14-4"><a href="welcome-to-day-1.html#cb14-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;gold&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb14-5"><a href="welcome-to-day-1.html#cb14-5" tabindex="-1"></a><span class="fu">lines</span>(df_a<span class="sc">$</span>Ndfa, pred_mean, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb14-6"><a href="welcome-to-day-1.html#cb14-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(draws[, <span class="st">&quot;theta&quot;</span>]), <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb14-7"><a href="welcome-to-day-1.html#cb14-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> theta_CrI[<span class="dv">1</span>], <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb14-8"><a href="welcome-to-day-1.html#cb14-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> theta_CrI[<span class="dv">2</span>], <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+</details>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672" /></p>
+<p><br><br></p>
+<div id="what-changes" class="section level4 hasAnchor">
+<h4>What changes?<a href="welcome-to-day-1.html#what-changes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table class="table" style="color: black; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Method
+</th>
+<th style="text-align:center;">
+b0
+</th>
+<th style="text-align:center;">
+b1
+</th>
+<th style="text-align:center;">
+theta
+</th>
+<th style="text-align:center;">
+theta_l
+</th>
+<th style="text-align:center;">
+theta_u
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+LS
+</td>
+<td style="text-align:center;">
+-78.38
+</td>
+<td style="text-align:center;">
+1.35
+</td>
+<td style="text-align:center;">
+58.27
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+ML
+</td>
+<td style="text-align:center;">
+-78.38
+</td>
+<td style="text-align:center;">
+1.35
+</td>
+<td style="text-align:center;">
+58.27
+</td>
+<td style="text-align:center;">
+52.88
+</td>
+<td style="text-align:center;">
+63.65
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Bay
+</td>
+<td style="text-align:center;">
+-79.86
+</td>
+<td style="text-align:center;">
+1.37
+</td>
+<td style="text-align:center;">
+58.36
+</td>
+<td style="text-align:center;">
+52.43
+</td>
+<td style="text-align:center;">
+64.26
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why?</strong></p>
+<ul>
+<li><p>Simple model</p></li>
+<li><p>Lot’s of observations - No deficiency on informational content</p></li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="why-use-bayesian" class="section level3 hasAnchor">
+<h3>3. Why use Bayesian?<a href="welcome-to-day-1.html#why-use-bayesian" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="welcome-to-day-1.html#cb15-1" tabindex="-1"></a>df_b <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>Scenario <span class="sc">==</span> <span class="st">&quot;Scenario B&quot;</span>),]</span>
+<span id="cb15-2"><a href="welcome-to-day-1.html#cb15-2" tabindex="-1"></a><span class="fu">plot</span>(df_b<span class="sc">$</span>Ndfa, df_b<span class="sc">$</span>PartNbalance, <span class="at">xlab =</span> <span class="st">&quot;Ndfa (%)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Partial N balance (kg/ha)&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">110</span>))</span>
+<span id="cb15-3"><a href="welcome-to-day-1.html#cb15-3" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;gold&quot;</span>)</span></code></pre></div>
+</details>
+<p><img src="_main_files/figure-html/unnamed-chunk-23-1.png" alt="" width="672" /></p>
+<p>You should be concerned about uncertainty here! Let’s try a likelihood approach:</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="welcome-to-day-1.html#cb16-1" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb16-2"><a href="welcome-to-day-1.html#cb16-2" tabindex="-1"></a>m4 <span class="ot">&lt;-</span> <span class="fu">gls</span>(PartNbalance <span class="sc">~</span> Ndfa, <span class="at">data =</span> df_b, <span class="at">method =</span> <span class="st">&quot;ML&quot;</span>)</span>
+<span id="cb16-3"><a href="welcome-to-day-1.html#cb16-3" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="welcome-to-day-1.html#cb16-4" tabindex="-1"></a><span class="co"># Ndfa to achieve neutral N balance</span></span>
+<span id="cb16-5"><a href="welcome-to-day-1.html#cb16-5" tabindex="-1"></a>b0hat_ml2 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">coef</span>(m4)[<span class="dv">1</span>]) <span class="co"># extract the intercept</span></span>
+<span id="cb16-6"><a href="welcome-to-day-1.html#cb16-6" tabindex="-1"></a>b1hat_ml2 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">coef</span>(m4)[<span class="dv">2</span>]) <span class="co"># extract the slope</span></span>
+<span id="cb16-7"><a href="welcome-to-day-1.html#cb16-7" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="welcome-to-day-1.html#cb16-8" tabindex="-1"></a>thetahat_ml2 <span class="ot">&lt;-</span> <span class="sc">-</span>b0hat_ml2<span class="sc">/</span>b1hat_ml2 <span class="co"># calculate theta</span></span>
+<span id="cb16-9"><a href="welcome-to-day-1.html#cb16-9" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="welcome-to-day-1.html#cb16-10" tabindex="-1"></a>theta_se2 <span class="ot">&lt;-</span> <span class="fu">deltamethod</span>(<span class="sc">~</span> <span class="sc">-</span>x1<span class="sc">/</span>x2, <span class="at">mean =</span> <span class="fu">coef</span>(m4), <span class="at">cov =</span> <span class="fu">vcov</span>(m4))</span>
+<span id="cb16-11"><a href="welcome-to-day-1.html#cb16-11" tabindex="-1"></a>theta_ci2 <span class="ot">&lt;-</span> <span class="fu">c</span>(thetahat_ml2<span class="fl">-1.96</span><span class="sc">*</span>theta_se2, thetahat_ml2<span class="fl">+1.96</span><span class="sc">*</span>theta_se2)</span>
+<span id="cb16-12"><a href="welcome-to-day-1.html#cb16-12" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="welcome-to-day-1.html#cb16-13" tabindex="-1"></a><span class="fu">plot</span>(df_b<span class="sc">$</span>Ndfa, df_b<span class="sc">$</span>PartNbalance, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">110</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>), <span class="at">xlab =</span> <span class="st">&quot;Ndfa (%)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Partial N Balance (kg/ha)&quot;</span>)</span>
+<span id="cb16-14"><a href="welcome-to-day-1.html#cb16-14" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;gold&quot;</span>)</span>
+<span id="cb16-15"><a href="welcome-to-day-1.html#cb16-15" tabindex="-1"></a><span class="fu">abline</span>(m4, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb16-16"><a href="welcome-to-day-1.html#cb16-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> thetahat_ml2, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb16-17"><a href="welcome-to-day-1.html#cb16-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> theta_ci2[<span class="dv">1</span>], <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb16-18"><a href="welcome-to-day-1.html#cb16-18" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> theta_ci2[<span class="dv">2</span>], <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+</details>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
+<p>How about Bayesian?</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="welcome-to-day-1.html#cb17-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb17-2"><a href="welcome-to-day-1.html#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="welcome-to-day-1.html#cb17-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> df_b<span class="sc">$</span>PartNbalance</span>
+<span id="cb17-4"><a href="welcome-to-day-1.html#cb17-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> (df_b<span class="sc">$</span>Ndfa)<span class="sc">/</span><span class="dv">100</span></span>
+<span id="cb17-5"><a href="welcome-to-day-1.html#cb17-5" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="welcome-to-day-1.html#cb17-6" tabindex="-1"></a><span class="co"># JAGS code</span></span>
+<span id="cb17-7"><a href="welcome-to-day-1.html#cb17-7" tabindex="-1"></a>data_line <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;y&quot;</span> <span class="ot">=</span> y, <span class="st">&quot;x&quot;</span> <span class="ot">=</span> x, <span class="st">&quot;N&quot;</span> <span class="ot">=</span> <span class="fu">nrow</span>(df_b))</span>
+<span id="cb17-8"><a href="welcome-to-day-1.html#cb17-8" tabindex="-1"></a>initials <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb17-9"><a href="welcome-to-day-1.html#cb17-9" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;theta&quot;</span> <span class="ot">=</span> <span class="fl">0.1</span>, <span class="st">&quot;b1&quot;</span> <span class="ot">=</span> <span class="fl">0.1</span>, <span class="st">&quot;sigma&quot;</span> <span class="ot">=</span> <span class="fl">0.1</span>)</span>
+<span id="cb17-10"><a href="welcome-to-day-1.html#cb17-10" tabindex="-1"></a>)</span>
+<span id="cb17-11"><a href="welcome-to-day-1.html#cb17-11" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="welcome-to-day-1.html#cb17-12" tabindex="-1"></a>model_string <span class="ot">&lt;-</span> <span class="st">&quot;model {</span></span>
+<span id="cb17-13"><a href="welcome-to-day-1.html#cb17-13" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb17-14"><a href="welcome-to-day-1.html#cb17-14" tabindex="-1"></a><span class="st">    # Likelihood</span></span>
+<span id="cb17-15"><a href="welcome-to-day-1.html#cb17-15" tabindex="-1"></a><span class="st">    for(i in 1:N){</span></span>
+<span id="cb17-16"><a href="welcome-to-day-1.html#cb17-16" tabindex="-1"></a><span class="st">      y[i] ~ dnorm(mu[i], tau)</span></span>
+<span id="cb17-17"><a href="welcome-to-day-1.html#cb17-17" tabindex="-1"></a><span class="st">      mu[i] &lt;- -b1*theta + b1*(x[i])</span></span>
+<span id="cb17-18"><a href="welcome-to-day-1.html#cb17-18" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb17-19"><a href="welcome-to-day-1.html#cb17-19" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb17-20"><a href="welcome-to-day-1.html#cb17-20" tabindex="-1"></a><span class="st">    # Priors</span></span>
+<span id="cb17-21"><a href="welcome-to-day-1.html#cb17-21" tabindex="-1"></a><span class="st">    b1 ~ dgamma(1.6, 0.8)</span></span>
+<span id="cb17-22"><a href="welcome-to-day-1.html#cb17-22" tabindex="-1"></a><span class="st">    theta ~ dbeta(62.52, 14.06)</span></span>
+<span id="cb17-23"><a href="welcome-to-day-1.html#cb17-23" tabindex="-1"></a><span class="st">    sigma ~ dgamma(2.5, 0.05)</span></span>
+<span id="cb17-24"><a href="welcome-to-day-1.html#cb17-24" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb17-25"><a href="welcome-to-day-1.html#cb17-25" tabindex="-1"></a><span class="st">    # Derived quantity</span></span>
+<span id="cb17-26"><a href="welcome-to-day-1.html#cb17-26" tabindex="-1"></a><span class="st">    b0 &lt;- -b1*theta</span></span>
+<span id="cb17-27"><a href="welcome-to-day-1.html#cb17-27" tabindex="-1"></a><span class="st">    tau &lt;- 1/(sigma^2)</span></span>
+<span id="cb17-28"><a href="welcome-to-day-1.html#cb17-28" tabindex="-1"></a><span class="st">}&quot;</span></span>
+<span id="cb17-29"><a href="welcome-to-day-1.html#cb17-29" tabindex="-1"></a></span>
+<span id="cb17-30"><a href="welcome-to-day-1.html#cb17-30" tabindex="-1"></a>m5 <span class="ot">&lt;-</span> <span class="fu">jags.model</span>(<span class="fu">textConnection</span>(model_string), <span class="at">inits =</span> initials, <span class="at">data =</span> data_line, <span class="at">n.chains =</span> <span class="dv">1</span>)</span>
+<span id="cb17-31"><a href="welcome-to-day-1.html#cb17-31" tabindex="-1"></a></span>
+<span id="cb17-32"><a href="welcome-to-day-1.html#cb17-32" tabindex="-1"></a><span class="fu">update</span>(m5, <span class="at">n.iter =</span> <span class="dv">1000</span>)</span>
+<span id="cb17-33"><a href="welcome-to-day-1.html#cb17-33" tabindex="-1"></a></span>
+<span id="cb17-34"><a href="welcome-to-day-1.html#cb17-34" tabindex="-1"></a>samples2 <span class="ot">&lt;-</span> <span class="fu">coda.samples</span>(m5, <span class="at">variable.names =</span> <span class="fu">c</span>(<span class="st">&quot;b0&quot;</span>, <span class="st">&quot;b1&quot;</span>, <span class="st">&quot;tau&quot;</span>, <span class="st">&quot;theta&quot;</span>, <span class="st">&quot;sigma&quot;</span>), <span class="at">n.iter =</span> <span class="dv">1000</span>)</span>
+<span id="cb17-35"><a href="welcome-to-day-1.html#cb17-35" tabindex="-1"></a></span>
+<span id="cb17-36"><a href="welcome-to-day-1.html#cb17-36" tabindex="-1"></a><span class="co">#summary(samples2)</span></span>
+<span id="cb17-37"><a href="welcome-to-day-1.html#cb17-37" tabindex="-1"></a><span class="co">#plot(samples2)</span></span>
+<span id="cb17-38"><a href="welcome-to-day-1.html#cb17-38" tabindex="-1"></a></span>
+<span id="cb17-39"><a href="welcome-to-day-1.html#cb17-39" tabindex="-1"></a><span class="co"># Extract draws and calculate expected line</span></span>
+<span id="cb17-40"><a href="welcome-to-day-1.html#cb17-40" tabindex="-1"></a>draws2 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(samples2)</span>
+<span id="cb17-41"><a href="welcome-to-day-1.html#cb17-41" tabindex="-1"></a></span>
+<span id="cb17-42"><a href="welcome-to-day-1.html#cb17-42" tabindex="-1"></a>theta_hat2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(draws2[, <span class="st">&quot;theta&quot;</span>])</span>
+<span id="cb17-43"><a href="welcome-to-day-1.html#cb17-43" tabindex="-1"></a>b1_hat2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(draws2[, <span class="st">&quot;b1&quot;</span>])</span>
+<span id="cb17-44"><a href="welcome-to-day-1.html#cb17-44" tabindex="-1"></a></span>
+<span id="cb17-45"><a href="welcome-to-day-1.html#cb17-45" tabindex="-1"></a>pred_mean2 <span class="ot">&lt;-</span> b1_hat2<span class="sc">*</span> <span class="sc">+</span> b1_hat2<span class="sc">*</span>x</span></code></pre></div>
+</details>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="welcome-to-day-1.html#cb18-1" tabindex="-1"></a>theta_CrI2 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(draws2[, <span class="st">&quot;theta&quot;</span>], <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb18-2"><a href="welcome-to-day-1.html#cb18-2" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="welcome-to-day-1.html#cb18-3" tabindex="-1"></a><span class="fu">plot</span>(df_b<span class="sc">$</span>Ndfa, df_b<span class="sc">$</span>PartNbalance, <span class="at">xlab =</span> <span class="st">&quot;Ndfa (%)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Partial N balance (kg/ha)&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">100</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">110</span>))</span>
+<span id="cb18-4"><a href="welcome-to-day-1.html#cb18-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="dv">0</span>, <span class="at">col =</span> <span class="st">&quot;gold&quot;</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb18-5"><a href="welcome-to-day-1.html#cb18-5" tabindex="-1"></a><span class="co">#lines(df_b$Ndfa, pred_mean2, col = &quot;red&quot;, lwd = 2)</span></span>
+<span id="cb18-6"><a href="welcome-to-day-1.html#cb18-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> (<span class="fu">mean</span>(draws2[, <span class="st">&quot;theta&quot;</span>]))<span class="sc">*</span><span class="dv">100</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb18-7"><a href="welcome-to-day-1.html#cb18-7" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> (theta_CrI2[<span class="dv">1</span>])<span class="sc">*</span><span class="dv">100</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span>
+<span id="cb18-8"><a href="welcome-to-day-1.html#cb18-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> (theta_CrI2[<span class="dv">2</span>])<span class="sc">*</span><span class="dv">100</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+</details>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" /></p>
+<p>Why?</p>
+<ul>
+<li><p>Deficient information about <span class="math inline">\(\theta\)</span> in this dataset.</p></li>
+<li><p>Bayesian offers the opportunity to utilize prior information and a constraint <span class="math inline">\(\hat{\theta}\)</span>.</p></li>
+<li><p>We treat <span class="math inline">\(\theta\)</span> as a <strong>random variable.</strong></p></li>
+<li><p>Similar assumptions across approaches.</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="practice-for-day-1" class="section level3 hasAnchor">
+<h3>4. Practice for day 1<a href="welcome-to-day-1.html#practice-for-day-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Sample code is provided for some questions. Code used on the class examples can also be used to work on this practice.</li>
+</ul>
+<div id="fixation-day-1" class="section level4 hasAnchor">
+<h4>Fixation day 1<a href="welcome-to-day-1.html#fixation-day-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>I.</strong> Using the field pea and white lupine data, experiment fitting the simple intercept-slope linear model (<span class="math inline">\(y_i = \beta_0 + \beta_1*xi + \varepsilon_i\)</span>) using the likelihood approach.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="welcome-to-day-1.html#cb19-1" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb19-2"><a href="welcome-to-day-1.html#cb19-2" tabindex="-1"></a><span class="do">## Field pea data (Scenario A)</span></span>
+<span id="cb19-3"><a href="welcome-to-day-1.html#cb19-3" tabindex="-1"></a>fp <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>Scenario <span class="sc">==</span> <span class="st">&quot;Scenario A&quot;</span>),]</span>
+<span id="cb19-4"><a href="welcome-to-day-1.html#cb19-4" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="welcome-to-day-1.html#cb19-5" tabindex="-1"></a><span class="do">## White lupine data (Scenario B)</span></span>
+<span id="cb19-6"><a href="welcome-to-day-1.html#cb19-6" tabindex="-1"></a>wl <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>Scenario <span class="sc">==</span> <span class="st">&quot;Scenario B&quot;</span>),]</span></code></pre></div>
+</details>
+<p><strong>II.</strong> Calculate the derived quantity <span class="math inline">\(\hat{\theta}\)</span>, and use delta method and bootstrap to obtain confidence intervals. Compare the intervals between the two datasets.</p>
+<ul>
+<li>Bootstrap will be revisited on day 3, please, have a look at it beforehand!</li>
+</ul>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="welcome-to-day-1.html#cb20-1" tabindex="-1"></a><span class="co"># Bootstrap for field pea (fp)</span></span>
+<span id="cb20-2"><a href="welcome-to-day-1.html#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="welcome-to-day-1.html#cb20-3" tabindex="-1"></a><span class="fu">library</span>(nlme) <span class="co"># gls function for model fit</span></span>
+<span id="cb20-4"><a href="welcome-to-day-1.html#cb20-4" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="welcome-to-day-1.html#cb20-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>) <span class="co"># As we are working with a random (stochastic) process, we need to set seed to be able to reproduce the results</span></span>
+<span id="cb20-6"><a href="welcome-to-day-1.html#cb20-6" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="welcome-to-day-1.html#cb20-7" tabindex="-1"></a>ite <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># How many iterations (repetitions of the process) we will have</span></span>
+<span id="cb20-8"><a href="welcome-to-day-1.html#cb20-8" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="welcome-to-day-1.html#cb20-9" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(fp) <span class="co"># Sample size to be collected (= df size)</span></span>
+<span id="cb20-10"><a href="welcome-to-day-1.html#cb20-10" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="welcome-to-day-1.html#cb20-11" tabindex="-1"></a>theta.save <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, ite<span class="dv">-1</span>) <span class="co"># Save theta calculated for each sample</span></span>
+<span id="cb20-12"><a href="welcome-to-day-1.html#cb20-12" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="welcome-to-day-1.html#cb20-13" tabindex="-1"></a><span class="co"># Custom bootstrap algorithm</span></span>
+<span id="cb20-14"><a href="welcome-to-day-1.html#cb20-14" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>ite){</span>
+<span id="cb20-15"><a href="welcome-to-day-1.html#cb20-15" tabindex="-1"></a>  </span>
+<span id="cb20-16"><a href="welcome-to-day-1.html#cb20-16" tabindex="-1"></a>  sample <span class="ot">&lt;-</span> fp[<span class="fu">sample</span>(<span class="fu">nrow</span>(fp), n, <span class="at">replace =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb20-17"><a href="welcome-to-day-1.html#cb20-17" tabindex="-1"></a>  </span>
+<span id="cb20-18"><a href="welcome-to-day-1.html#cb20-18" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">gls</span>(PartNbalance <span class="sc">~</span> Ndfa, <span class="at">data =</span> sample, <span class="at">method =</span> <span class="st">&quot;ML&quot;</span>)</span>
+<span id="cb20-19"><a href="welcome-to-day-1.html#cb20-19" tabindex="-1"></a>  </span>
+<span id="cb20-20"><a href="welcome-to-day-1.html#cb20-20" tabindex="-1"></a>  theta <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">coef</span>(fit)[<span class="dv">1</span>]<span class="sc">/</span><span class="fu">coef</span>(fit)[<span class="dv">2</span>]</span>
+<span id="cb20-21"><a href="welcome-to-day-1.html#cb20-21" tabindex="-1"></a>  </span>
+<span id="cb20-22"><a href="welcome-to-day-1.html#cb20-22" tabindex="-1"></a>  theta.save[i] <span class="ot">&lt;-</span> theta</span>
+<span id="cb20-23"><a href="welcome-to-day-1.html#cb20-23" tabindex="-1"></a>  </span>
+<span id="cb20-24"><a href="welcome-to-day-1.html#cb20-24" tabindex="-1"></a>}</span>
+<span id="cb20-25"><a href="welcome-to-day-1.html#cb20-25" tabindex="-1"></a></span>
+<span id="cb20-26"><a href="welcome-to-day-1.html#cb20-26" tabindex="-1"></a><span class="co"># Plot the bootstrap distribution</span></span>
+<span id="cb20-27"><a href="welcome-to-day-1.html#cb20-27" tabindex="-1"></a><span class="fu">hist</span>(theta.save, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Bootstrap distribution of theta&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;theta&quot;</span>)</span>
+<span id="cb20-28"><a href="welcome-to-day-1.html#cb20-28" tabindex="-1"></a></span>
+<span id="cb20-29"><a href="welcome-to-day-1.html#cb20-29" tabindex="-1"></a><span class="co"># 95% CI</span></span>
+<span id="cb20-30"><a href="welcome-to-day-1.html#cb20-30" tabindex="-1"></a><span class="fu">quantile</span>(theta.save, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code></pre></div>
+</details>
+<p>Steps:</p>
+<ul>
+<li><p>Sample n elements with replacement from the original data</p></li>
+<li><p>For every sample calculate the desired statistic (here <span class="math inline">\(\theta\)</span>)</p></li>
+<li><p>Repeat steps 1 and 2 n times (iterations = ite) and save the calculated statistic</p></li>
+<li><p>Plot the calculated statistics which forms the bootstrap distribution</p></li>
+<li><p>Using the bootstrap distribution of desired statistics calculate the 95% CI</p></li>
+</ul>
+</div>
+<div id="pre-day-2---non-linear-models" class="section level4 hasAnchor">
+<h4>Pre-day 2 - Non-linear models<a href="welcome-to-day-1.html#pre-day-2---non-linear-models" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>I.</strong> Fit an logistic model to the data of plant disease progress over time in “nonlin.csv”.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="welcome-to-day-1.html#cb21-1" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb21-2"><a href="welcome-to-day-1.html#cb21-2" tabindex="-1"></a>nl_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;nonlin.csv&quot;</span>)</span>
+<span id="cb21-3"><a href="welcome-to-day-1.html#cb21-3" tabindex="-1"></a>nl_24 <span class="ot">&lt;-</span> nl_df[<span class="fu">which</span>(nl_df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2024</span> <span class="sc">&amp;</span> nl_df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]</span>
+<span id="cb21-4"><a href="welcome-to-day-1.html#cb21-4" tabindex="-1"></a>nl_24<span class="sc">$</span>p_sev <span class="ot">&lt;-</span> nl_24<span class="sc">$</span>severity<span class="sc">/</span><span class="dv">100</span></span>
+<span id="cb21-5"><a href="welcome-to-day-1.html#cb21-5" tabindex="-1"></a>nl_23 <span class="ot">&lt;-</span> nl_df[<span class="fu">which</span>(nl_df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> nl_df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]</span>
+<span id="cb21-6"><a href="welcome-to-day-1.html#cb21-6" tabindex="-1"></a>nl_23<span class="sc">$</span>p_sev <span class="ot">&lt;-</span> nl_23<span class="sc">$</span>severity<span class="sc">/</span><span class="dv">100</span></span></code></pre></div>
+</details>
+<p><strong>I.a.</strong> Use linearization to fit a linear model for 2024. We will use a logit transformation:</p>
+<p><span class="math display">\[
+logit(y_i) = \beta_0 + \beta_1*x_i + \varepsilon_i
+\]</span></p>
+<p>Where <span class="math inline">\(\beta_1 \sim r\)</span> from the non-linear form.</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="welcome-to-day-1.html#cb22-1" tabindex="-1"></a><span class="co"># Example for 2024</span></span>
+<span id="cb22-2"><a href="welcome-to-day-1.html#cb22-2" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="welcome-to-day-1.html#cb22-3" tabindex="-1"></a><span class="co"># For this, we assume K = 1</span></span>
+<span id="cb22-4"><a href="welcome-to-day-1.html#cb22-4" tabindex="-1"></a>nl_24<span class="sc">$</span>l_sev <span class="ot">&lt;-</span> (nl_24<span class="sc">$</span>p_sev<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>nl_24<span class="sc">$</span>p_sev))</span>
+<span id="cb22-5"><a href="welcome-to-day-1.html#cb22-5" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="welcome-to-day-1.html#cb22-6" tabindex="-1"></a><span class="co"># Fit the linear model to the logit transformed y</span></span>
+<span id="cb22-7"><a href="welcome-to-day-1.html#cb22-7" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(l_sev <span class="sc">~</span> time, <span class="at">data =</span> nl_24)</span>
+<span id="cb22-8"><a href="welcome-to-day-1.html#cb22-8" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="welcome-to-day-1.html#cb22-9" tabindex="-1"></a><span class="co"># Make predictions</span></span>
+<span id="cb22-10"><a href="welcome-to-day-1.html#cb22-10" tabindex="-1"></a>logit_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-11"><a href="welcome-to-day-1.html#cb22-11" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">min</span>(nl_24<span class="sc">$</span>time), <span class="fu">max</span>(nl_24<span class="sc">$</span>time), <span class="dv">1</span>))</span>
+<span id="cb22-12"><a href="welcome-to-day-1.html#cb22-12" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="welcome-to-day-1.html#cb22-13" tabindex="-1"></a>logit_pred<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m1, <span class="at">newdata =</span> logit_pred)</span>
+<span id="cb22-14"><a href="welcome-to-day-1.html#cb22-14" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="welcome-to-day-1.html#cb22-15" tabindex="-1"></a><span class="co"># Plot predictions</span></span>
+<span id="cb22-16"><a href="welcome-to-day-1.html#cb22-16" tabindex="-1"></a><span class="fu">plot</span>(nl_24<span class="sc">$</span>time, nl_24<span class="sc">$</span>l_sev, <span class="at">ylab =</span> <span class="st">&quot;Logit(y)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">19</span>))</span>
+<span id="cb22-17"><a href="welcome-to-day-1.html#cb22-17" tabindex="-1"></a><span class="fu">lines</span>(logit_pred<span class="sc">$</span>time, logit_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+</details>
+<p><strong>I.b.</strong> Use the nls function. First, fit for the year of 2024, then, do it for the year of 2023. Make a plot with predictions. Save models for the next question.</p>
+<p><span class="math display">\[
+y_i = \frac{K}{1 + (\frac{K - y_0}{y_0})e^{-rt_i}} + \varepsilon_i
+\]</span></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="welcome-to-day-1.html#cb23-1" tabindex="-1"></a><span class="co"># Example for 2024</span></span>
+<span id="cb23-2"><a href="welcome-to-day-1.html#cb23-2" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="welcome-to-day-1.html#cb23-3" tabindex="-1"></a><span class="co"># Fit the logistic model</span></span>
+<span id="cb23-4"><a href="welcome-to-day-1.html#cb23-4" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> K<span class="sc">/</span>(<span class="dv">1</span> <span class="sc">+</span> ((K<span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">data =</span> nl_24, <span class="at">start =</span> <span class="fu">list</span>(<span class="at">K =</span> <span class="fl">0.7</span>, <span class="at">y0 =</span> <span class="fl">0.001</span>, <span class="at">r =</span> <span class="fl">0.2</span>))</span>
+<span id="cb23-5"><a href="welcome-to-day-1.html#cb23-5" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="welcome-to-day-1.html#cb23-6" tabindex="-1"></a><span class="co"># Predict using the logistic curve</span></span>
+<span id="cb23-7"><a href="welcome-to-day-1.html#cb23-7" tabindex="-1"></a>nl_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-8"><a href="welcome-to-day-1.html#cb23-8" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">min</span>(nl_24<span class="sc">$</span>time), <span class="fu">max</span>(nl_24<span class="sc">$</span>time), <span class="dv">1</span>))</span>
+<span id="cb23-9"><a href="welcome-to-day-1.html#cb23-9" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="welcome-to-day-1.html#cb23-10" tabindex="-1"></a>nl_pred<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m2, <span class="at">newdata =</span> nl_pred)</span>
+<span id="cb23-11"><a href="welcome-to-day-1.html#cb23-11" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="welcome-to-day-1.html#cb23-12" tabindex="-1"></a><span class="co"># Plot predictions</span></span>
+<span id="cb23-13"><a href="welcome-to-day-1.html#cb23-13" tabindex="-1"></a><span class="fu">plot</span>(nl_24<span class="sc">$</span>time, nl_24<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>))</span>
+<span id="cb23-14"><a href="welcome-to-day-1.html#cb23-14" tabindex="-1"></a><span class="fu">lines</span>(nl_pred<span class="sc">$</span>time, nl_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+</details>
+<p><strong>II.</strong> Extract model parameters. Check the parameter meaning below. Check the Wald CI. Are values making sense?</p>
+<ul>
+<li><p>Disease severity: Percentage of tissue area affected by the disease (in this case, percentage of the leaf area affected)</p></li>
+<li><p>Logistic disease progress curve model parameter meaning:</p>
+<ul>
+<li><p><span class="math inline">\(K\)</span> - Maximum disease potential - Maximum severity level</p></li>
+<li><p><span class="math inline">\(r\)</span> - Disease rate of growth - How fast it grows</p></li>
+<li><p><span class="math inline">\(y_0\)</span> - Initial disease level</p></li>
+</ul></li>
+</ul>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="welcome-to-day-1.html#cb24-1" tabindex="-1"></a><span class="fu">summary</span>(m2) <span class="co"># Overall model summary</span></span>
+<span id="cb24-2"><a href="welcome-to-day-1.html#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="welcome-to-day-1.html#cb24-3" tabindex="-1"></a><span class="co"># Example - For K:</span></span>
+<span id="cb24-4"><a href="welcome-to-day-1.html#cb24-4" tabindex="-1"></a><span class="do">## Extract the estimated value</span></span>
+<span id="cb24-5"><a href="welcome-to-day-1.html#cb24-5" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">coef</span>(m2)[<span class="dv">1</span>])</span>
+<span id="cb24-6"><a href="welcome-to-day-1.html#cb24-6" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="welcome-to-day-1.html#cb24-7" tabindex="-1"></a><span class="do">## Calculate Wald Confidence Interval for the parameter estimate</span></span>
+<span id="cb24-8"><a href="welcome-to-day-1.html#cb24-8" tabindex="-1"></a>K_sd <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(m2)[<span class="dv">1</span>])</span>
+<span id="cb24-9"><a href="welcome-to-day-1.html#cb24-9" tabindex="-1"></a>K_lb <span class="ot">&lt;-</span> K<span class="fl">-1.96</span><span class="sc">*</span>K_sd <span class="co"># CI Lower</span></span>
+<span id="cb24-10"><a href="welcome-to-day-1.html#cb24-10" tabindex="-1"></a>K_ub <span class="ot">&lt;-</span> K<span class="fl">+1.96</span><span class="sc">*</span>K_sd <span class="co"># CI Upper</span></span>
+<span id="cb24-11"><a href="welcome-to-day-1.html#cb24-11" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="welcome-to-day-1.html#cb24-12" tabindex="-1"></a><span class="co"># Notes for you:</span></span>
+<span id="cb24-13"><a href="welcome-to-day-1.html#cb24-13" tabindex="-1"></a><span class="do">## nls in R uses least squares, a loss function approach. Recall: Minimize the loss function. </span></span>
+<span id="cb24-14"><a href="welcome-to-day-1.html#cb24-14" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="welcome-to-day-1.html#cb24-15" tabindex="-1"></a><span class="do">## To get CI here we are making additional assumptions that we do not make for loss function approach: iid normal residuals.</span></span>
+<span id="cb24-16"><a href="welcome-to-day-1.html#cb24-16" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="welcome-to-day-1.html#cb24-17" tabindex="-1"></a><span class="do">## This is possible because LS = ML under iid Normal errors with constant variance.</span></span>
+<span id="cb24-18"><a href="welcome-to-day-1.html#cb24-18" tabindex="-1"></a></span>
+<span id="cb24-19"><a href="welcome-to-day-1.html#cb24-19" tabindex="-1"></a><span class="do">## Why 1.96? It represents the 97.5th percentile of the std N distribution.</span></span></code></pre></div>
+</details>
+<p><strong>III.</strong> Try fitting a polynomial to this data. Does the predicted curve make sense visually?</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="welcome-to-day-1.html#cb25-1" tabindex="-1"></a><span class="co"># Example for 2024</span></span>
+<span id="cb25-2"><a href="welcome-to-day-1.html#cb25-2" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="welcome-to-day-1.html#cb25-3" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb25-4"><a href="welcome-to-day-1.html#cb25-4" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(p_sev <span class="sc">~</span> <span class="fu">poly</span>(time, <span class="at">degree =</span> <span class="dv">3</span>), <span class="at">data =</span> nl_24)</span>
+<span id="cb25-5"><a href="welcome-to-day-1.html#cb25-5" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="welcome-to-day-1.html#cb25-6" tabindex="-1"></a><span class="co"># Make predictions</span></span>
+<span id="cb25-7"><a href="welcome-to-day-1.html#cb25-7" tabindex="-1"></a>poly_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb25-8"><a href="welcome-to-day-1.html#cb25-8" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">min</span>(nl_24<span class="sc">$</span>time), <span class="fu">max</span>(nl_24<span class="sc">$</span>time), <span class="dv">1</span>))</span>
+<span id="cb25-9"><a href="welcome-to-day-1.html#cb25-9" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="welcome-to-day-1.html#cb25-10" tabindex="-1"></a>poly_pred<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m3, <span class="at">newdata =</span> poly_pred)</span>
+<span id="cb25-11"><a href="welcome-to-day-1.html#cb25-11" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="welcome-to-day-1.html#cb25-12" tabindex="-1"></a><span class="co"># Plot predictions</span></span>
+<span id="cb25-13"><a href="welcome-to-day-1.html#cb25-13" tabindex="-1"></a><span class="fu">plot</span>(nl_24<span class="sc">$</span>time, nl_24<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>))</span>
+<span id="cb25-14"><a href="welcome-to-day-1.html#cb25-14" tabindex="-1"></a><span class="fu">lines</span>(poly_pred<span class="sc">$</span>time, poly_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+</details>
+<p>About the parameters, are they still carrying biological meaning? How fast is the disease growing?</p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="welcome-to-day-1.html#cb26-1" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code></pre></div>
+</details>
+
+<style>
+h1.title {
+  text-align: center;
+}
+</style>
+<p><br><br></p>
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p><span class="math inline">\(\frac{dy}{dt} = \mathbf{ry}(1-\frac{\mathbf{y}}{\mathbf{K}})\)</span><a href="welcome-to-day-1.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Wald CI measure local uncertainty (around the parameter estimate) and not at the whole parameter space (all values it could assume - global), therefore, they might be more optimistic than global CI. Bootstrap or Bayesian approach would provide more closely a global uncertainty measure once they explore a broader region of the parameter space.<a href="welcome-to-day-1.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Derived quantities are functions of model parameters<a href="welcome-to-day-1.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Finding the parameter values under which the observed data are most plausible according to the assumed data-generating process.<a href="welcome-to-day-1.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>The Delta Method approximates the uncertainty of a transformed estimator (derived quantity), assuming it was originally approximately normal.<a href="welcome-to-day-1.html#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hello-bookdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="welcome-to-day-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-Linear-Models.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["_main.pdf", "_main.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection",
+    "chapter_name": ""
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

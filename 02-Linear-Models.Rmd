@@ -3,7 +3,7 @@ title: "Day 1"
 author:
 output: 
   html_document:
-    code_download: TRUE
+    code_download: FALSE
     code_folding: "hide"
     theme:
       bootswatch: journal
@@ -41,7 +41,7 @@ h1.title {
 
 <br><br>
 
-# Day 1 - Linear models
+## Linear models
 
 <div>
 
@@ -73,9 +73,9 @@ Understanding linear models and estimation conceptually
 
 <br><br>
 
-## 1. What is and what isn't a linear model
+### 1. What is and what isn't a linear model
 
-### Recap on linear models
+#### Recap on linear models
 
 Recall the famous intercept-and-slope model, written in the "model equation form"[^1]:
 
@@ -102,7 +102,7 @@ data_lm$pred <- predict(lin_fit)
 plot(data_lm$x, data_lm$pred, type = "l", ylab = "y", xlab = "x")
 ```
 
-### Now, what makes a model linear?
+#### Now, what makes a model linear?
 
 <center>**A model is linear if it is linear in its parameters.**</center>
 
@@ -165,7 +165,7 @@ $$
 \mathbf{\hat{y}} = \sum_i\beta_ib_i(\mathbf{x})
 $$
 
-### What about nonlinear models?
+#### What about nonlinear models?
 
 In simple terms, in nonlinear models, parameters are inside nonlinear functions.
 
@@ -208,7 +208,7 @@ How do we work with non-linear models?
 
 <br><br>
 
-### How do we chose a a model?
+#### How do we chose a a model?
 
 -   What is your research question?
 
@@ -222,7 +222,7 @@ How do we work with non-linear models?
 
 <br><br>
 
-## 2. Estimation and Inference: A linear model example
+### 2. Estimation and Inference: A linear model example
 
 Estimation: Getting actual numbers for the model parameters
 
@@ -230,7 +230,7 @@ Inference: Making sense of these numbers regarding the population being studied
 
 <br><br>
 
-### Example: Understanding nitrogen balance in grain legumes
+#### Example: Understanding nitrogen balance in grain legumes
 
 Details from [Palmero et al. 2024](https://link.springer.com/article/10.1186/s13007-024-01261-9)
 
@@ -629,7 +629,7 @@ knitr::kable(df_table, align = "c") %>%
 
 <br><br>
 
-## 3. Why use Bayesian?
+### 3. Why use Bayesian?
 
 ```{r, message=FALSE, warning=FALSE}
 df_b <- df[which(df$Scenario == "Scenario B"),]
@@ -733,7 +733,7 @@ Why?
 
 <br><br>
 
-## 4. Practice for day 1
+### 4. Practice for day 1
 
 -   Sample code is provided for some questions. Code used on the class examples can also be used to work on this practice.
 
@@ -921,22 +921,3 @@ About the parameters, are they still carrying biological meaning? How fast is th
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
 summary(m3)
 ```
-
-# Notes
-
-Add a model notation portion
-
-Notes for day 2:\
-Parameter meaning - Mechanistic models
-
-Parameter estimation
-
-"Non-linear models are unforgiving when the data do not inform the parameters"
-
-Problems of linearization
-
-Notes for day 3:
-
-Variety comparison on day 3!
-
-At this point you maybe is thinking, why are we doing this? Why just going with logistic? Shouldn't we be testing other models and comparing them? Why not exponential, monomolecular, others??

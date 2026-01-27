@@ -3,7 +3,7 @@ title: "Day 2"
 author:
 output: 
   html_document:
-    code_download: TRUE
+    code_download: FALSE
     code_folding: "hide"
     theme:
       bootswatch: journal
@@ -105,7 +105,7 @@ par(mfrow = c(1, 1))
 
 <br><br>
 
-### Your were asked to fit a linearized form of the logistic model for 2024 variety a
+#### Your were asked to fit a linearized form of the logistic model for 2024 variety a
 
 ```{r, message=FALSE, warning=FALSE}
 # Data 2024 variety a
@@ -194,7 +194,7 @@ To be discussed on day 3!
 
 <br><br>
 
-### You were asked to fit two different models to this data, a logistic and a polynomial for both 2023 and 2024.
+#### You were asked to fit two different models to this data, a logistic and a polynomial for both 2023 and 2024.
 
 <br><br>
 
@@ -338,7 +338,7 @@ Why it happens?
 
 <br><br>
 
-## 2. Working with weakly identifiable parameters
+### 2. Working with weakly identifiable parameters
 
 What are our options?
 
@@ -356,7 +356,7 @@ A good paper about identifiability: [Preston et al. 2025](https://www.sciencedir
 
 <br><br>
 
-### Now, we will focus on variety a in 2023:
+#### Now, we will focus on variety a in 2023:
 
 Recall 2023 disease progress in time:
 
@@ -510,7 +510,7 @@ knitr::kable(df_table, align = "c") %>%
 
 <br><br>
 
-## 3. Summary
+### 3. Summary
 
 -   Today we discussed:
 
@@ -557,7 +557,7 @@ $$
 
 <br><br>
 
-## 4. Practice questions
+### 4. Practice questions
 
 -   Sample code is provided for some questions. Code used on the class examples can also be used to work on this practice.
 

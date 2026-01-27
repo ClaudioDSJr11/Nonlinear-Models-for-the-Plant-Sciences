@@ -3,7 +3,7 @@ title: "Day 3"
 author:
 output: 
   html_document:
-    code_download: TRUE
+    code_download: FALSE
     code_folding: "hide"
     theme:
       bootswatch: journal
@@ -222,9 +222,9 @@ And this reads: $y_i$ arises from a normal distribution with **expectation** con
 
 -   What is expectation? It is **where the distribution centers**, the **mean**.
 
-$\mathbf{y}$ is a random variable[^1] that arises from a distribution.
+$\mathbf{y}$ is a random variable[^04-bayesian-non-linear-models-1] that arises from a distribution.
 
-[^1]: By definition, a random variable assigns a numerical value to the outcome of a random experiment.
+[^04-bayesian-non-linear-models-1]: By definition, a random variable assigns a numerical value to the outcome of a random experiment.
 
 Now, what have we been doing so far with the logistic model?
 
@@ -414,9 +414,9 @@ par_post <- as.matrix(samples[,c(1, 2, 3, 4)])
 pred_post <- as.matrix(samples[,c(5:61)])
 ```
 
-How the predictions (expected value) looks like with 95% Posterior Predictive Interval[^2]:
+How the predictions (expected value) looks like with 95% Posterior Predictive Interval[^04-bayesian-non-linear-models-2]:
 
-[^2]: Intervals:
+[^04-bayesian-non-linear-models-2]: Intervals:
 
     -   Credible Interval (Bayesian) - An interval that contains a given proportion (95% in the example) of the posterior distribution, representing the probability that the parameter lies within that range given the model and the data. It is a global interval considering the parameter space (all values the parameter can assume).
 
@@ -487,7 +487,7 @@ hist(par_post[,3], ylab = "[r]", xlab = "r", main = "Posterior dist. r", freq = 
 
 -   Let's use variety a in 2023.
 
-```{r, message=FALSE, warning=FALSE, results='hide', echo=FALSE}
+```{r, message=FALSE, warning=FALSE, results='hide'}
 #### Fit the Bayesian model for 2024 var a ####
 set.seed(2026)
 library(rjags)
@@ -543,7 +543,7 @@ par_post <- as.matrix(samples[,c(1, 2, 3, 4)])
 pred_post <- as.matrix(samples[, c(5:77)])
 ```
 
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
+```{r, message=FALSE, warning=FALSE}
 #### Fit the model using likelihood to 2024 var 1 ####
 a_24 <- df[which(df$var == "a" & df$year == 2023),]
 
@@ -588,7 +588,7 @@ df_pred$pred_ub <- apply(sim.save, 2, quantile, 0.975)
 df_pred$pred_lb <- apply(sim.save, 2, quantile, 0.025)
 ```
 
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
+```{r, message=FALSE, warning=FALSE}
 # Plot predictions with interval for iid normal assumption
 plot(a_24$time, a_24$p_sev, ylab = "Severity (prop.)", xlab = "Days", main = "Likelihood approach with minimal assumptions", ylim = c(-0.5, 1.1))
 lines(df_pred$time, df_pred$pred, lwd = 3, col = 'red')
@@ -612,7 +612,35 @@ plot(x, y, ylab = "Severity (prop.)", xlab = "Days", main = "Bayesian model", yl
 lines(bay_pred$x.pred, bay_pred$y.pred, lwd = 3, col = 'red')
 lines(bay_pred$x.pred, bay_pred$y.lb, lty = 2, col = 'red')
 lines(bay_pred$x.pred, bay_pred$y.ub, lty = 2, col = 'red')
+```
 
+```{r, message=FALSE, warning=FALSE}
+# Likelihood uncertainty width
+lt1 <- df_pred$pred_ub[1] - df_pred$pred_lb[1]
+lt2 <- df_pred$pred_ub[37] - df_pred$pred_lb[37]
+lt3 <- df_pred$pred_ub[73] - df_pred$pred_lb[73]
+
+# Bayesian uncertainty width
+bt1 <- bay_pred$y.ub[1] - bay_pred$y.lb[1]
+bt2 <- bay_pred$y.ub[37] - bay_pred$y.lb[37]
+bt3 <- bay_pred$y.ub[73] - bay_pred$y.lb[73]
+
+# Table with distance
+library(knitr)
+library(kableExtra)
+
+table_data <- data.frame(
+  Estimation = c("Min. Assump.", "Bayesian"),
+  Day_1_Width = c(round(lt1, 4), round(bt1, 4)),
+  Relative_uncertainty = c(" ", round((bt1/lt1)*100, 2)),
+  Day_37_Width = c(round(lt2, 4), round(bt2, 4)),
+  Relative_uncertainty = c(" ", round((bt2/lt2)*100, 2)),
+  Day_73_Width = c(round(lt3, 4), round(bt3, 4)),
+  Relative_uncertainty = c(" ", round((bt3/lt3)*100, 2))
+)
+
+knitr::kable(table_data, align = "c") %>%
+  kable_styling(full_width = TRUE, position = "center")
 ```
 
 How about the parameters?
