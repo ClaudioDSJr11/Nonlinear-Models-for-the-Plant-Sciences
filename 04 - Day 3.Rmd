@@ -1,0 +1,669 @@
+---
+title: "Day 3"
+author:
+output: 
+  html_document:
+    code_download: TRUE
+    code_folding: "hide"
+    theme:
+      bootswatch: journal
+    toc: TRUE
+    toc_float: TRUE
+---
+
+```{=html}
+<style>
+h1.title {
+  text-align: center;
+}
+</style>
+```
+
+<br><br>
+
+# Welcome to day 3!!!
+
+What have we learned so far?
+
+-   Day 1
+
+    -   What is and what isn't a linear model.
+
+    -   Estimation methods: Loss function; Likelihood-based; Bayesian.
+
+    -   When they are similar (e.g. normal errors).
+
+-   Day 2
+
+    -   Linearization -\> From a curve, to a line... to a curve.
+
+    -   Mechanistic and Phenomenological models -\> Describe what causes patterns vs Describe the patterns.
+
+    -   Practical identifiability of parameters -\> When our data cannot inform our model parameters.
+
+        -   How to work with weak identifiability:
+
+            -   Fixing parameters.
+
+            -   Simplifying the model.
+
+<br><br>
+
+## Bayesian Non-linear models
+
+<div>
+
+**Outline:**
+
+1.  Exercises from day 2
+
+    -   Questions I and IV - Model selection, why?
+
+2.  Bayesian non-linear models
+
+    -   Bayesian logistic disease progress curve
+    -   Why use Bayesian?
+
+3.  Wrap-up
+
+**What is day 3 about?**
+
+Imposing constraint on parameters using prior knowledge is done using Bayesian statistics. In Bayesian models, this is done through probabilistic assumptions on parameters, making uncertainty and modeling decisions explicit, while supporting biologically driven decisions.
+
+</div>
+
+<br><br>
+
+### 1. Exercises from day 2
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+# Data
+df <- read.csv("nonlin.csv")
+df$p_sev <- df$severity/100
+```
+
+#### Questions I and IV - Model selection, why?
+
+**I.** For 2023, fit the non-linear logistic model to variety a and b. Extract $K$ and $r$ and discuss the effect of genetic resistance in these parameters.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+# Data
+a_23 <- df[which(df$year == 2023 & df$var == "a"),]
+b_23 <- df[which(df$year == 2023 & df$var == "b"),]
+
+# Fit the models
+ma <- nls(p_sev ~ K/(1+((K-y0)/y0)*exp(-r*time)), data = a_23, start = c(K = 0.7, y0 = 0.0001, r = 0.2))
+mb <- nls(p_sev ~ K/(1+((K-y0)/y0)*exp(-r*time)), data = b_23, start = c(K = 0.7, y0 = 0.0001, r = 0.2))
+
+# Make predictions
+pred_df <- data.frame(
+  time = unique(a_23$time)
+)
+
+pred_df$pred_a <- predict(ma, newdata = pred_df)
+pred_df$pred_b <- predict(mb, newdata = pred_df)
+
+# Plot predictions
+plot(a_23$time, a_23$p_sev, type = "p", col = "darkred", ylim = c(0, 1), ylab = "Severity (prop.)", xlab = "Days")
+points(b_23$time, b_23$p_sev, col = "orange")
+lines(pred_df$time, pred_df$pred_a, lwd = 3, col = 'red')
+lines(pred_df$time, pred_df$pred_b, lwd = 3, col = 'gold')
+text(max(a_23$time), max(a_23$p_sev)+0.1, labels = "a", col = 'red', cex = 1)
+text(max(b_23$time), max(b_23$p_sev)-0.2, labels = "b", col = 'gold', cex = 1)
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(knitr)
+library(kableExtra)
+
+df_table <- data.frame(
+  Variety = c("a", "b"),
+  K = c(coef(ma)[1], coef(mb)[1]),
+  r = c(coef(ma)[3], coef(mb)[3])
+)
+
+knitr::kable(df_table, align = "c") %>%
+  kable_styling(full_width = TRUE, position = "center")
+```
+
+**VI.** Repeat question **I** for 2024.
+
+How did it go? More specifically, where you able to fit it for variety b?
+
+What we have:
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+# Data
+a_24 <- df[which(df$year == 2024 & df$var == "a"),]
+b_24 <- df[which(df$year == 2024 & df$var == "b"),]
+
+# Line
+line_a <- aggregate(p_sev ~ time, data = a_24, FUN = mean)
+line_b <- aggregate(p_sev ~ time, data = b_24, FUN = mean)
+
+# Plot predictions
+plot(a_24$time, a_24$p_sev, type = "p", col = "darkgreen", ylim = c(0, 1), ylab = "Severity (prop.)", xlab = "Days")
+points(b_24$time, b_24$p_sev, col = "darkblue")
+lines(line_a$time, line_a$p_sev, lwd = 2, lty = 2, col = "green")
+lines(line_b$time, line_b$p_sev, lwd = 2, lty = 2, col = "blue")
+text(30, 0.56, labels = "a", col = 'green', cex = 1)
+text(30, 0.24, labels = "b", col = 'blue', cex = 1)
+```
+
+What we expect:
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+# Make the curve
+K <- 1
+r <- 0.2
+re <- 0.15
+y0 <- 0.001
+time <- seq(1, 60, by = 1)
+
+yl <- K/(1+((K-y0)/y0)*exp(-r*time))
+
+ye <- y0*exp(re*time)
+
+plot(time, yl, ylab = "Severity", xlab = "Days", type = "l", col = "red")
+lines(time, ye, col = "blue")
+```
+
+-   The blue line represents an exponential model:
+
+$$
+y_i = y_0*e^{r_e*x_i}
+$$
+
+Why don't we use this model instead? I have been pushing the logistic model for this data, even if it might not be the one that "best fit" it. Why?
+
+-   Discussion
+
+<br><br>
+
+### 2. Bayesian non-linear models
+
+-   Data alone was insufficient, we need more assumptions!
+
+-   A parallel with day 2:
+
+    -   When data was insufficient, we made assumptions:
+
+        -   $K = 1$ + Non-linear logistic model.
+
+        -   $K = 1$ + Linearization.
+
+            -   Assume the non-linear relationship is well approximated by a linear one.
+
+            -   Assume inference on linearized model parameters is equivalent to the non-linear.
+
+            -   Mechanistic meaning of the non-linear model is preserved.
+
+\*Bayesian makes assumptions explicit vs previous approaches.
+
+<br><br>
+
+When using a Bayesian approach, we will be making assumptions, but not as deterministic as $K = 1$, or changing the model structure.
+
+We will treat all parameters as **random variables**. What does it mean?
+
+-   When we write the model:
+
+$$
+y_i = \beta_0 + \beta_1*x_i + \varepsilon_i \\[10pt] \varepsilon_i \sim N(0, \sigma^2)
+$$
+
+-   Is equivalent to write:
+
+$$
+y_i \sim N(\mu_i, \sigma^2) \\[10pt] \mu_i = \beta_0 + \beta_1*x_i
+$$
+
+And this reads: $y_i$ arises from a normal distribution with **expectation** controlled by the mathematical model and variance $\sigma^2$.
+
+-   What is expectation? It is **where the distribution centers**, the **mean**.
+
+$\mathbf{y}$ is a random variable[^1] that arises from a distribution.
+
+[^1]: By definition, a random variable assigns a numerical value to the outcome of a random experiment.
+
+Now, what have we been doing so far with the logistic model?
+
+$$
+y_i \sim N(\mu_i, \sigma^2) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r*x_i}}
+$$
+
+-   This is not Bayesian.
+
+-   Recall, under this assumption: LS = ML
+
+-   This is not working because of weak identifiability.
+
+-   But we want this logistic equation, let's make more assumptions!
+
+<br><br>
+
+#### Bayesian logistic disease progress curve
+
+The first assumption we can make regards our response variable.
+
+Is our model matching the data generating process?
+
+-   Severity = Proportion -\> Bounded 0 - 1
+
+-   Beta distribution (Beta regression - [Ferrari & Cribari-Neto, 2010](https://www.tandfonline.com/doi/abs/10.1080/0266476042000214501)).
+
+$$
+y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r*x_i}}
+$$
+
+-   This still not Bayesian. We are just choosing a more appropriate distribution for our response variable.
+
+    -   We can do that using likelihood-based estimation.
+
+**Now, let's get Bayesian!**
+
+We will treat our unknown quantities (parameters) as random variables. How does it work?
+
+Recall the assumption: $K = 1$
+
+It is the same as: $K \sim N(1, 0)$
+
+-   This is the strongest and most restrictive assumption!
+
+If we "relax" this assumption, and let $K$ vary a little more, let's say $K \sim N(1, 5)$, this what happens:
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+set.seed(2026)
+hist(rnorm(1000, 1, 5), freq = FALSE, xlab = "K", main = NULL)
+```
+
+Now, do you think these values make sense?
+
+-   $K$ has a biological meaning - Maximum disease potential.
+
+-   What if we impose a constraint on this parameter?
+
+$$
+K \sim Beta(6, 2)
+$$
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+set.seed(2026)
+hist(rbeta(1000, 6, 2), freq = FALSE, xlab = "K", main = NULL)
+```
+
+How we are choosing that?
+
+-   Beta distribution - Bounds.
+
+-   Leaning towards higher values - $K$ represents the maximum disease potential.
+
+-   Let it vary from very small maximum to the maximum possible (1).
+
+<br><br>
+
+<center>
+
+**This is what we call prior distribution, we use prior knowledge to inform unknown quantities in the model.**
+
+**"Before we see the data, what values we expect this parameter to assume?"**
+
+</center>
+
+<br><br>
+
+Priors are constructed using:
+
+-   Expert knowledge.
+
+-   Published information.
+
+<br><br>
+
+How does it look like for our remaining parameters?
+
+$y_0$ \~ $Unif(0.001, 0.1)$
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+set.seed(2026)
+hist(runif(1000, 0.001, 0.1), freq = FALSE, xlab = "y0", main = NULL)
+```
+
+$r$ \~ $Unif(0.1, 0.5)$
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+set.seed(2026)
+hist(runif(1000, 0.1, 0.5), freq = FALSE, xlab = "y0", main = NULL)
+```
+
+$\phi$ \~ $Gamma(24, 2)$
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+set.seed(2026)
+hist(rgamma(1000, 24, 2), freq = FALSE, xlab = "phi", main = NULL)
+```
+
+-   Dispersion parameter \~ Inverse of the variance
+
+<br><br>
+
+**We end up with this Bayesian model:**
+
+$$
+y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e^{-r*x_i}} \\[20pt] K \sim Beta(6, 2) \\[10pt] y_0 \sim Unif(0.001, 0.1) \\[10pt] r \sim Unif(0.1, 0.5) \\[10pt] \phi \sim Gamma(24, 2)
+$$
+
+<br><br>
+
+Let's fit the model for the variety b in 2024:
+
+```{r, message=FALSE, warning=FALSE, results='hide'}
+library(rjags)
+library(coda)
+
+set.seed(2026)
+
+y <- df[which(df$year == 2024 & df$var == "b"),]$p_sev + 0.001
+x <- df[which(df$year == 2024 & df$var == "b"),]$time
+N <- nrow(df[which(df$year == 2024 & df$var == "b"),])
+x.pred <- seq(1, max(x)+20, by = 1)
+N_pred <- length(x.pred)
+
+# JAGS code
+data_line <- list("y" = y, "x" = x, "x.pred" = x.pred, "N" = N, "N_pred" = N_pred)
+initials <- list(
+  list("K" = 0.7, "r" = 0.2, "y0" = 0.001, "phi" = 10)
+)
+
+model_string <- "model {
+    
+    # Likelihood
+    
+    for(i in 1:N){
+      y[i] ~ dbeta(alpha[i], beta[i])
+      alpha[i] <- (K/(1 + ((K-y0)/y0)*exp(-r*x[i])))*phi
+      beta[i] <- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x[i]))))*phi
+    }
+    
+    # Posterior pred.
+      for(z in 1:N_pred){
+        y_pred[z] ~ dbeta(alpha_pred[z], beta_pred[z])
+        alpha_pred[z] <- (K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z])))*phi
+        beta_pred[z] <- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z]))))*phi
+      }
+    
+    # Priors
+    
+    y0 ~ dunif(0.001, 0.1)
+    K ~ dbeta(6, 2)
+    r ~ dunif(0.1, 0.5)
+    phi ~ dgamma(24, 2)
+}"
+
+m1 <- jags.model(textConnection(model_string), inits = initials, data = data_line, n.chains = 1)
+
+update(m1, n.iter = 10000)
+
+samples <- coda.samples(m1, variable.names = c("K", "y0", "r", "phi", "y_pred"), n.iter = 10000)
+
+# Extract draws
+## Parameters
+par_post <- as.matrix(samples[,c(1, 2, 3, 4)])
+
+## Predictions
+pred_post <- as.matrix(samples[,c(5:61)])
+```
+
+How the predictions (expected value) looks like with 95% Posterior Predictive Interval[^2]:
+
+[^2]: Intervals:
+
+    -   Credible Interval (Bayesian) - An interval that contains a given proportion (95% in the example) of the posterior distribution, representing the probability that the parameter lies within that range given the model and the data. It is a global interval considering the parameter space (all values the parameter can assume).
+
+    <!-- -->
+
+    -   Posterior Predictive Interval (Bayesian) - Given the data and the model, there is an x% probability that a new observation will fall within this interval. Contains a given proportion (95% in the workshop example) of the posterior predictive distribution.
+
+    <!-- -->
+
+    -   Predictive Interval (likelihood-based) - If we repeat the experiment many times under the same condition, x% of future observation would fall within this range. Quantifies uncertainty in predictions.
+
+    -   Confidence Interval (likelihood-bases) - Range within which a true population parameter (such as mean/expectation) is likely to lie based on the data. Quantifies uncertainty in an estimate.
+
+```{r, message=FALSE, warning=FALSE}
+# Quantiles for 95% Credible Interval
+quant <- apply(pred_post, 2, quantile, probs = c(0.025, 0.975))
+
+# DF for prediction
+bay_pred <- data.frame(
+  y.pred = colMeans(pred_post),
+  y.lb = quant[1,],
+  y.ub = quant[2,],
+  x.pred = x.pred
+)
+
+# Plot prediction
+plot(bay_pred$x.pred, bay_pred$y.pred, type = "l", ylab = "Pred. severity (mean)", xlab = "Days", ylim = c(-0.1, 1.1), lwd = 3, col = 'red')
+lines(bay_pred$x.pred, bay_pred$y.lb, lty = 2, lwd = 3, col = 'red')
+lines(bay_pred$x.pred, bay_pred$y.ub, lty = 2, lwd = 3, col = 'red')
+abline(h = 1, lty = 3, col = 'black', lwd = 2)
+abline(h = 0, lty = 3, col = 'black', lwd = 2)
+```
+
+How about the parameters?
+
+```{r, message=FALSE, warning=FALSE}
+par(mfrow = c(2, 2))
+# For K
+hist(par_post[,1], ylab = "[K]", xlab = "K", main = "Post. dist. K", freq = FALSE)
+abline(v = mean(par_post[,1]), lty = 2, lwd = 3, col = 'red')
+
+# For r
+hist(par_post[,3], ylab = "[r]", xlab = "r", main = "Post. dist. r", freq = FALSE)
+abline(v = mean(par_post[,3]), lty = 2, lwd = 3, col = 'red')
+
+# For y0
+hist(par_post[,4], ylab = "[y0]", xlab = "y0", , main = "Post. dist. y0", freq = FALSE)
+abline(v = mean(par_post[,4]), lty = 2, lwd = 3, col = 'red')
+par(mfrow = c(1, 1))
+```
+
+How posterior compare to prior?
+
+-   Let's look at $r$.
+
+-   Recall: $r \sim Unif(0.1, 0.5)$
+
+```{r, message=FALSE, warning=FALSE}
+# Post. dist. r
+hist(runif(1000,0.1, 0.5), freq = FALSE, main = "Prior dist. r", ylab = "[r]", xlab = "r", xlim = c(0.1, 0.5))
+# Pior dist. r
+hist(par_post[,3], ylab = "[r]", xlab = "r", main = "Posterior dist. r", freq = FALSE, xlim = c(0.1, 0.5))
+```
+
+<br><br>
+
+#### Why use Bayesian?
+
+-   Let's use variety a in 2023.
+
+```{r, message=FALSE, warning=FALSE, results='hide', echo=FALSE}
+#### Fit the Bayesian model for 2024 var a ####
+set.seed(2026)
+library(rjags)
+
+y <- df[which(df$year == 2023 & df$var == "a"),]$p_sev + 0.001
+x <- df[which(df$year == 2023 & df$var == "a"),]$time
+N <- nrow(df[which(df$year == 2023 & df$var == "a"),])
+x.pred <- seq(1, max(x)+20, by = 1)
+N_pred <- length(x.pred)
+
+# JAGS code
+data_line <- list("y" = y, "x" = x, "x.pred" = x.pred, "N" = N, "N_pred" = N_pred)
+initials <- list(
+  list("K" = 0.7, "r" = 0.2, "y0" = 0.001, "phi" = 10)
+)
+
+model_string <- "model {
+    
+    # Likelihood
+    
+    for(i in 1:N){
+      y[i] ~ dbeta(alpha[i], beta[i])
+      alpha[i] <- (K/(1 + ((K-y0)/y0)*exp(-r*x[i])))*phi
+      beta[i] <- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x[i]))))*phi
+    }
+    
+    # Posterior pred.
+      for(z in 1:N_pred){
+        y_pred[z] ~ dbeta(alpha_pred[z], beta_pred[z])
+        alpha_pred[z] <- (K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z])))*phi
+        beta_pred[z] <- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z]))))*phi
+      }
+    
+    # Priors
+    
+    y0 ~ dunif(0.001, 0.1)
+    K ~ dbeta(6, 2)
+    r ~ dunif(0.1, 0.5)
+    phi ~ dgamma(24, 2)
+}"
+
+m2 <- jags.model(textConnection(model_string), inits = initials, data = data_line, n.chains = 1)
+
+update(m2, n.iter = 10000)
+
+samples <- coda.samples(m2, variable.names = c("K", "y0", "r", "phi", "y_pred"), n.iter = 10000)
+
+# Extract draws
+## Parameters
+par_post <- as.matrix(samples[,c(1, 2, 3, 4)])
+
+## Predictions
+pred_post <- as.matrix(samples[, c(5:77)])
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+#### Fit the model using likelihood to 2024 var 1 ####
+a_24 <- df[which(df$var == "a" & df$year == 2023),]
+
+# Fit the model
+m3 <- nls(p_sev ~ K/(1+((K-y0)/y0)*exp(-r*time)), start = c(K = 0.7, r = 0.2, y0 = 0.001), data = a_24)
+
+# Predictions with prediction interval
+df_pred <- data.frame(
+  time = seq(1, max(a_24$time)+20, by = 1)
+)
+
+library(mvtnorm) # Package for multivariate normal
+set.seed(2026)
+
+ite <- 10000 # Number of iterations/simulations
+
+par_hat <- coef(m3) # Extract parameter estimated
+var_cov <- vcov(m3) # Extract var covar matrix
+sigma_hat <- summary(m3)$sigma # Extract standard deviation
+
+par_sim <- rmvnorm(ite, par_hat, var_cov) # Simulate parameters - Draws from a multivariate normal using our expected value for the parameter and their variance
+
+time <- df_pred$time
+
+sim.save <- matrix(nrow = ite, ncol = length(time))
+
+for(i in 1:ite){
+  
+  K <- par_sim[i,"K"]
+  y0 <- par_sim[i, "y0"]
+  r <- par_sim[i, "r"]
+    
+  mu <- K/(1+((K-y0)/y0)*exp(-r*time))
+  
+  sim.save[i,] <- rnorm(length(time), mu, sigma_hat)
+  
+}
+
+# Prediction + pred intervals on the df
+df_pred$pred <- predict(m3, newdata = df_pred)
+df_pred$pred_ub <- apply(sim.save, 2, quantile, 0.975)
+df_pred$pred_lb <- apply(sim.save, 2, quantile, 0.025)
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+# Plot predictions with interval for iid normal assumption
+plot(a_24$time, a_24$p_sev, ylab = "Severity (prop.)", xlab = "Days", main = "Likelihood approach with minimal assumptions", ylim = c(-0.5, 1.1))
+lines(df_pred$time, df_pred$pred, lwd = 3, col = 'red')
+lines(df_pred$time, df_pred$pred_ub, lty = 2, col = 'red')
+lines(df_pred$time, df_pred$pred_lb, lty = 2, col = 'red')
+
+# Plot predictions with interval for Bayesian model
+# Quantiles for 95% Credible Interval
+quant <- apply(pred_post, 2, quantile, probs = c(0.025, 0.975))
+
+# DF for prediction
+bay_pred <- data.frame(
+  y.pred = colMeans(pred_post),
+  y.lb = quant[1,],
+  y.ub = quant[2,],
+  x.pred = x.pred
+)
+
+# Plot prediction
+plot(x, y, ylab = "Severity (prop.)", xlab = "Days", main = "Bayesian model", ylim = c(-0.1, 1.1))
+lines(bay_pred$x.pred, bay_pred$y.pred, lwd = 3, col = 'red')
+lines(bay_pred$x.pred, bay_pred$y.lb, lty = 2, col = 'red')
+lines(bay_pred$x.pred, bay_pred$y.ub, lty = 2, col = 'red')
+
+```
+
+How about the parameters?
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(ggplot2)
+
+vc3 <- vcov(m3)
+se3 <- sqrt(diag(vc3))
+
+table_data <- data.frame(
+  Estimation = c(rep("Min. Assump.", 3), rep("Bayesian", 3)),
+  Parameter = c(rep(c("K", "r", "y0"), 2)),
+  Estimate = c(as.numeric(coef(m3)[1]), as.numeric(coef(m3)[2]), as.numeric(coef(m3)[3]), mean(par_post[,"K"]), mean(par_post[,"r"]), mean(par_post[,"y0"])),
+  
+  Est_lb = c(as.numeric(coef(m3)[1])-1.96*se3["K"], as.numeric(coef(m3)[2])-1.96*se3["r"], as.numeric(coef(m3)[3])-1.96*se3["y0"], as.numeric(quantile(par_post[, "K"], 0.025)), as.numeric(quantile(par_post[, "r"], 0.025)), as.numeric(quantile(par_post[, "y0"], 0.025))),
+  
+  Est_ub = c(as.numeric(coef(m3)[1])+1.96*se3["K"], as.numeric(coef(m3)[2])+1.96*se3["r"], as.numeric(coef(m3)[3])+1.96*se3["y0"], as.numeric(quantile(par_post[, "K"], 0.975)), as.numeric(quantile(par_post[, "r"], 0.975)), as.numeric(quantile(par_post[, "y0"], 0.975))
+))
+
+ggplot(table_data, aes(as.factor(Estimation), Estimate)) +
+  geom_linerange(aes(ymin = Est_lb, ymax = Est_ub)) +
+  geom_point() +
+  facet_wrap(~Parameter, scales = "free_y") +
+  theme_bw() +
+  ylab("Parameter estimate") +
+  xlab("Estimation")
+```
+
+<br><br>
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(knitr)
+library(kableExtra)
+
+knitr::kable(table_data, align = "c") %>%
+  kable_styling(full_width = TRUE, position = "center")
+```
+
+### 3. Wrap-up
+
+-   There is no right or wrong! There are different assumptions, and each carry advantages and disadvantages.
+
+-   Choosing assumptions should be done consciously, keeping in mind that they might change the analysis results, and how you make inference.
+
+-   Bayesian is not a better approach. It is another tool in your toolbox, and might be helpful in some situations.
+
+    -   Before: Less uncertainty = More data
+
+    -   Now: Other options -\> Less uncertainty = More assumptions
+
+-   All workshop material is available on this page. Feel free to contact us as well if you have questions!
+
+-   Thank you very much for you attention and for attending this workshop, this was a great opportunity for us all to learn more together! Stay tuned for the next workshop "[Bayesian Modeling of Designed Experiments](https://www.k-state.edu/engagement/innovation-and-partnerships/interdisciplinary-institutes/digital-ag-advanced-analytics/about/analytics-workshops.html)" on March 2, 4, and 5.
