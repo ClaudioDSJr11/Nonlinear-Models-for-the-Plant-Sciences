@@ -1,0 +1,77 @@
+# Pre-workshop guide
+
+## What will we learn?
+
+Day 1:
+
+-   Linear vs Nonlinear models - What is the difference?
+
+-   Parameter estimation:
+
+    -   Loss-function approach
+
+    -   Likelihood-based approach
+
+    -   Bayesian approach
+
+-   Why Bayesian inference may be useful?
+
+Day 2:
+
+-   Linearization - What is going on behind the scenes?
+
+-   Types of models: Mechanistic vs Phenomenological
+
+-   Identifiability of parameters - Deeply related to estimation
+
+-   Working with weakly identifiable parameters using likelihood-based approach
+
+    -   Fixing parameters
+
+    -   Linearization
+
+Day 3:
+
+-   Reasoning behind model selection - Mechanistic models and their meaning
+
+-   A Bayesian example: Bayesian Disease Progress Curve
+
+    -   Why use Bayesian?
+
+-   Wrap-up
+
+## Notation guide
+
+We can write the same linear model using different notations, but preserving the same meaning. In this workshop, we will primarily use scalar and probabilistic notation for clarity. Vector and matrix notation are included here for reference. All notations below assume normally distributed errors.
+
+$$
+\varepsilon_i \sim N(0, \sigma^2)
+$$
+
+The Multivariate Normal distribution (MVN) is a compact way to represent multiple normally distributed observations together.
+
+-   Scalar notation - Represents a single number
+
+$$
+y_i = \beta_0 + \beta_1*x_i + \varepsilon_i \\ \varepsilon_i \sim N(0, \sigma^2)
+$$
+
+-   Vector notation - Represents a vector of numbers
+
+$$
+\mathbf{y} = \beta_0 + \beta_1*\mathbf{x}+\boldsymbol{\varepsilon} \\[10pt] \begin{bmatrix} y_1 \\ y_2 \\ ... \\ y_n \end{bmatrix} = \beta_0 + \beta_1*\begin{bmatrix} x_1 \\ x_2 \\ ... \\ x_n \end{bmatrix} + \begin{bmatrix} \varepsilon_1 \\ \varepsilon_2 \\ ... \\ \varepsilon_n \end{bmatrix} \\[15pt] \boldsymbol{\varepsilon} \sim MVN(\mathbf{0}, \mathbf{I}\sigma^2)
+$$
+
+-   Matrix notation - Represents a matrix
+
+$$
+\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon} \\ \boldsymbol{\varepsilon} \sim MVN(\mathbf{0}, \mathbf{I}\sigma^2) 
+$$
+
+-   Probabilistic notation - Represents the distribution that we are assuming, a clear way to make our assumptions clear. The expected value, or mean, can be expressed using any of the previous notations. To follow the same structure of the workshop, scalar notation will be exemplified.
+
+    -   In distributional notation, see how we demonstrate that the deterministic mathematical equation influences the expectation/mean. The variance, in here, is the same depicted within this part of our previous model: $\varepsilon_i \sim N(0, \sigma^2)$.
+
+$$
+y_i \sim N(\mu_i, \sigma^2) \\ \mu_i = \beta_0 + \beta_1*x_i
+$$

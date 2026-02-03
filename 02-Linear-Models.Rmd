@@ -1,12 +1,12 @@
 # Welcome to day 1!
 
--   In this workshop, we will try to mix theory and R coding, but our main focus will be on understanding the *why*. All applications should be driven by thinking first.
+-   In this workshop material, theory and R codes are mixed. Throughout the workshop days, our main focus will be on understanding the *why*. Our main goal is to demonstrate that all codes in this workshop are used after deep understanding of what is going on behind it, after we thought about our models in depth.
 
 -   We will follow a step-wise structure:
 
-    -   Day 1: Linear models
+    -   Day 1: Linear models and parameter estimation
 
-    -   Day 2: Nonlinear models
+    -   Day 2: Nonlinear models and their challenges
 
     -   Day 3: Bayesian nonlinear models
 
@@ -14,7 +14,7 @@
 
 -   Our goal is to provide an immersion into the topic and some initial guidance, so you can move forward with your own projects and continued learning.
 
--   Please feel free to stop me and ask questions at any time. I will answer to the best of my knowledge, and if I don’t know the answer, either Trevor will jump in or I will make sure to come back to you with a clear explanation later.
+-   Please feel free to stop me and ask questions at any time. I will answer it to the best of my knowledge, and if I don’t know the answer, either Trevor will jump in or I will make sure to come back to you with a clear explanation in a later moment.
 
 <br><br>
 
@@ -34,13 +34,13 @@
 
     -   Bayesian approach
 
-3.  When Bayesian improves
+3.  Why use Bayesian
 
 4.  Practice questions
 
-    -   Fixation day 1
+    -   Fixation day 1 (Optional)
 
-    -   Pre-day 2
+    -   Pre-day 2 (Recomended)
 
 **What is day 1 about?**
 
@@ -54,9 +54,9 @@ Understanding linear models and estimation conceptually
 
 #### Recap on linear models
 
-Recall the famous intercept-and-slope model, written in the "model equation form"[^1]:
+Recall the famous intercept-and-slope model, written in the "model equation form"[^02-linear-models-1]:
 
-[^1]: We are using scalar notation throughout this class.
+[^02-linear-models-1]: We are using scalar notation throughout this class.
 
 $$
 y_i = \beta_0 + x_i\beta_1 + \varepsilon_i
@@ -87,9 +87,9 @@ Other examples of linear models are:
 
 **Polynomial regression:**
 
-Extend the linear regression in a way that the relationship between the predictors and the response is nonlinear. A polynomial function is a special case of base function[^2].
+Extend the linear regression in a way that the relationship between the predictors and the response is nonlinear. A polynomial function is a special case of base function[^02-linear-models-2].
 
-[^2]: Base function is a known function of the predictor ($x$) that gets its own coefficient in a linear model. In short, a mathematical transformation of the predictor. For example, the linear model $y_i = \beta_0 + \beta_1x_i + \varepsilon_i$ can be written as $y_i = \beta_0 * 1 + \beta_1 * x + \varepsilon_i$, in which the base functions ($b$) are $b_0(x) = 1$ and $b_1(x) = x$. For polynomial regression, for example, the base function could be represented as $b_d(x_i) = x_i^d$, with $d$ being the polynomial degree.
+[^02-linear-models-2]: Base function is a known function of the predictor ($x$) that gets its own coefficient in a linear model. In short, a mathematical transformation of the predictor. For example, the linear model $y_i = \beta_0 + \beta_1x_i + \varepsilon_i$ can be written as $y_i = \beta_0 * 1 + \beta_1 * x + \varepsilon_i$, in which the base functions ($b$) are $b_0(x) = 1$ and $b_1(x) = x$. For polynomial regression, for example, the base function could be represented as $b_d(x_i) = x_i^d$, with $d$ being the polynomial degree.
 
 $$
 y_i = \beta_0 + \beta_1x_i+\beta_2x_i^2+\varepsilon_i
@@ -264,9 +264,9 @@ $$
 y_i = \beta_0 + \beta_1x_i + \varepsilon_i
 $$
 
-Theta is a derived quantity[^3] calculated as:
+Theta is a derived quantity[^02-linear-models-3] calculated as:
 
-[^3]: Derived quantities are functions of model parameters
+[^02-linear-models-3]: Derived quantities are functions of model parameters
 
 $$
 Ndfa = -\frac{\beta_0}{\beta_1}
@@ -304,11 +304,11 @@ Instead of minimizing the distance, we now maximize the likelihood function.
 
 -   The question is: "If these parameter values were true, how plausible is the data I actually observe?".
 
--   Likelihood is about explaining the data you already have[^4].
+-   Likelihood is about explaining the data you already have[^02-linear-models-4].
 
 -   No more a line of best fit, but an expectation!
 
-[^4]: Finding the parameter values under which the observed data are most plausible according to the assumed data-generating process.
+[^02-linear-models-4]: Finding the parameter values under which the observed data are most plausible according to the assumed data-generating process.
 
 To define a likelihood, we must introduce assumptions about how the data were generated. We make a **distributional assumption** for the random error term:
 
@@ -394,9 +394,9 @@ thetahat_ml <- -b0hat_ml/b1hat_ml # calculate theta
 thetahat_ml
 ```
 
-Here we can construct confidence intervals by approximating the standard errors using delta method[^5].
+Here we can construct confidence intervals by approximating the standard errors using delta method[^02-linear-models-5].
 
-[^5]: The Delta Method approximates the uncertainty of a transformed estimator (derived quantity), assuming it was originally approximately normal.
+[^02-linear-models-5]: The Delta Method approximates the uncertainty of a transformed estimator (derived quantity), assuming it was originally approximately normal.
 
 ```{r, message=FALSE, warning=FALSE}
 library(msm)
@@ -801,7 +801,8 @@ Where $\beta_1 \sim r$ from the nonlinear form.
 # Example for 2024
 
 # For this, we assume K = 1
-nl_24$l_sev <- (nl_24$p_sev/(1-nl_24$p_sev))
+nl_24$p_sev <- nl_24$p_sev + 0.001
+nl_24$l_sev <- log(nl_24$p_sev/(1-nl_24$p_sev))
 
 # Fit the linear model to the logit transformed y
 m1 <- lm(l_sev ~ time, data = nl_24)
@@ -813,7 +814,7 @@ logit_pred <- data.frame(
 logit_pred$pred <- predict(m1, newdata = logit_pred)
 
 # Plot predictions
-plot(nl_24$time, nl_24$l_sev, ylab = "Logit(y)", xlab = "Days", ylim = c(-3, 19))
+plot(nl_24$time, nl_24$l_sev, ylab = "Logit(y)", xlab = "Days", ylim = c(-7, 5))
 lines(logit_pred$time, logit_pred$pred, lwd = 3, col = "red")
 ```
 

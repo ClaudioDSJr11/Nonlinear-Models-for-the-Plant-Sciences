@@ -521,7 +521,7 @@ pred_post <- as.matrix(samples[, c(5:77)])
 ```
 
 ```{r, message=FALSE, warning=FALSE}
-#### Fit the model using likelihood to 2024 var 1 ####
+#### Fit the model using likelihood to 2023 var a ####
 a_24 <- df[which(df$var == "a" & df$year == 2023),]
 
 # Fit the model
@@ -555,7 +555,8 @@ for(i in 1:ite){
     
   mu <- K/(1+((K-y0)/y0)*exp(-r*time))
   
-  sim.save[i,] <- rnorm(length(time), mu, sigma_hat)
+  y_sim <- rnorm(length(time), mu, sigma_hat)
+  sim.save[i,] <- y_sim
   
 }
 

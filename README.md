@@ -20,7 +20,7 @@ The Workshop covers topics such as:
 - `index.Rmd` – Workshop introduction and overview  
 - `01-Linear-Models.Rmd` – Day 1
 - `02-Nonlinear-Models.Rmd` – Day 2
-- `03-Bayesian-Nonlinear-Models.Rmd` – Day 1
+- `03-Bayesian-Nonlinear-Models.Rmd` – Day 3
 - `Palmero_data` – Nitrogen example dataset
 - `nonlin/` – Disease epidemic example dataset 
 - `_book/` – Rendered output

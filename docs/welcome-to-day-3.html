@@ -26,7 +26,7 @@ emphasis on interpretation, uncertainty, and conscient implementation in R.</p>"
 <meta name="author" content="Claudio Dias da Silva Jr &amp; Trevor Hefley" />
 
 
-<meta name="date" content="2026-01-27" />
+<meta name="date" content="2026-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,6 +148,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="" data-path="pre-workshop-guide.html"><a href="pre-workshop-guide.html"><i class="fa fa-check"></i>Pre-workshop guide</a>
+<ul>
+<li class="chapter" data-level="" data-path="pre-workshop-guide.html"><a href="pre-workshop-guide.html#what-will-we-learn"><i class="fa fa-check"></i>What will we learn?</a></li>
+<li class="chapter" data-level="" data-path="pre-workshop-guide.html"><a href="pre-workshop-guide.html#notation-guide"><i class="fa fa-check"></i>Notation guide</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="welcome-to-day-1.html"><a href="welcome-to-day-1.html"><i class="fa fa-check"></i>Welcome to day 1!</a>
 <ul>
 <li class="chapter" data-level="" data-path="welcome-to-day-1.html"><a href="welcome-to-day-1.html#linear-models"><i class="fa fa-check"></i>Linear models</a>
@@ -250,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="questions-i-and-iv---model-selection-why" class="section level4 hasAnchor">
 <h4>Questions I and IV - Model selection, why?<a href="welcome-to-day-3.html#questions-i-and-iv---model-selection-why" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>I.</strong> For 2023, fit the nonlinear logistic model to variety a and b. Extract <span class="math inline">\(K\)</span> and <span class="math inline">\(r\)</span> and discuss the effect of genetic resistance in these parameters.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" alt="" width="672" /></p>
 <table class="table" style="color: black; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -293,9 +298,9 @@ b
 <p><strong>VI.</strong> Repeat question <strong>I</strong> for 2024.</p>
 <p>How did it go? More specifically, where you able to fit it for variety b?</p>
 <p>What we have:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" alt="" width="672" /></p>
 <p>What we expect:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" alt="" width="672" /></p>
 <ul>
 <li>The blue line represents an exponential model:</li>
 </ul>
@@ -384,7 +389,7 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r
 <li>This is the strongest and most restrictive assumption!</li>
 </ul>
 <p>If we “relax” this assumption, and let <span class="math inline">\(K\)</span> vary a little more, let’s say <span class="math inline">\(K \sim N(1, 5)\)</span>, this what happens:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" alt="" width="672" /></p>
 <p>Now, do you think these values make sense?</p>
 <ul>
 <li><p><span class="math inline">\(K\)</span> has a biological meaning - Maximum disease potential.</p></li>
@@ -393,7 +398,7 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r
 <p><span class="math display">\[
 K \sim Beta(6, 2)
 \]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" alt="" width="672" /></p>
 <p>How we are choosing that?</p>
 <ul>
 <li><p>Beta distribution - Bounds.</p></li>
@@ -414,11 +419,11 @@ K \sim Beta(6, 2)
 <p><br><br></p>
 <p>How does it look like for our remaining parameters?</p>
 <p><span class="math inline">\(y_0\)</span> ~ <span class="math inline">\(Unif(0.001, 0.1)\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" alt="" width="672" /></p>
 <p><span class="math inline">\(r\)</span> ~ <span class="math inline">\(Unif(0.1, 0.5)\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" alt="" width="672" /></p>
 <p><span class="math inline">\(\phi\)</span> ~ <span class="math inline">\(Gamma(24, 2)\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" alt="" width="672" /></p>
 <ul>
 <li>Dispersion parameter ~ Inverse of the variance</li>
 </ul>
@@ -430,114 +435,114 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 <p><br><br></p>
 <p>Let’s fit the model for the variety b in 2024:</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="welcome-to-day-3.html#cb40-1" tabindex="-1"></a><span class="fu">library</span>(rjags)</span>
-<span id="cb40-2"><a href="welcome-to-day-3.html#cb40-2" tabindex="-1"></a><span class="fu">library</span>(coda)</span>
-<span id="cb40-3"><a href="welcome-to-day-3.html#cb40-3" tabindex="-1"></a></span>
-<span id="cb40-4"><a href="welcome-to-day-3.html#cb40-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb40-5"><a href="welcome-to-day-3.html#cb40-5" tabindex="-1"></a></span>
-<span id="cb40-6"><a href="welcome-to-day-3.html#cb40-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2024</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),]<span class="sc">$</span>p_sev <span class="sc">+</span> <span class="fl">0.001</span></span>
-<span id="cb40-7"><a href="welcome-to-day-3.html#cb40-7" tabindex="-1"></a>x <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2024</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),]<span class="sc">$</span>time</span>
-<span id="cb40-8"><a href="welcome-to-day-3.html#cb40-8" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2024</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),])</span>
-<span id="cb40-9"><a href="welcome-to-day-3.html#cb40-9" tabindex="-1"></a>x.pred <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">max</span>(x)<span class="sc">+</span><span class="dv">20</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb40-10"><a href="welcome-to-day-3.html#cb40-10" tabindex="-1"></a>N_pred <span class="ot">&lt;-</span> <span class="fu">length</span>(x.pred)</span>
-<span id="cb40-11"><a href="welcome-to-day-3.html#cb40-11" tabindex="-1"></a></span>
-<span id="cb40-12"><a href="welcome-to-day-3.html#cb40-12" tabindex="-1"></a><span class="co"># JAGS code</span></span>
-<span id="cb40-13"><a href="welcome-to-day-3.html#cb40-13" tabindex="-1"></a>data_line <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;y&quot;</span> <span class="ot">=</span> y, <span class="st">&quot;x&quot;</span> <span class="ot">=</span> x, <span class="st">&quot;x.pred&quot;</span> <span class="ot">=</span> x.pred, <span class="st">&quot;N&quot;</span> <span class="ot">=</span> N, <span class="st">&quot;N_pred&quot;</span> <span class="ot">=</span> N_pred)</span>
-<span id="cb40-14"><a href="welcome-to-day-3.html#cb40-14" tabindex="-1"></a>initials <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb40-15"><a href="welcome-to-day-3.html#cb40-15" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;K&quot;</span> <span class="ot">=</span> <span class="fl">0.7</span>, <span class="st">&quot;r&quot;</span> <span class="ot">=</span> <span class="fl">0.2</span>, <span class="st">&quot;y0&quot;</span> <span class="ot">=</span> <span class="fl">0.001</span>, <span class="st">&quot;phi&quot;</span> <span class="ot">=</span> <span class="dv">10</span>)</span>
-<span id="cb40-16"><a href="welcome-to-day-3.html#cb40-16" tabindex="-1"></a>)</span>
-<span id="cb40-17"><a href="welcome-to-day-3.html#cb40-17" tabindex="-1"></a></span>
-<span id="cb40-18"><a href="welcome-to-day-3.html#cb40-18" tabindex="-1"></a>model_string <span class="ot">&lt;-</span> <span class="st">&quot;model {</span></span>
-<span id="cb40-19"><a href="welcome-to-day-3.html#cb40-19" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb40-20"><a href="welcome-to-day-3.html#cb40-20" tabindex="-1"></a><span class="st">    # Likelihood</span></span>
-<span id="cb40-21"><a href="welcome-to-day-3.html#cb40-21" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb40-22"><a href="welcome-to-day-3.html#cb40-22" tabindex="-1"></a><span class="st">    for(i in 1:N){</span></span>
-<span id="cb40-23"><a href="welcome-to-day-3.html#cb40-23" tabindex="-1"></a><span class="st">      y[i] ~ dbeta(alpha[i], beta[i])</span></span>
-<span id="cb40-24"><a href="welcome-to-day-3.html#cb40-24" tabindex="-1"></a><span class="st">      alpha[i] &lt;- (K/(1 + ((K-y0)/y0)*exp(-r*x[i])))*phi</span></span>
-<span id="cb40-25"><a href="welcome-to-day-3.html#cb40-25" tabindex="-1"></a><span class="st">      beta[i] &lt;- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x[i]))))*phi</span></span>
-<span id="cb40-26"><a href="welcome-to-day-3.html#cb40-26" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb40-27"><a href="welcome-to-day-3.html#cb40-27" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb40-28"><a href="welcome-to-day-3.html#cb40-28" tabindex="-1"></a><span class="st">    # Posterior pred.</span></span>
-<span id="cb40-29"><a href="welcome-to-day-3.html#cb40-29" tabindex="-1"></a><span class="st">      for(z in 1:N_pred){</span></span>
-<span id="cb40-30"><a href="welcome-to-day-3.html#cb40-30" tabindex="-1"></a><span class="st">        y_pred[z] ~ dbeta(alpha_pred[z], beta_pred[z])</span></span>
-<span id="cb40-31"><a href="welcome-to-day-3.html#cb40-31" tabindex="-1"></a><span class="st">        alpha_pred[z] &lt;- (K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z])))*phi</span></span>
-<span id="cb40-32"><a href="welcome-to-day-3.html#cb40-32" tabindex="-1"></a><span class="st">        beta_pred[z] &lt;- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z]))))*phi</span></span>
-<span id="cb40-33"><a href="welcome-to-day-3.html#cb40-33" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb40-34"><a href="welcome-to-day-3.html#cb40-34" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb40-35"><a href="welcome-to-day-3.html#cb40-35" tabindex="-1"></a><span class="st">    # Priors</span></span>
-<span id="cb40-36"><a href="welcome-to-day-3.html#cb40-36" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb40-37"><a href="welcome-to-day-3.html#cb40-37" tabindex="-1"></a><span class="st">    y0 ~ dunif(0.001, 0.1)</span></span>
-<span id="cb40-38"><a href="welcome-to-day-3.html#cb40-38" tabindex="-1"></a><span class="st">    K ~ dbeta(6, 2)</span></span>
-<span id="cb40-39"><a href="welcome-to-day-3.html#cb40-39" tabindex="-1"></a><span class="st">    r ~ dunif(0.1, 0.5)</span></span>
-<span id="cb40-40"><a href="welcome-to-day-3.html#cb40-40" tabindex="-1"></a><span class="st">    phi ~ dgamma(24, 2)</span></span>
-<span id="cb40-41"><a href="welcome-to-day-3.html#cb40-41" tabindex="-1"></a><span class="st">}&quot;</span></span>
-<span id="cb40-42"><a href="welcome-to-day-3.html#cb40-42" tabindex="-1"></a></span>
-<span id="cb40-43"><a href="welcome-to-day-3.html#cb40-43" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">jags.model</span>(<span class="fu">textConnection</span>(model_string), <span class="at">inits =</span> initials, <span class="at">data =</span> data_line, <span class="at">n.chains =</span> <span class="dv">1</span>)</span>
-<span id="cb40-44"><a href="welcome-to-day-3.html#cb40-44" tabindex="-1"></a></span>
-<span id="cb40-45"><a href="welcome-to-day-3.html#cb40-45" tabindex="-1"></a><span class="fu">update</span>(m1, <span class="at">n.iter =</span> <span class="dv">10000</span>)</span>
-<span id="cb40-46"><a href="welcome-to-day-3.html#cb40-46" tabindex="-1"></a></span>
-<span id="cb40-47"><a href="welcome-to-day-3.html#cb40-47" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">coda.samples</span>(m1, <span class="at">variable.names =</span> <span class="fu">c</span>(<span class="st">&quot;K&quot;</span>, <span class="st">&quot;y0&quot;</span>, <span class="st">&quot;r&quot;</span>, <span class="st">&quot;phi&quot;</span>, <span class="st">&quot;y_pred&quot;</span>), <span class="at">n.iter =</span> <span class="dv">10000</span>)</span>
-<span id="cb40-48"><a href="welcome-to-day-3.html#cb40-48" tabindex="-1"></a></span>
-<span id="cb40-49"><a href="welcome-to-day-3.html#cb40-49" tabindex="-1"></a><span class="co"># Extract draws</span></span>
-<span id="cb40-50"><a href="welcome-to-day-3.html#cb40-50" tabindex="-1"></a><span class="do">## Parameters</span></span>
-<span id="cb40-51"><a href="welcome-to-day-3.html#cb40-51" tabindex="-1"></a>par_post <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(samples[,<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)])</span>
-<span id="cb40-52"><a href="welcome-to-day-3.html#cb40-52" tabindex="-1"></a></span>
-<span id="cb40-53"><a href="welcome-to-day-3.html#cb40-53" tabindex="-1"></a><span class="do">## Predictions</span></span>
-<span id="cb40-54"><a href="welcome-to-day-3.html#cb40-54" tabindex="-1"></a>pred_post <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(samples[,<span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">61</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="welcome-to-day-3.html#cb41-1" tabindex="-1"></a><span class="fu">library</span>(rjags)</span>
+<span id="cb41-2"><a href="welcome-to-day-3.html#cb41-2" tabindex="-1"></a><span class="fu">library</span>(coda)</span>
+<span id="cb41-3"><a href="welcome-to-day-3.html#cb41-3" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="welcome-to-day-3.html#cb41-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb41-5"><a href="welcome-to-day-3.html#cb41-5" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="welcome-to-day-3.html#cb41-6" tabindex="-1"></a>y <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2024</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),]<span class="sc">$</span>p_sev <span class="sc">+</span> <span class="fl">0.001</span></span>
+<span id="cb41-7"><a href="welcome-to-day-3.html#cb41-7" tabindex="-1"></a>x <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2024</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),]<span class="sc">$</span>time</span>
+<span id="cb41-8"><a href="welcome-to-day-3.html#cb41-8" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2024</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),])</span>
+<span id="cb41-9"><a href="welcome-to-day-3.html#cb41-9" tabindex="-1"></a>x.pred <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">max</span>(x)<span class="sc">+</span><span class="dv">20</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb41-10"><a href="welcome-to-day-3.html#cb41-10" tabindex="-1"></a>N_pred <span class="ot">&lt;-</span> <span class="fu">length</span>(x.pred)</span>
+<span id="cb41-11"><a href="welcome-to-day-3.html#cb41-11" tabindex="-1"></a></span>
+<span id="cb41-12"><a href="welcome-to-day-3.html#cb41-12" tabindex="-1"></a><span class="co"># JAGS code</span></span>
+<span id="cb41-13"><a href="welcome-to-day-3.html#cb41-13" tabindex="-1"></a>data_line <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;y&quot;</span> <span class="ot">=</span> y, <span class="st">&quot;x&quot;</span> <span class="ot">=</span> x, <span class="st">&quot;x.pred&quot;</span> <span class="ot">=</span> x.pred, <span class="st">&quot;N&quot;</span> <span class="ot">=</span> N, <span class="st">&quot;N_pred&quot;</span> <span class="ot">=</span> N_pred)</span>
+<span id="cb41-14"><a href="welcome-to-day-3.html#cb41-14" tabindex="-1"></a>initials <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb41-15"><a href="welcome-to-day-3.html#cb41-15" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;K&quot;</span> <span class="ot">=</span> <span class="fl">0.7</span>, <span class="st">&quot;r&quot;</span> <span class="ot">=</span> <span class="fl">0.2</span>, <span class="st">&quot;y0&quot;</span> <span class="ot">=</span> <span class="fl">0.001</span>, <span class="st">&quot;phi&quot;</span> <span class="ot">=</span> <span class="dv">10</span>)</span>
+<span id="cb41-16"><a href="welcome-to-day-3.html#cb41-16" tabindex="-1"></a>)</span>
+<span id="cb41-17"><a href="welcome-to-day-3.html#cb41-17" tabindex="-1"></a></span>
+<span id="cb41-18"><a href="welcome-to-day-3.html#cb41-18" tabindex="-1"></a>model_string <span class="ot">&lt;-</span> <span class="st">&quot;model {</span></span>
+<span id="cb41-19"><a href="welcome-to-day-3.html#cb41-19" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb41-20"><a href="welcome-to-day-3.html#cb41-20" tabindex="-1"></a><span class="st">    # Likelihood</span></span>
+<span id="cb41-21"><a href="welcome-to-day-3.html#cb41-21" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb41-22"><a href="welcome-to-day-3.html#cb41-22" tabindex="-1"></a><span class="st">    for(i in 1:N){</span></span>
+<span id="cb41-23"><a href="welcome-to-day-3.html#cb41-23" tabindex="-1"></a><span class="st">      y[i] ~ dbeta(alpha[i], beta[i])</span></span>
+<span id="cb41-24"><a href="welcome-to-day-3.html#cb41-24" tabindex="-1"></a><span class="st">      alpha[i] &lt;- (K/(1 + ((K-y0)/y0)*exp(-r*x[i])))*phi</span></span>
+<span id="cb41-25"><a href="welcome-to-day-3.html#cb41-25" tabindex="-1"></a><span class="st">      beta[i] &lt;- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x[i]))))*phi</span></span>
+<span id="cb41-26"><a href="welcome-to-day-3.html#cb41-26" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb41-27"><a href="welcome-to-day-3.html#cb41-27" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb41-28"><a href="welcome-to-day-3.html#cb41-28" tabindex="-1"></a><span class="st">    # Posterior pred.</span></span>
+<span id="cb41-29"><a href="welcome-to-day-3.html#cb41-29" tabindex="-1"></a><span class="st">      for(z in 1:N_pred){</span></span>
+<span id="cb41-30"><a href="welcome-to-day-3.html#cb41-30" tabindex="-1"></a><span class="st">        y_pred[z] ~ dbeta(alpha_pred[z], beta_pred[z])</span></span>
+<span id="cb41-31"><a href="welcome-to-day-3.html#cb41-31" tabindex="-1"></a><span class="st">        alpha_pred[z] &lt;- (K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z])))*phi</span></span>
+<span id="cb41-32"><a href="welcome-to-day-3.html#cb41-32" tabindex="-1"></a><span class="st">        beta_pred[z] &lt;- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z]))))*phi</span></span>
+<span id="cb41-33"><a href="welcome-to-day-3.html#cb41-33" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb41-34"><a href="welcome-to-day-3.html#cb41-34" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb41-35"><a href="welcome-to-day-3.html#cb41-35" tabindex="-1"></a><span class="st">    # Priors</span></span>
+<span id="cb41-36"><a href="welcome-to-day-3.html#cb41-36" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb41-37"><a href="welcome-to-day-3.html#cb41-37" tabindex="-1"></a><span class="st">    y0 ~ dunif(0.001, 0.1)</span></span>
+<span id="cb41-38"><a href="welcome-to-day-3.html#cb41-38" tabindex="-1"></a><span class="st">    K ~ dbeta(6, 2)</span></span>
+<span id="cb41-39"><a href="welcome-to-day-3.html#cb41-39" tabindex="-1"></a><span class="st">    r ~ dunif(0.1, 0.5)</span></span>
+<span id="cb41-40"><a href="welcome-to-day-3.html#cb41-40" tabindex="-1"></a><span class="st">    phi ~ dgamma(24, 2)</span></span>
+<span id="cb41-41"><a href="welcome-to-day-3.html#cb41-41" tabindex="-1"></a><span class="st">}&quot;</span></span>
+<span id="cb41-42"><a href="welcome-to-day-3.html#cb41-42" tabindex="-1"></a></span>
+<span id="cb41-43"><a href="welcome-to-day-3.html#cb41-43" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">jags.model</span>(<span class="fu">textConnection</span>(model_string), <span class="at">inits =</span> initials, <span class="at">data =</span> data_line, <span class="at">n.chains =</span> <span class="dv">1</span>)</span>
+<span id="cb41-44"><a href="welcome-to-day-3.html#cb41-44" tabindex="-1"></a></span>
+<span id="cb41-45"><a href="welcome-to-day-3.html#cb41-45" tabindex="-1"></a><span class="fu">update</span>(m1, <span class="at">n.iter =</span> <span class="dv">10000</span>)</span>
+<span id="cb41-46"><a href="welcome-to-day-3.html#cb41-46" tabindex="-1"></a></span>
+<span id="cb41-47"><a href="welcome-to-day-3.html#cb41-47" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">coda.samples</span>(m1, <span class="at">variable.names =</span> <span class="fu">c</span>(<span class="st">&quot;K&quot;</span>, <span class="st">&quot;y0&quot;</span>, <span class="st">&quot;r&quot;</span>, <span class="st">&quot;phi&quot;</span>, <span class="st">&quot;y_pred&quot;</span>), <span class="at">n.iter =</span> <span class="dv">10000</span>)</span>
+<span id="cb41-48"><a href="welcome-to-day-3.html#cb41-48" tabindex="-1"></a></span>
+<span id="cb41-49"><a href="welcome-to-day-3.html#cb41-49" tabindex="-1"></a><span class="co"># Extract draws</span></span>
+<span id="cb41-50"><a href="welcome-to-day-3.html#cb41-50" tabindex="-1"></a><span class="do">## Parameters</span></span>
+<span id="cb41-51"><a href="welcome-to-day-3.html#cb41-51" tabindex="-1"></a>par_post <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(samples[,<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)])</span>
+<span id="cb41-52"><a href="welcome-to-day-3.html#cb41-52" tabindex="-1"></a></span>
+<span id="cb41-53"><a href="welcome-to-day-3.html#cb41-53" tabindex="-1"></a><span class="do">## Predictions</span></span>
+<span id="cb41-54"><a href="welcome-to-day-3.html#cb41-54" tabindex="-1"></a>pred_post <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(samples[,<span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">61</span>)])</span></code></pre></div>
 </details>
 <p>How the predictions (expected value) looks like with 95% Posterior Predictive Interval<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>:</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="welcome-to-day-3.html#cb41-1" tabindex="-1"></a><span class="co"># Quantiles for 95% Credible Interval</span></span>
-<span id="cb41-2"><a href="welcome-to-day-3.html#cb41-2" tabindex="-1"></a>quant <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_post, <span class="dv">2</span>, quantile, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
-<span id="cb41-3"><a href="welcome-to-day-3.html#cb41-3" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="welcome-to-day-3.html#cb41-4" tabindex="-1"></a><span class="co"># DF for prediction</span></span>
-<span id="cb41-5"><a href="welcome-to-day-3.html#cb41-5" tabindex="-1"></a>bay_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb41-6"><a href="welcome-to-day-3.html#cb41-6" tabindex="-1"></a>  <span class="at">y.pred =</span> <span class="fu">colMeans</span>(pred_post),</span>
-<span id="cb41-7"><a href="welcome-to-day-3.html#cb41-7" tabindex="-1"></a>  <span class="at">y.lb =</span> quant[<span class="dv">1</span>,],</span>
-<span id="cb41-8"><a href="welcome-to-day-3.html#cb41-8" tabindex="-1"></a>  <span class="at">y.ub =</span> quant[<span class="dv">2</span>,],</span>
-<span id="cb41-9"><a href="welcome-to-day-3.html#cb41-9" tabindex="-1"></a>  <span class="at">x.pred =</span> x.pred</span>
-<span id="cb41-10"><a href="welcome-to-day-3.html#cb41-10" tabindex="-1"></a>)</span>
-<span id="cb41-11"><a href="welcome-to-day-3.html#cb41-11" tabindex="-1"></a></span>
-<span id="cb41-12"><a href="welcome-to-day-3.html#cb41-12" tabindex="-1"></a><span class="co"># Plot prediction</span></span>
-<span id="cb41-13"><a href="welcome-to-day-3.html#cb41-13" tabindex="-1"></a><span class="fu">plot</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.pred, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Pred. severity (mean)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>), <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb41-14"><a href="welcome-to-day-3.html#cb41-14" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.lb, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb41-15"><a href="welcome-to-day-3.html#cb41-15" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.ub, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb41-16"><a href="welcome-to-day-3.html#cb41-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;black&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb41-17"><a href="welcome-to-day-3.html#cb41-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;black&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="welcome-to-day-3.html#cb42-1" tabindex="-1"></a><span class="co"># Quantiles for 95% Credible Interval</span></span>
+<span id="cb42-2"><a href="welcome-to-day-3.html#cb42-2" tabindex="-1"></a>quant <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_post, <span class="dv">2</span>, quantile, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb42-3"><a href="welcome-to-day-3.html#cb42-3" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="welcome-to-day-3.html#cb42-4" tabindex="-1"></a><span class="co"># DF for prediction</span></span>
+<span id="cb42-5"><a href="welcome-to-day-3.html#cb42-5" tabindex="-1"></a>bay_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb42-6"><a href="welcome-to-day-3.html#cb42-6" tabindex="-1"></a>  <span class="at">y.pred =</span> <span class="fu">colMeans</span>(pred_post),</span>
+<span id="cb42-7"><a href="welcome-to-day-3.html#cb42-7" tabindex="-1"></a>  <span class="at">y.lb =</span> quant[<span class="dv">1</span>,],</span>
+<span id="cb42-8"><a href="welcome-to-day-3.html#cb42-8" tabindex="-1"></a>  <span class="at">y.ub =</span> quant[<span class="dv">2</span>,],</span>
+<span id="cb42-9"><a href="welcome-to-day-3.html#cb42-9" tabindex="-1"></a>  <span class="at">x.pred =</span> x.pred</span>
+<span id="cb42-10"><a href="welcome-to-day-3.html#cb42-10" tabindex="-1"></a>)</span>
+<span id="cb42-11"><a href="welcome-to-day-3.html#cb42-11" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="welcome-to-day-3.html#cb42-12" tabindex="-1"></a><span class="co"># Plot prediction</span></span>
+<span id="cb42-13"><a href="welcome-to-day-3.html#cb42-13" tabindex="-1"></a><span class="fu">plot</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.pred, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Pred. severity (mean)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>), <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb42-14"><a href="welcome-to-day-3.html#cb42-14" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.lb, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb42-15"><a href="welcome-to-day-3.html#cb42-15" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.ub, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb42-16"><a href="welcome-to-day-3.html#cb42-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;black&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb42-17"><a href="welcome-to-day-3.html#cb42-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;black&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" alt="" width="672" /></p>
 <p>How about the parameters?</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="welcome-to-day-3.html#cb42-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb42-2"><a href="welcome-to-day-3.html#cb42-2" tabindex="-1"></a><span class="co"># For K</span></span>
-<span id="cb42-3"><a href="welcome-to-day-3.html#cb42-3" tabindex="-1"></a><span class="fu">hist</span>(par_post[,<span class="dv">1</span>], <span class="at">ylab =</span> <span class="st">&quot;[K]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;K&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Post. dist. K&quot;</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb42-4"><a href="welcome-to-day-3.html#cb42-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(par_post[,<span class="dv">1</span>]), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb42-5"><a href="welcome-to-day-3.html#cb42-5" tabindex="-1"></a></span>
-<span id="cb42-6"><a href="welcome-to-day-3.html#cb42-6" tabindex="-1"></a><span class="co"># For r</span></span>
-<span id="cb42-7"><a href="welcome-to-day-3.html#cb42-7" tabindex="-1"></a><span class="fu">hist</span>(par_post[,<span class="dv">3</span>], <span class="at">ylab =</span> <span class="st">&quot;[r]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;r&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Post. dist. r&quot;</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb42-8"><a href="welcome-to-day-3.html#cb42-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(par_post[,<span class="dv">3</span>]), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb42-9"><a href="welcome-to-day-3.html#cb42-9" tabindex="-1"></a></span>
-<span id="cb42-10"><a href="welcome-to-day-3.html#cb42-10" tabindex="-1"></a><span class="co"># For y0</span></span>
-<span id="cb42-11"><a href="welcome-to-day-3.html#cb42-11" tabindex="-1"></a><span class="fu">hist</span>(par_post[,<span class="dv">4</span>], <span class="at">ylab =</span> <span class="st">&quot;[y0]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;y0&quot;</span>, , <span class="at">main =</span> <span class="st">&quot;Post. dist. y0&quot;</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb42-12"><a href="welcome-to-day-3.html#cb42-12" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(par_post[,<span class="dv">4</span>]), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb42-13"><a href="welcome-to-day-3.html#cb42-13" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="welcome-to-day-3.html#cb43-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb43-2"><a href="welcome-to-day-3.html#cb43-2" tabindex="-1"></a><span class="co"># For K</span></span>
+<span id="cb43-3"><a href="welcome-to-day-3.html#cb43-3" tabindex="-1"></a><span class="fu">hist</span>(par_post[,<span class="dv">1</span>], <span class="at">ylab =</span> <span class="st">&quot;[K]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;K&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Post. dist. K&quot;</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb43-4"><a href="welcome-to-day-3.html#cb43-4" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(par_post[,<span class="dv">1</span>]), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb43-5"><a href="welcome-to-day-3.html#cb43-5" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="welcome-to-day-3.html#cb43-6" tabindex="-1"></a><span class="co"># For r</span></span>
+<span id="cb43-7"><a href="welcome-to-day-3.html#cb43-7" tabindex="-1"></a><span class="fu">hist</span>(par_post[,<span class="dv">3</span>], <span class="at">ylab =</span> <span class="st">&quot;[r]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;r&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Post. dist. r&quot;</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb43-8"><a href="welcome-to-day-3.html#cb43-8" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(par_post[,<span class="dv">3</span>]), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb43-9"><a href="welcome-to-day-3.html#cb43-9" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="welcome-to-day-3.html#cb43-10" tabindex="-1"></a><span class="co"># For y0</span></span>
+<span id="cb43-11"><a href="welcome-to-day-3.html#cb43-11" tabindex="-1"></a><span class="fu">hist</span>(par_post[,<span class="dv">4</span>], <span class="at">ylab =</span> <span class="st">&quot;[y0]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;y0&quot;</span>, , <span class="at">main =</span> <span class="st">&quot;Post. dist. y0&quot;</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb43-12"><a href="welcome-to-day-3.html#cb43-12" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(par_post[,<span class="dv">4</span>]), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb43-13"><a href="welcome-to-day-3.html#cb43-13" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-85-1.png" alt="" width="672" /></p>
 <p>How posterior compare to prior?</p>
 <ul>
 <li><p>Let’s look at <span class="math inline">\(r\)</span>.</p></li>
 <li><p>Recall: <span class="math inline">\(r \sim Unif(0.1, 0.5)\)</span></p></li>
 </ul>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="welcome-to-day-3.html#cb43-1" tabindex="-1"></a><span class="co"># Post. dist. r</span></span>
-<span id="cb43-2"><a href="welcome-to-day-3.html#cb43-2" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">runif</span>(<span class="dv">1000</span>,<span class="fl">0.1</span>, <span class="fl">0.5</span>), <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Prior dist. r&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;[r]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;r&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="welcome-to-day-3.html#cb44-1" tabindex="-1"></a><span class="co"># Post. dist. r</span></span>
+<span id="cb44-2"><a href="welcome-to-day-3.html#cb44-2" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">runif</span>(<span class="dv">1000</span>,<span class="fl">0.1</span>, <span class="fl">0.5</span>), <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Prior dist. r&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;[r]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;r&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>))</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" alt="" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="welcome-to-day-3.html#cb44-1" tabindex="-1"></a><span class="co"># Pior dist. r</span></span>
-<span id="cb44-2"><a href="welcome-to-day-3.html#cb44-2" tabindex="-1"></a><span class="fu">hist</span>(par_post[,<span class="dv">3</span>], <span class="at">ylab =</span> <span class="st">&quot;[r]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;r&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Posterior dist. r&quot;</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="welcome-to-day-3.html#cb45-1" tabindex="-1"></a><span class="co"># Pior dist. r</span></span>
+<span id="cb45-2"><a href="welcome-to-day-3.html#cb45-2" tabindex="-1"></a><span class="fu">hist</span>(par_post[,<span class="dv">3</span>], <span class="at">ylab =</span> <span class="st">&quot;[r]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;r&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Posterior dist. r&quot;</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>))</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-64-2.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-86-2.png" alt="" width="672" /></p>
 <p><br><br></p>
 </div>
 <div id="why-use-bayesian-1" class="section level4 hasAnchor">
@@ -546,159 +551,160 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 <li>Let’s use variety a in 2023.</li>
 </ul>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="welcome-to-day-3.html#cb45-1" tabindex="-1"></a><span class="do">#### Fit the Bayesian model for 2024 var a ####</span></span>
-<span id="cb45-2"><a href="welcome-to-day-3.html#cb45-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb45-3"><a href="welcome-to-day-3.html#cb45-3" tabindex="-1"></a><span class="fu">library</span>(rjags)</span>
-<span id="cb45-4"><a href="welcome-to-day-3.html#cb45-4" tabindex="-1"></a></span>
-<span id="cb45-5"><a href="welcome-to-day-3.html#cb45-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]<span class="sc">$</span>p_sev <span class="sc">+</span> <span class="fl">0.001</span></span>
-<span id="cb45-6"><a href="welcome-to-day-3.html#cb45-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]<span class="sc">$</span>time</span>
-<span id="cb45-7"><a href="welcome-to-day-3.html#cb45-7" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),])</span>
-<span id="cb45-8"><a href="welcome-to-day-3.html#cb45-8" tabindex="-1"></a>x.pred <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">max</span>(x)<span class="sc">+</span><span class="dv">20</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb45-9"><a href="welcome-to-day-3.html#cb45-9" tabindex="-1"></a>N_pred <span class="ot">&lt;-</span> <span class="fu">length</span>(x.pred)</span>
-<span id="cb45-10"><a href="welcome-to-day-3.html#cb45-10" tabindex="-1"></a></span>
-<span id="cb45-11"><a href="welcome-to-day-3.html#cb45-11" tabindex="-1"></a><span class="co"># JAGS code</span></span>
-<span id="cb45-12"><a href="welcome-to-day-3.html#cb45-12" tabindex="-1"></a>data_line <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;y&quot;</span> <span class="ot">=</span> y, <span class="st">&quot;x&quot;</span> <span class="ot">=</span> x, <span class="st">&quot;x.pred&quot;</span> <span class="ot">=</span> x.pred, <span class="st">&quot;N&quot;</span> <span class="ot">=</span> N, <span class="st">&quot;N_pred&quot;</span> <span class="ot">=</span> N_pred)</span>
-<span id="cb45-13"><a href="welcome-to-day-3.html#cb45-13" tabindex="-1"></a>initials <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb45-14"><a href="welcome-to-day-3.html#cb45-14" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;K&quot;</span> <span class="ot">=</span> <span class="fl">0.7</span>, <span class="st">&quot;r&quot;</span> <span class="ot">=</span> <span class="fl">0.2</span>, <span class="st">&quot;y0&quot;</span> <span class="ot">=</span> <span class="fl">0.001</span>, <span class="st">&quot;phi&quot;</span> <span class="ot">=</span> <span class="dv">10</span>)</span>
-<span id="cb45-15"><a href="welcome-to-day-3.html#cb45-15" tabindex="-1"></a>)</span>
-<span id="cb45-16"><a href="welcome-to-day-3.html#cb45-16" tabindex="-1"></a></span>
-<span id="cb45-17"><a href="welcome-to-day-3.html#cb45-17" tabindex="-1"></a>model_string <span class="ot">&lt;-</span> <span class="st">&quot;model {</span></span>
-<span id="cb45-18"><a href="welcome-to-day-3.html#cb45-18" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb45-19"><a href="welcome-to-day-3.html#cb45-19" tabindex="-1"></a><span class="st">    # Likelihood</span></span>
-<span id="cb45-20"><a href="welcome-to-day-3.html#cb45-20" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb45-21"><a href="welcome-to-day-3.html#cb45-21" tabindex="-1"></a><span class="st">    for(i in 1:N){</span></span>
-<span id="cb45-22"><a href="welcome-to-day-3.html#cb45-22" tabindex="-1"></a><span class="st">      y[i] ~ dbeta(alpha[i], beta[i])</span></span>
-<span id="cb45-23"><a href="welcome-to-day-3.html#cb45-23" tabindex="-1"></a><span class="st">      alpha[i] &lt;- (K/(1 + ((K-y0)/y0)*exp(-r*x[i])))*phi</span></span>
-<span id="cb45-24"><a href="welcome-to-day-3.html#cb45-24" tabindex="-1"></a><span class="st">      beta[i] &lt;- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x[i]))))*phi</span></span>
-<span id="cb45-25"><a href="welcome-to-day-3.html#cb45-25" tabindex="-1"></a><span class="st">    }</span></span>
-<span id="cb45-26"><a href="welcome-to-day-3.html#cb45-26" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb45-27"><a href="welcome-to-day-3.html#cb45-27" tabindex="-1"></a><span class="st">    # Posterior pred.</span></span>
-<span id="cb45-28"><a href="welcome-to-day-3.html#cb45-28" tabindex="-1"></a><span class="st">      for(z in 1:N_pred){</span></span>
-<span id="cb45-29"><a href="welcome-to-day-3.html#cb45-29" tabindex="-1"></a><span class="st">        y_pred[z] ~ dbeta(alpha_pred[z], beta_pred[z])</span></span>
-<span id="cb45-30"><a href="welcome-to-day-3.html#cb45-30" tabindex="-1"></a><span class="st">        alpha_pred[z] &lt;- (K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z])))*phi</span></span>
-<span id="cb45-31"><a href="welcome-to-day-3.html#cb45-31" tabindex="-1"></a><span class="st">        beta_pred[z] &lt;- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z]))))*phi</span></span>
-<span id="cb45-32"><a href="welcome-to-day-3.html#cb45-32" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb45-33"><a href="welcome-to-day-3.html#cb45-33" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb45-34"><a href="welcome-to-day-3.html#cb45-34" tabindex="-1"></a><span class="st">    # Priors</span></span>
-<span id="cb45-35"><a href="welcome-to-day-3.html#cb45-35" tabindex="-1"></a><span class="st">    </span></span>
-<span id="cb45-36"><a href="welcome-to-day-3.html#cb45-36" tabindex="-1"></a><span class="st">    y0 ~ dunif(0.001, 0.1)</span></span>
-<span id="cb45-37"><a href="welcome-to-day-3.html#cb45-37" tabindex="-1"></a><span class="st">    K ~ dbeta(6, 2)</span></span>
-<span id="cb45-38"><a href="welcome-to-day-3.html#cb45-38" tabindex="-1"></a><span class="st">    r ~ dunif(0.1, 0.5)</span></span>
-<span id="cb45-39"><a href="welcome-to-day-3.html#cb45-39" tabindex="-1"></a><span class="st">    phi ~ dgamma(24, 2)</span></span>
-<span id="cb45-40"><a href="welcome-to-day-3.html#cb45-40" tabindex="-1"></a><span class="st">}&quot;</span></span>
-<span id="cb45-41"><a href="welcome-to-day-3.html#cb45-41" tabindex="-1"></a></span>
-<span id="cb45-42"><a href="welcome-to-day-3.html#cb45-42" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">jags.model</span>(<span class="fu">textConnection</span>(model_string), <span class="at">inits =</span> initials, <span class="at">data =</span> data_line, <span class="at">n.chains =</span> <span class="dv">1</span>)</span>
-<span id="cb45-43"><a href="welcome-to-day-3.html#cb45-43" tabindex="-1"></a></span>
-<span id="cb45-44"><a href="welcome-to-day-3.html#cb45-44" tabindex="-1"></a><span class="fu">update</span>(m2, <span class="at">n.iter =</span> <span class="dv">10000</span>)</span>
-<span id="cb45-45"><a href="welcome-to-day-3.html#cb45-45" tabindex="-1"></a></span>
-<span id="cb45-46"><a href="welcome-to-day-3.html#cb45-46" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">coda.samples</span>(m2, <span class="at">variable.names =</span> <span class="fu">c</span>(<span class="st">&quot;K&quot;</span>, <span class="st">&quot;y0&quot;</span>, <span class="st">&quot;r&quot;</span>, <span class="st">&quot;phi&quot;</span>, <span class="st">&quot;y_pred&quot;</span>), <span class="at">n.iter =</span> <span class="dv">10000</span>)</span>
-<span id="cb45-47"><a href="welcome-to-day-3.html#cb45-47" tabindex="-1"></a></span>
-<span id="cb45-48"><a href="welcome-to-day-3.html#cb45-48" tabindex="-1"></a><span class="co"># Extract draws</span></span>
-<span id="cb45-49"><a href="welcome-to-day-3.html#cb45-49" tabindex="-1"></a><span class="do">## Parameters</span></span>
-<span id="cb45-50"><a href="welcome-to-day-3.html#cb45-50" tabindex="-1"></a>par_post <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(samples[,<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)])</span>
-<span id="cb45-51"><a href="welcome-to-day-3.html#cb45-51" tabindex="-1"></a></span>
-<span id="cb45-52"><a href="welcome-to-day-3.html#cb45-52" tabindex="-1"></a><span class="do">## Predictions</span></span>
-<span id="cb45-53"><a href="welcome-to-day-3.html#cb45-53" tabindex="-1"></a>pred_post <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(samples[, <span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">77</span>)])</span></code></pre></div>
-</details>
-<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="welcome-to-day-3.html#cb46-1" tabindex="-1"></a><span class="do">#### Fit the model using likelihood to 2024 var 1 ####</span></span>
-<span id="cb46-2"><a href="welcome-to-day-3.html#cb46-2" tabindex="-1"></a>a_24 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span> <span class="sc">&amp;</span> df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span>),]</span>
-<span id="cb46-3"><a href="welcome-to-day-3.html#cb46-3" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="welcome-to-day-3.html#cb46-4" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb46-5"><a href="welcome-to-day-3.html#cb46-5" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> K<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((K<span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">start =</span> <span class="fu">c</span>(<span class="at">K =</span> <span class="fl">0.7</span>, <span class="at">r =</span> <span class="fl">0.2</span>, <span class="at">y0 =</span> <span class="fl">0.001</span>), <span class="at">data =</span> a_24)</span>
-<span id="cb46-6"><a href="welcome-to-day-3.html#cb46-6" tabindex="-1"></a></span>
-<span id="cb46-7"><a href="welcome-to-day-3.html#cb46-7" tabindex="-1"></a><span class="co"># Predictions with prediction interval</span></span>
-<span id="cb46-8"><a href="welcome-to-day-3.html#cb46-8" tabindex="-1"></a>df_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb46-9"><a href="welcome-to-day-3.html#cb46-9" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">max</span>(a_24<span class="sc">$</span>time)<span class="sc">+</span><span class="dv">20</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb46-10"><a href="welcome-to-day-3.html#cb46-10" tabindex="-1"></a>)</span>
-<span id="cb46-11"><a href="welcome-to-day-3.html#cb46-11" tabindex="-1"></a></span>
-<span id="cb46-12"><a href="welcome-to-day-3.html#cb46-12" tabindex="-1"></a><span class="fu">library</span>(mvtnorm) <span class="co"># Package for multivariate normal</span></span>
-<span id="cb46-13"><a href="welcome-to-day-3.html#cb46-13" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb46-14"><a href="welcome-to-day-3.html#cb46-14" tabindex="-1"></a></span>
-<span id="cb46-15"><a href="welcome-to-day-3.html#cb46-15" tabindex="-1"></a>ite <span class="ot">&lt;-</span> <span class="dv">10000</span> <span class="co"># Number of iterations/simulations</span></span>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="welcome-to-day-3.html#cb46-1" tabindex="-1"></a><span class="do">#### Fit the Bayesian model for 2024 var a ####</span></span>
+<span id="cb46-2"><a href="welcome-to-day-3.html#cb46-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb46-3"><a href="welcome-to-day-3.html#cb46-3" tabindex="-1"></a><span class="fu">library</span>(rjags)</span>
+<span id="cb46-4"><a href="welcome-to-day-3.html#cb46-4" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="welcome-to-day-3.html#cb46-5" tabindex="-1"></a>y <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]<span class="sc">$</span>p_sev <span class="sc">+</span> <span class="fl">0.001</span></span>
+<span id="cb46-6"><a href="welcome-to-day-3.html#cb46-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]<span class="sc">$</span>time</span>
+<span id="cb46-7"><a href="welcome-to-day-3.html#cb46-7" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),])</span>
+<span id="cb46-8"><a href="welcome-to-day-3.html#cb46-8" tabindex="-1"></a>x.pred <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">max</span>(x)<span class="sc">+</span><span class="dv">20</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb46-9"><a href="welcome-to-day-3.html#cb46-9" tabindex="-1"></a>N_pred <span class="ot">&lt;-</span> <span class="fu">length</span>(x.pred)</span>
+<span id="cb46-10"><a href="welcome-to-day-3.html#cb46-10" tabindex="-1"></a></span>
+<span id="cb46-11"><a href="welcome-to-day-3.html#cb46-11" tabindex="-1"></a><span class="co"># JAGS code</span></span>
+<span id="cb46-12"><a href="welcome-to-day-3.html#cb46-12" tabindex="-1"></a>data_line <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;y&quot;</span> <span class="ot">=</span> y, <span class="st">&quot;x&quot;</span> <span class="ot">=</span> x, <span class="st">&quot;x.pred&quot;</span> <span class="ot">=</span> x.pred, <span class="st">&quot;N&quot;</span> <span class="ot">=</span> N, <span class="st">&quot;N_pred&quot;</span> <span class="ot">=</span> N_pred)</span>
+<span id="cb46-13"><a href="welcome-to-day-3.html#cb46-13" tabindex="-1"></a>initials <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb46-14"><a href="welcome-to-day-3.html#cb46-14" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;K&quot;</span> <span class="ot">=</span> <span class="fl">0.7</span>, <span class="st">&quot;r&quot;</span> <span class="ot">=</span> <span class="fl">0.2</span>, <span class="st">&quot;y0&quot;</span> <span class="ot">=</span> <span class="fl">0.001</span>, <span class="st">&quot;phi&quot;</span> <span class="ot">=</span> <span class="dv">10</span>)</span>
+<span id="cb46-15"><a href="welcome-to-day-3.html#cb46-15" tabindex="-1"></a>)</span>
 <span id="cb46-16"><a href="welcome-to-day-3.html#cb46-16" tabindex="-1"></a></span>
-<span id="cb46-17"><a href="welcome-to-day-3.html#cb46-17" tabindex="-1"></a>par_hat <span class="ot">&lt;-</span> <span class="fu">coef</span>(m3) <span class="co"># Extract parameter estimated</span></span>
-<span id="cb46-18"><a href="welcome-to-day-3.html#cb46-18" tabindex="-1"></a>var_cov <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m3) <span class="co"># Extract var covar matrix</span></span>
-<span id="cb46-19"><a href="welcome-to-day-3.html#cb46-19" tabindex="-1"></a>sigma_hat <span class="ot">&lt;-</span> <span class="fu">summary</span>(m3)<span class="sc">$</span>sigma <span class="co"># Extract standard deviation</span></span>
-<span id="cb46-20"><a href="welcome-to-day-3.html#cb46-20" tabindex="-1"></a></span>
-<span id="cb46-21"><a href="welcome-to-day-3.html#cb46-21" tabindex="-1"></a>par_sim <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(ite, par_hat, var_cov) <span class="co"># Simulate parameters - Draws from a multivariate normal using our expected value for the parameter and their variance</span></span>
-<span id="cb46-22"><a href="welcome-to-day-3.html#cb46-22" tabindex="-1"></a></span>
-<span id="cb46-23"><a href="welcome-to-day-3.html#cb46-23" tabindex="-1"></a>time <span class="ot">&lt;-</span> df_pred<span class="sc">$</span>time</span>
-<span id="cb46-24"><a href="welcome-to-day-3.html#cb46-24" tabindex="-1"></a></span>
-<span id="cb46-25"><a href="welcome-to-day-3.html#cb46-25" tabindex="-1"></a>sim.save <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> ite, <span class="at">ncol =</span> <span class="fu">length</span>(time))</span>
-<span id="cb46-26"><a href="welcome-to-day-3.html#cb46-26" tabindex="-1"></a></span>
-<span id="cb46-27"><a href="welcome-to-day-3.html#cb46-27" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>ite){</span>
-<span id="cb46-28"><a href="welcome-to-day-3.html#cb46-28" tabindex="-1"></a>  </span>
-<span id="cb46-29"><a href="welcome-to-day-3.html#cb46-29" tabindex="-1"></a>  K <span class="ot">&lt;-</span> par_sim[i,<span class="st">&quot;K&quot;</span>]</span>
-<span id="cb46-30"><a href="welcome-to-day-3.html#cb46-30" tabindex="-1"></a>  y0 <span class="ot">&lt;-</span> par_sim[i, <span class="st">&quot;y0&quot;</span>]</span>
-<span id="cb46-31"><a href="welcome-to-day-3.html#cb46-31" tabindex="-1"></a>  r <span class="ot">&lt;-</span> par_sim[i, <span class="st">&quot;r&quot;</span>]</span>
-<span id="cb46-32"><a href="welcome-to-day-3.html#cb46-32" tabindex="-1"></a>    </span>
-<span id="cb46-33"><a href="welcome-to-day-3.html#cb46-33" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> K<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((K<span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time))</span>
-<span id="cb46-34"><a href="welcome-to-day-3.html#cb46-34" tabindex="-1"></a>  </span>
-<span id="cb46-35"><a href="welcome-to-day-3.html#cb46-35" tabindex="-1"></a>  sim.save[i,] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(time), mu, sigma_hat)</span>
-<span id="cb46-36"><a href="welcome-to-day-3.html#cb46-36" tabindex="-1"></a>  </span>
-<span id="cb46-37"><a href="welcome-to-day-3.html#cb46-37" tabindex="-1"></a>}</span>
-<span id="cb46-38"><a href="welcome-to-day-3.html#cb46-38" tabindex="-1"></a></span>
-<span id="cb46-39"><a href="welcome-to-day-3.html#cb46-39" tabindex="-1"></a><span class="co"># Prediction + pred intervals on the df</span></span>
-<span id="cb46-40"><a href="welcome-to-day-3.html#cb46-40" tabindex="-1"></a>df_pred<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m3, <span class="at">newdata =</span> df_pred)</span>
-<span id="cb46-41"><a href="welcome-to-day-3.html#cb46-41" tabindex="-1"></a>df_pred<span class="sc">$</span>pred_ub <span class="ot">&lt;-</span> <span class="fu">apply</span>(sim.save, <span class="dv">2</span>, quantile, <span class="fl">0.975</span>)</span>
-<span id="cb46-42"><a href="welcome-to-day-3.html#cb46-42" tabindex="-1"></a>df_pred<span class="sc">$</span>pred_lb <span class="ot">&lt;-</span> <span class="fu">apply</span>(sim.save, <span class="dv">2</span>, quantile, <span class="fl">0.025</span>)</span></code></pre></div>
+<span id="cb46-17"><a href="welcome-to-day-3.html#cb46-17" tabindex="-1"></a>model_string <span class="ot">&lt;-</span> <span class="st">&quot;model {</span></span>
+<span id="cb46-18"><a href="welcome-to-day-3.html#cb46-18" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb46-19"><a href="welcome-to-day-3.html#cb46-19" tabindex="-1"></a><span class="st">    # Likelihood</span></span>
+<span id="cb46-20"><a href="welcome-to-day-3.html#cb46-20" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb46-21"><a href="welcome-to-day-3.html#cb46-21" tabindex="-1"></a><span class="st">    for(i in 1:N){</span></span>
+<span id="cb46-22"><a href="welcome-to-day-3.html#cb46-22" tabindex="-1"></a><span class="st">      y[i] ~ dbeta(alpha[i], beta[i])</span></span>
+<span id="cb46-23"><a href="welcome-to-day-3.html#cb46-23" tabindex="-1"></a><span class="st">      alpha[i] &lt;- (K/(1 + ((K-y0)/y0)*exp(-r*x[i])))*phi</span></span>
+<span id="cb46-24"><a href="welcome-to-day-3.html#cb46-24" tabindex="-1"></a><span class="st">      beta[i] &lt;- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x[i]))))*phi</span></span>
+<span id="cb46-25"><a href="welcome-to-day-3.html#cb46-25" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb46-26"><a href="welcome-to-day-3.html#cb46-26" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb46-27"><a href="welcome-to-day-3.html#cb46-27" tabindex="-1"></a><span class="st">    # Posterior pred.</span></span>
+<span id="cb46-28"><a href="welcome-to-day-3.html#cb46-28" tabindex="-1"></a><span class="st">      for(z in 1:N_pred){</span></span>
+<span id="cb46-29"><a href="welcome-to-day-3.html#cb46-29" tabindex="-1"></a><span class="st">        y_pred[z] ~ dbeta(alpha_pred[z], beta_pred[z])</span></span>
+<span id="cb46-30"><a href="welcome-to-day-3.html#cb46-30" tabindex="-1"></a><span class="st">        alpha_pred[z] &lt;- (K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z])))*phi</span></span>
+<span id="cb46-31"><a href="welcome-to-day-3.html#cb46-31" tabindex="-1"></a><span class="st">        beta_pred[z] &lt;- (1-(K/(1 + ((K-y0)/y0)*exp(-r*x.pred[z]))))*phi</span></span>
+<span id="cb46-32"><a href="welcome-to-day-3.html#cb46-32" tabindex="-1"></a><span class="st">      }</span></span>
+<span id="cb46-33"><a href="welcome-to-day-3.html#cb46-33" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb46-34"><a href="welcome-to-day-3.html#cb46-34" tabindex="-1"></a><span class="st">    # Priors</span></span>
+<span id="cb46-35"><a href="welcome-to-day-3.html#cb46-35" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb46-36"><a href="welcome-to-day-3.html#cb46-36" tabindex="-1"></a><span class="st">    y0 ~ dunif(0.001, 0.1)</span></span>
+<span id="cb46-37"><a href="welcome-to-day-3.html#cb46-37" tabindex="-1"></a><span class="st">    K ~ dbeta(6, 2)</span></span>
+<span id="cb46-38"><a href="welcome-to-day-3.html#cb46-38" tabindex="-1"></a><span class="st">    r ~ dunif(0.1, 0.5)</span></span>
+<span id="cb46-39"><a href="welcome-to-day-3.html#cb46-39" tabindex="-1"></a><span class="st">    phi ~ dgamma(24, 2)</span></span>
+<span id="cb46-40"><a href="welcome-to-day-3.html#cb46-40" tabindex="-1"></a><span class="st">}&quot;</span></span>
+<span id="cb46-41"><a href="welcome-to-day-3.html#cb46-41" tabindex="-1"></a></span>
+<span id="cb46-42"><a href="welcome-to-day-3.html#cb46-42" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">jags.model</span>(<span class="fu">textConnection</span>(model_string), <span class="at">inits =</span> initials, <span class="at">data =</span> data_line, <span class="at">n.chains =</span> <span class="dv">1</span>)</span>
+<span id="cb46-43"><a href="welcome-to-day-3.html#cb46-43" tabindex="-1"></a></span>
+<span id="cb46-44"><a href="welcome-to-day-3.html#cb46-44" tabindex="-1"></a><span class="fu">update</span>(m2, <span class="at">n.iter =</span> <span class="dv">10000</span>)</span>
+<span id="cb46-45"><a href="welcome-to-day-3.html#cb46-45" tabindex="-1"></a></span>
+<span id="cb46-46"><a href="welcome-to-day-3.html#cb46-46" tabindex="-1"></a>samples <span class="ot">&lt;-</span> <span class="fu">coda.samples</span>(m2, <span class="at">variable.names =</span> <span class="fu">c</span>(<span class="st">&quot;K&quot;</span>, <span class="st">&quot;y0&quot;</span>, <span class="st">&quot;r&quot;</span>, <span class="st">&quot;phi&quot;</span>, <span class="st">&quot;y_pred&quot;</span>), <span class="at">n.iter =</span> <span class="dv">10000</span>)</span>
+<span id="cb46-47"><a href="welcome-to-day-3.html#cb46-47" tabindex="-1"></a></span>
+<span id="cb46-48"><a href="welcome-to-day-3.html#cb46-48" tabindex="-1"></a><span class="co"># Extract draws</span></span>
+<span id="cb46-49"><a href="welcome-to-day-3.html#cb46-49" tabindex="-1"></a><span class="do">## Parameters</span></span>
+<span id="cb46-50"><a href="welcome-to-day-3.html#cb46-50" tabindex="-1"></a>par_post <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(samples[,<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)])</span>
+<span id="cb46-51"><a href="welcome-to-day-3.html#cb46-51" tabindex="-1"></a></span>
+<span id="cb46-52"><a href="welcome-to-day-3.html#cb46-52" tabindex="-1"></a><span class="do">## Predictions</span></span>
+<span id="cb46-53"><a href="welcome-to-day-3.html#cb46-53" tabindex="-1"></a>pred_post <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(samples[, <span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">77</span>)])</span></code></pre></div>
 </details>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="welcome-to-day-3.html#cb47-1" tabindex="-1"></a><span class="co"># Plot predictions with interval for iid normal assumption</span></span>
-<span id="cb47-2"><a href="welcome-to-day-3.html#cb47-2" tabindex="-1"></a><span class="fu">plot</span>(a_24<span class="sc">$</span>time, a_24<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Likelihood approach with minimal assumptions&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">1.1</span>))</span>
-<span id="cb47-3"><a href="welcome-to-day-3.html#cb47-3" tabindex="-1"></a><span class="fu">lines</span>(df_pred<span class="sc">$</span>time, df_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb47-4"><a href="welcome-to-day-3.html#cb47-4" tabindex="-1"></a><span class="fu">lines</span>(df_pred<span class="sc">$</span>time, df_pred<span class="sc">$</span>pred_ub, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb47-5"><a href="welcome-to-day-3.html#cb47-5" tabindex="-1"></a><span class="fu">lines</span>(df_pred<span class="sc">$</span>time, df_pred<span class="sc">$</span>pred_lb, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="welcome-to-day-3.html#cb47-1" tabindex="-1"></a><span class="do">#### Fit the model using likelihood to 2023 var a ####</span></span>
+<span id="cb47-2"><a href="welcome-to-day-3.html#cb47-2" tabindex="-1"></a>a_24 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span> <span class="sc">&amp;</span> df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span>),]</span>
+<span id="cb47-3"><a href="welcome-to-day-3.html#cb47-3" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="welcome-to-day-3.html#cb47-4" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb47-5"><a href="welcome-to-day-3.html#cb47-5" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> K<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((K<span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">start =</span> <span class="fu">c</span>(<span class="at">K =</span> <span class="fl">0.7</span>, <span class="at">r =</span> <span class="fl">0.2</span>, <span class="at">y0 =</span> <span class="fl">0.001</span>), <span class="at">data =</span> a_24)</span>
+<span id="cb47-6"><a href="welcome-to-day-3.html#cb47-6" tabindex="-1"></a></span>
+<span id="cb47-7"><a href="welcome-to-day-3.html#cb47-7" tabindex="-1"></a><span class="co"># Predictions with prediction interval</span></span>
+<span id="cb47-8"><a href="welcome-to-day-3.html#cb47-8" tabindex="-1"></a>df_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb47-9"><a href="welcome-to-day-3.html#cb47-9" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">max</span>(a_24<span class="sc">$</span>time)<span class="sc">+</span><span class="dv">20</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb47-10"><a href="welcome-to-day-3.html#cb47-10" tabindex="-1"></a>)</span>
+<span id="cb47-11"><a href="welcome-to-day-3.html#cb47-11" tabindex="-1"></a></span>
+<span id="cb47-12"><a href="welcome-to-day-3.html#cb47-12" tabindex="-1"></a><span class="fu">library</span>(mvtnorm) <span class="co"># Package for multivariate normal</span></span>
+<span id="cb47-13"><a href="welcome-to-day-3.html#cb47-13" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb47-14"><a href="welcome-to-day-3.html#cb47-14" tabindex="-1"></a></span>
+<span id="cb47-15"><a href="welcome-to-day-3.html#cb47-15" tabindex="-1"></a>ite <span class="ot">&lt;-</span> <span class="dv">10000</span> <span class="co"># Number of iterations/simulations</span></span>
+<span id="cb47-16"><a href="welcome-to-day-3.html#cb47-16" tabindex="-1"></a></span>
+<span id="cb47-17"><a href="welcome-to-day-3.html#cb47-17" tabindex="-1"></a>par_hat <span class="ot">&lt;-</span> <span class="fu">coef</span>(m3) <span class="co"># Extract parameter estimated</span></span>
+<span id="cb47-18"><a href="welcome-to-day-3.html#cb47-18" tabindex="-1"></a>var_cov <span class="ot">&lt;-</span> <span class="fu">vcov</span>(m3) <span class="co"># Extract var covar matrix</span></span>
+<span id="cb47-19"><a href="welcome-to-day-3.html#cb47-19" tabindex="-1"></a>sigma_hat <span class="ot">&lt;-</span> <span class="fu">summary</span>(m3)<span class="sc">$</span>sigma <span class="co"># Extract standard deviation</span></span>
+<span id="cb47-20"><a href="welcome-to-day-3.html#cb47-20" tabindex="-1"></a></span>
+<span id="cb47-21"><a href="welcome-to-day-3.html#cb47-21" tabindex="-1"></a>par_sim <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(ite, par_hat, var_cov) <span class="co"># Simulate parameters - Draws from a multivariate normal using our expected value for the parameter and their variance</span></span>
+<span id="cb47-22"><a href="welcome-to-day-3.html#cb47-22" tabindex="-1"></a></span>
+<span id="cb47-23"><a href="welcome-to-day-3.html#cb47-23" tabindex="-1"></a>time <span class="ot">&lt;-</span> df_pred<span class="sc">$</span>time</span>
+<span id="cb47-24"><a href="welcome-to-day-3.html#cb47-24" tabindex="-1"></a></span>
+<span id="cb47-25"><a href="welcome-to-day-3.html#cb47-25" tabindex="-1"></a>sim.save <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> ite, <span class="at">ncol =</span> <span class="fu">length</span>(time))</span>
+<span id="cb47-26"><a href="welcome-to-day-3.html#cb47-26" tabindex="-1"></a></span>
+<span id="cb47-27"><a href="welcome-to-day-3.html#cb47-27" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>ite){</span>
+<span id="cb47-28"><a href="welcome-to-day-3.html#cb47-28" tabindex="-1"></a>  </span>
+<span id="cb47-29"><a href="welcome-to-day-3.html#cb47-29" tabindex="-1"></a>  K <span class="ot">&lt;-</span> par_sim[i,<span class="st">&quot;K&quot;</span>]</span>
+<span id="cb47-30"><a href="welcome-to-day-3.html#cb47-30" tabindex="-1"></a>  y0 <span class="ot">&lt;-</span> par_sim[i, <span class="st">&quot;y0&quot;</span>]</span>
+<span id="cb47-31"><a href="welcome-to-day-3.html#cb47-31" tabindex="-1"></a>  r <span class="ot">&lt;-</span> par_sim[i, <span class="st">&quot;r&quot;</span>]</span>
+<span id="cb47-32"><a href="welcome-to-day-3.html#cb47-32" tabindex="-1"></a>    </span>
+<span id="cb47-33"><a href="welcome-to-day-3.html#cb47-33" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> K<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((K<span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time))</span>
+<span id="cb47-34"><a href="welcome-to-day-3.html#cb47-34" tabindex="-1"></a>  </span>
+<span id="cb47-35"><a href="welcome-to-day-3.html#cb47-35" tabindex="-1"></a>  y_sim <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(time), mu, sigma_hat)</span>
+<span id="cb47-36"><a href="welcome-to-day-3.html#cb47-36" tabindex="-1"></a>  sim.save[i,] <span class="ot">&lt;-</span> y_sim</span>
+<span id="cb47-37"><a href="welcome-to-day-3.html#cb47-37" tabindex="-1"></a>  </span>
+<span id="cb47-38"><a href="welcome-to-day-3.html#cb47-38" tabindex="-1"></a>}</span>
+<span id="cb47-39"><a href="welcome-to-day-3.html#cb47-39" tabindex="-1"></a></span>
+<span id="cb47-40"><a href="welcome-to-day-3.html#cb47-40" tabindex="-1"></a><span class="co"># Prediction + pred intervals on the df</span></span>
+<span id="cb47-41"><a href="welcome-to-day-3.html#cb47-41" tabindex="-1"></a>df_pred<span class="sc">$</span>pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(m3, <span class="at">newdata =</span> df_pred)</span>
+<span id="cb47-42"><a href="welcome-to-day-3.html#cb47-42" tabindex="-1"></a>df_pred<span class="sc">$</span>pred_ub <span class="ot">&lt;-</span> <span class="fu">apply</span>(sim.save, <span class="dv">2</span>, quantile, <span class="fl">0.975</span>)</span>
+<span id="cb47-43"><a href="welcome-to-day-3.html#cb47-43" tabindex="-1"></a>df_pred<span class="sc">$</span>pred_lb <span class="ot">&lt;-</span> <span class="fu">apply</span>(sim.save, <span class="dv">2</span>, quantile, <span class="fl">0.025</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" alt="" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="welcome-to-day-3.html#cb48-1" tabindex="-1"></a><span class="co"># Plot predictions with interval for Bayesian model</span></span>
-<span id="cb48-2"><a href="welcome-to-day-3.html#cb48-2" tabindex="-1"></a><span class="co"># Quantiles for 95% Credible Interval</span></span>
-<span id="cb48-3"><a href="welcome-to-day-3.html#cb48-3" tabindex="-1"></a>quant <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_post, <span class="dv">2</span>, quantile, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
-<span id="cb48-4"><a href="welcome-to-day-3.html#cb48-4" tabindex="-1"></a></span>
-<span id="cb48-5"><a href="welcome-to-day-3.html#cb48-5" tabindex="-1"></a><span class="co"># DF for prediction</span></span>
-<span id="cb48-6"><a href="welcome-to-day-3.html#cb48-6" tabindex="-1"></a>bay_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb48-7"><a href="welcome-to-day-3.html#cb48-7" tabindex="-1"></a>  <span class="at">y.pred =</span> <span class="fu">colMeans</span>(pred_post),</span>
-<span id="cb48-8"><a href="welcome-to-day-3.html#cb48-8" tabindex="-1"></a>  <span class="at">y.lb =</span> quant[<span class="dv">1</span>,],</span>
-<span id="cb48-9"><a href="welcome-to-day-3.html#cb48-9" tabindex="-1"></a>  <span class="at">y.ub =</span> quant[<span class="dv">2</span>,],</span>
-<span id="cb48-10"><a href="welcome-to-day-3.html#cb48-10" tabindex="-1"></a>  <span class="at">x.pred =</span> x.pred</span>
-<span id="cb48-11"><a href="welcome-to-day-3.html#cb48-11" tabindex="-1"></a>)</span>
-<span id="cb48-12"><a href="welcome-to-day-3.html#cb48-12" tabindex="-1"></a></span>
-<span id="cb48-13"><a href="welcome-to-day-3.html#cb48-13" tabindex="-1"></a><span class="co"># Plot prediction</span></span>
-<span id="cb48-14"><a href="welcome-to-day-3.html#cb48-14" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Bayesian model&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>))</span>
-<span id="cb48-15"><a href="welcome-to-day-3.html#cb48-15" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb48-16"><a href="welcome-to-day-3.html#cb48-16" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.lb, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb48-17"><a href="welcome-to-day-3.html#cb48-17" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.ub, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="welcome-to-day-3.html#cb48-1" tabindex="-1"></a><span class="co"># Plot predictions with interval for iid normal assumption</span></span>
+<span id="cb48-2"><a href="welcome-to-day-3.html#cb48-2" tabindex="-1"></a><span class="fu">plot</span>(a_24<span class="sc">$</span>time, a_24<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Likelihood approach with minimal assumptions&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">1.1</span>))</span>
+<span id="cb48-3"><a href="welcome-to-day-3.html#cb48-3" tabindex="-1"></a><span class="fu">lines</span>(df_pred<span class="sc">$</span>time, df_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb48-4"><a href="welcome-to-day-3.html#cb48-4" tabindex="-1"></a><span class="fu">lines</span>(df_pred<span class="sc">$</span>time, df_pred<span class="sc">$</span>pred_ub, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb48-5"><a href="welcome-to-day-3.html#cb48-5" tabindex="-1"></a><span class="fu">lines</span>(df_pred<span class="sc">$</span>time, df_pred<span class="sc">$</span>pred_lb, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-67-2.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" alt="" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="welcome-to-day-3.html#cb49-1" tabindex="-1"></a><span class="co"># Likelihood uncertainty width</span></span>
-<span id="cb49-2"><a href="welcome-to-day-3.html#cb49-2" tabindex="-1"></a>lt1 <span class="ot">&lt;-</span> df_pred<span class="sc">$</span>pred_ub[<span class="dv">1</span>] <span class="sc">-</span> df_pred<span class="sc">$</span>pred_lb[<span class="dv">1</span>]</span>
-<span id="cb49-3"><a href="welcome-to-day-3.html#cb49-3" tabindex="-1"></a>lt2 <span class="ot">&lt;-</span> df_pred<span class="sc">$</span>pred_ub[<span class="dv">37</span>] <span class="sc">-</span> df_pred<span class="sc">$</span>pred_lb[<span class="dv">37</span>]</span>
-<span id="cb49-4"><a href="welcome-to-day-3.html#cb49-4" tabindex="-1"></a>lt3 <span class="ot">&lt;-</span> df_pred<span class="sc">$</span>pred_ub[<span class="dv">73</span>] <span class="sc">-</span> df_pred<span class="sc">$</span>pred_lb[<span class="dv">73</span>]</span>
-<span id="cb49-5"><a href="welcome-to-day-3.html#cb49-5" tabindex="-1"></a></span>
-<span id="cb49-6"><a href="welcome-to-day-3.html#cb49-6" tabindex="-1"></a><span class="co"># Bayesian uncertainty width</span></span>
-<span id="cb49-7"><a href="welcome-to-day-3.html#cb49-7" tabindex="-1"></a>bt1 <span class="ot">&lt;-</span> bay_pred<span class="sc">$</span>y.ub[<span class="dv">1</span>] <span class="sc">-</span> bay_pred<span class="sc">$</span>y.lb[<span class="dv">1</span>]</span>
-<span id="cb49-8"><a href="welcome-to-day-3.html#cb49-8" tabindex="-1"></a>bt2 <span class="ot">&lt;-</span> bay_pred<span class="sc">$</span>y.ub[<span class="dv">37</span>] <span class="sc">-</span> bay_pred<span class="sc">$</span>y.lb[<span class="dv">37</span>]</span>
-<span id="cb49-9"><a href="welcome-to-day-3.html#cb49-9" tabindex="-1"></a>bt3 <span class="ot">&lt;-</span> bay_pred<span class="sc">$</span>y.ub[<span class="dv">73</span>] <span class="sc">-</span> bay_pred<span class="sc">$</span>y.lb[<span class="dv">73</span>]</span>
-<span id="cb49-10"><a href="welcome-to-day-3.html#cb49-10" tabindex="-1"></a></span>
-<span id="cb49-11"><a href="welcome-to-day-3.html#cb49-11" tabindex="-1"></a><span class="co"># Table with distance</span></span>
-<span id="cb49-12"><a href="welcome-to-day-3.html#cb49-12" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb49-13"><a href="welcome-to-day-3.html#cb49-13" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb49-14"><a href="welcome-to-day-3.html#cb49-14" tabindex="-1"></a></span>
-<span id="cb49-15"><a href="welcome-to-day-3.html#cb49-15" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb49-16"><a href="welcome-to-day-3.html#cb49-16" tabindex="-1"></a>  <span class="at">Estimation =</span> <span class="fu">c</span>(<span class="st">&quot;Min. Assump.&quot;</span>, <span class="st">&quot;Bayesian&quot;</span>),</span>
-<span id="cb49-17"><a href="welcome-to-day-3.html#cb49-17" tabindex="-1"></a>  <span class="at">Day_1_Width =</span> <span class="fu">c</span>(<span class="fu">round</span>(lt1, <span class="dv">4</span>), <span class="fu">round</span>(bt1, <span class="dv">4</span>)),</span>
-<span id="cb49-18"><a href="welcome-to-day-3.html#cb49-18" tabindex="-1"></a>  <span class="at">Relative_uncertainty =</span> <span class="fu">c</span>(<span class="st">&quot; &quot;</span>, <span class="fu">round</span>((bt1<span class="sc">/</span>lt1)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)),</span>
-<span id="cb49-19"><a href="welcome-to-day-3.html#cb49-19" tabindex="-1"></a>  <span class="at">Day_37_Width =</span> <span class="fu">c</span>(<span class="fu">round</span>(lt2, <span class="dv">4</span>), <span class="fu">round</span>(bt2, <span class="dv">4</span>)),</span>
-<span id="cb49-20"><a href="welcome-to-day-3.html#cb49-20" tabindex="-1"></a>  <span class="at">Relative_uncertainty =</span> <span class="fu">c</span>(<span class="st">&quot; &quot;</span>, <span class="fu">round</span>((bt2<span class="sc">/</span>lt2)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)),</span>
-<span id="cb49-21"><a href="welcome-to-day-3.html#cb49-21" tabindex="-1"></a>  <span class="at">Day_73_Width =</span> <span class="fu">c</span>(<span class="fu">round</span>(lt3, <span class="dv">4</span>), <span class="fu">round</span>(bt3, <span class="dv">4</span>)),</span>
-<span id="cb49-22"><a href="welcome-to-day-3.html#cb49-22" tabindex="-1"></a>  <span class="at">Relative_uncertainty =</span> <span class="fu">c</span>(<span class="st">&quot; &quot;</span>, <span class="fu">round</span>((bt3<span class="sc">/</span>lt3)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>))</span>
-<span id="cb49-23"><a href="welcome-to-day-3.html#cb49-23" tabindex="-1"></a>)</span>
-<span id="cb49-24"><a href="welcome-to-day-3.html#cb49-24" tabindex="-1"></a></span>
-<span id="cb49-25"><a href="welcome-to-day-3.html#cb49-25" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(table_data, <span class="at">align =</span> <span class="st">&quot;c&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb49-26"><a href="welcome-to-day-3.html#cb49-26" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>, <span class="at">position =</span> <span class="st">&quot;center&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="welcome-to-day-3.html#cb49-1" tabindex="-1"></a><span class="co"># Plot predictions with interval for Bayesian model</span></span>
+<span id="cb49-2"><a href="welcome-to-day-3.html#cb49-2" tabindex="-1"></a><span class="co"># Quantiles for 95% Credible Interval</span></span>
+<span id="cb49-3"><a href="welcome-to-day-3.html#cb49-3" tabindex="-1"></a>quant <span class="ot">&lt;-</span> <span class="fu">apply</span>(pred_post, <span class="dv">2</span>, quantile, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb49-4"><a href="welcome-to-day-3.html#cb49-4" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="welcome-to-day-3.html#cb49-5" tabindex="-1"></a><span class="co"># DF for prediction</span></span>
+<span id="cb49-6"><a href="welcome-to-day-3.html#cb49-6" tabindex="-1"></a>bay_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb49-7"><a href="welcome-to-day-3.html#cb49-7" tabindex="-1"></a>  <span class="at">y.pred =</span> <span class="fu">colMeans</span>(pred_post),</span>
+<span id="cb49-8"><a href="welcome-to-day-3.html#cb49-8" tabindex="-1"></a>  <span class="at">y.lb =</span> quant[<span class="dv">1</span>,],</span>
+<span id="cb49-9"><a href="welcome-to-day-3.html#cb49-9" tabindex="-1"></a>  <span class="at">y.ub =</span> quant[<span class="dv">2</span>,],</span>
+<span id="cb49-10"><a href="welcome-to-day-3.html#cb49-10" tabindex="-1"></a>  <span class="at">x.pred =</span> x.pred</span>
+<span id="cb49-11"><a href="welcome-to-day-3.html#cb49-11" tabindex="-1"></a>)</span>
+<span id="cb49-12"><a href="welcome-to-day-3.html#cb49-12" tabindex="-1"></a></span>
+<span id="cb49-13"><a href="welcome-to-day-3.html#cb49-13" tabindex="-1"></a><span class="co"># Plot prediction</span></span>
+<span id="cb49-14"><a href="welcome-to-day-3.html#cb49-14" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Bayesian model&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>))</span>
+<span id="cb49-15"><a href="welcome-to-day-3.html#cb49-15" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb49-16"><a href="welcome-to-day-3.html#cb49-16" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.lb, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb49-17"><a href="welcome-to-day-3.html#cb49-17" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.ub, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
+</details>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-2.png" alt="" width="672" /></p>
+<details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="welcome-to-day-3.html#cb50-1" tabindex="-1"></a><span class="co"># Likelihood uncertainty width</span></span>
+<span id="cb50-2"><a href="welcome-to-day-3.html#cb50-2" tabindex="-1"></a>lt1 <span class="ot">&lt;-</span> df_pred<span class="sc">$</span>pred_ub[<span class="dv">1</span>] <span class="sc">-</span> df_pred<span class="sc">$</span>pred_lb[<span class="dv">1</span>]</span>
+<span id="cb50-3"><a href="welcome-to-day-3.html#cb50-3" tabindex="-1"></a>lt2 <span class="ot">&lt;-</span> df_pred<span class="sc">$</span>pred_ub[<span class="dv">37</span>] <span class="sc">-</span> df_pred<span class="sc">$</span>pred_lb[<span class="dv">37</span>]</span>
+<span id="cb50-4"><a href="welcome-to-day-3.html#cb50-4" tabindex="-1"></a>lt3 <span class="ot">&lt;-</span> df_pred<span class="sc">$</span>pred_ub[<span class="dv">73</span>] <span class="sc">-</span> df_pred<span class="sc">$</span>pred_lb[<span class="dv">73</span>]</span>
+<span id="cb50-5"><a href="welcome-to-day-3.html#cb50-5" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="welcome-to-day-3.html#cb50-6" tabindex="-1"></a><span class="co"># Bayesian uncertainty width</span></span>
+<span id="cb50-7"><a href="welcome-to-day-3.html#cb50-7" tabindex="-1"></a>bt1 <span class="ot">&lt;-</span> bay_pred<span class="sc">$</span>y.ub[<span class="dv">1</span>] <span class="sc">-</span> bay_pred<span class="sc">$</span>y.lb[<span class="dv">1</span>]</span>
+<span id="cb50-8"><a href="welcome-to-day-3.html#cb50-8" tabindex="-1"></a>bt2 <span class="ot">&lt;-</span> bay_pred<span class="sc">$</span>y.ub[<span class="dv">37</span>] <span class="sc">-</span> bay_pred<span class="sc">$</span>y.lb[<span class="dv">37</span>]</span>
+<span id="cb50-9"><a href="welcome-to-day-3.html#cb50-9" tabindex="-1"></a>bt3 <span class="ot">&lt;-</span> bay_pred<span class="sc">$</span>y.ub[<span class="dv">73</span>] <span class="sc">-</span> bay_pred<span class="sc">$</span>y.lb[<span class="dv">73</span>]</span>
+<span id="cb50-10"><a href="welcome-to-day-3.html#cb50-10" tabindex="-1"></a></span>
+<span id="cb50-11"><a href="welcome-to-day-3.html#cb50-11" tabindex="-1"></a><span class="co"># Table with distance</span></span>
+<span id="cb50-12"><a href="welcome-to-day-3.html#cb50-12" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb50-13"><a href="welcome-to-day-3.html#cb50-13" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb50-14"><a href="welcome-to-day-3.html#cb50-14" tabindex="-1"></a></span>
+<span id="cb50-15"><a href="welcome-to-day-3.html#cb50-15" tabindex="-1"></a>table_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb50-16"><a href="welcome-to-day-3.html#cb50-16" tabindex="-1"></a>  <span class="at">Estimation =</span> <span class="fu">c</span>(<span class="st">&quot;Min. Assump.&quot;</span>, <span class="st">&quot;Bayesian&quot;</span>),</span>
+<span id="cb50-17"><a href="welcome-to-day-3.html#cb50-17" tabindex="-1"></a>  <span class="at">Day_1_Width =</span> <span class="fu">c</span>(<span class="fu">round</span>(lt1, <span class="dv">4</span>), <span class="fu">round</span>(bt1, <span class="dv">4</span>)),</span>
+<span id="cb50-18"><a href="welcome-to-day-3.html#cb50-18" tabindex="-1"></a>  <span class="at">Relative_uncertainty =</span> <span class="fu">c</span>(<span class="st">&quot; &quot;</span>, <span class="fu">round</span>((bt1<span class="sc">/</span>lt1)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)),</span>
+<span id="cb50-19"><a href="welcome-to-day-3.html#cb50-19" tabindex="-1"></a>  <span class="at">Day_37_Width =</span> <span class="fu">c</span>(<span class="fu">round</span>(lt2, <span class="dv">4</span>), <span class="fu">round</span>(bt2, <span class="dv">4</span>)),</span>
+<span id="cb50-20"><a href="welcome-to-day-3.html#cb50-20" tabindex="-1"></a>  <span class="at">Relative_uncertainty =</span> <span class="fu">c</span>(<span class="st">&quot; &quot;</span>, <span class="fu">round</span>((bt2<span class="sc">/</span>lt2)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)),</span>
+<span id="cb50-21"><a href="welcome-to-day-3.html#cb50-21" tabindex="-1"></a>  <span class="at">Day_73_Width =</span> <span class="fu">c</span>(<span class="fu">round</span>(lt3, <span class="dv">4</span>), <span class="fu">round</span>(bt3, <span class="dv">4</span>)),</span>
+<span id="cb50-22"><a href="welcome-to-day-3.html#cb50-22" tabindex="-1"></a>  <span class="at">Relative_uncertainty =</span> <span class="fu">c</span>(<span class="st">&quot; &quot;</span>, <span class="fu">round</span>((bt3<span class="sc">/</span>lt3)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>))</span>
+<span id="cb50-23"><a href="welcome-to-day-3.html#cb50-23" tabindex="-1"></a>)</span>
+<span id="cb50-24"><a href="welcome-to-day-3.html#cb50-24" tabindex="-1"></a></span>
+<span id="cb50-25"><a href="welcome-to-day-3.html#cb50-25" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(table_data, <span class="at">align =</span> <span class="st">&quot;c&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb50-26"><a href="welcome-to-day-3.html#cb50-26" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>, <span class="at">position =</span> <span class="st">&quot;center&quot;</span>)</span></code></pre></div>
 </details>
 <table class="table" style="color: black; margin-left: auto; margin-right: auto;">
 <thead>
@@ -752,10 +758,10 @@ Min. Assump.
 Bayesian
 </td>
 <td style="text-align:center;">
-0.0258
+0.0193
 </td>
 <td style="text-align:center;">
-6.6
+4.95
 </td>
 <td style="text-align:center;">
 0.4110
@@ -764,16 +770,16 @@ Bayesian
 42.16
 </td>
 <td style="text-align:center;">
-0.5396
+0.5410
 </td>
 <td style="text-align:center;">
-56.46
+56.61
 </td>
 </tr>
 </tbody>
 </table>
 <p>How about the parameters?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" alt="" width="672" /></p>
 <p><br><br></p>
 <table class="table" style="color: black; margin-left: auto; margin-right: auto;">
 <thead>
@@ -855,13 +861,13 @@ Bayesian
 K
 </td>
 <td style="text-align:center;">
-0.8401954
+0.8367303
 </td>
 <td style="text-align:center;">
-0.6282688
+0.6119130
 </td>
 <td style="text-align:center;">
-0.9758123
+0.9769591
 </td>
 </tr>
 <tr>
@@ -872,13 +878,13 @@ Bayesian
 r
 </td>
 <td style="text-align:center;">
-0.1252901
+0.1254125
 </td>
 <td style="text-align:center;">
-0.1039173
+0.1032031
 </td>
 <td style="text-align:center;">
-0.1434878
+0.1440406
 </td>
 </tr>
 <tr>
@@ -889,13 +895,13 @@ Bayesian
 y0
 </td>
 <td style="text-align:center;">
-0.0018510
+0.0018806
 </td>
 <td style="text-align:center;">
-0.0010181
+0.0010173
 </td>
 <td style="text-align:center;">
-0.0040522
+0.0044732
 </td>
 </tr>
 </tbody>

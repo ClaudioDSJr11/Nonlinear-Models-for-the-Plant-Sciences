@@ -87,9 +87,10 @@ par(mfrow = c(1, 1))
 ```{r, message=FALSE, warning=FALSE}
 # Data 2024 variety a
 a_24 <- df_a[which(df_a$year == 2024),]
+a_24$p_sev <- a_24$p_sev + 0.001
 
 # Logit transformation
-a_24$l_sev <- a_24$p_sev/(1-a_24$p_sev) # Logit
+a_24$l_sev <- log(a_24$p_sev/(1-a_24$p_sev)) # Logit
 
 # Fit the model
 m1 <- lm(l_sev ~ time, data = a_24)
@@ -101,8 +102,12 @@ m1_pred <- data.frame(
 m1_pred$pred <- predict(m1, newdata = m1_pred)
 
 # Plot predictions
-plot(a_24$time, a_24$l_sev, ylab = "Logit(y)", xlab = "Days", ylim = c(-3, 19))
+m1_pred$inv_logit <- 1/(1+exp(-m1_pred$pred))
+plot(a_24$time, a_24$l_sev, ylab = "Logit(y)", xlab = "Days", ylim = c(-7, 5))
 lines(m1_pred$time, m1_pred$pred, lwd = 3, col = "red")
+
+plot(a_24$time, a_24$p_sev, ylab = "y_prop.", xlab = "Days", ylim = c(-0.1, 1.1))
+lines(m1_pred$time, m1_pred$inv_logit, lwd = 3, col = "gold")
 ```
 
 What is actually going on here?
@@ -139,7 +144,7 @@ $$
 
 -   $r$
 
-    -   Multiply $x_i$, but is on an **exponential**, each unit change in $\mathbf{x}$ is multiplicative in the growth (differential equation[^02-nonlinear-models-1]).
+    -   Multiply $x_i$, but is on an **exponential**, each unit change in $\mathbf{x}$ is multiplicative in the growth (differential equation[^03-nonlinear-models-1]).
 
     -   Affects shape and trajectory of the entire curve.
 
@@ -149,7 +154,7 @@ $$
 
     -   Estimation sensitive to information on the data, often correlated with $K$.
 
-[^02-nonlinear-models-1]: $\frac{dy}{dt} = \mathbf{ry}(1-\frac{\mathbf{y}}{\mathbf{K}})$
+[^03-nonlinear-models-1]: $\frac{dy}{dt} = \mathbf{ry}(1-\frac{\mathbf{y}}{\mathbf{K}})$
 
 The actual linearized model:
 
@@ -231,9 +236,9 @@ $$
 \varepsilon_i \sim i.i.d. N(0, \sigma^2)
 $$
 
-This way we can get Wald confidence intervals[^02-nonlinear-models-2].
+This way we can get Wald confidence intervals[^03-nonlinear-models-2].
 
-[^02-nonlinear-models-2]: Wald CI measure local uncertainty (around the parameter estimate) and not at the whole parameter space (all values it could assume - global), therefore, they might be more optimistic than global CI. Bootstrap or Bayesian approach would provide more closely a global uncertainty measure once they explore a broader region of the parameter space.
+[^03-nonlinear-models-2]: Wald CI measure local uncertainty (around the parameter estimate) and not at the whole parameter space (all values it could assume - global), therefore, they might be more optimistic than global CI. Bootstrap or Bayesian approach would provide more closely a global uncertainty measure once they explore a broader region of the parameter space.
 
 <br><br>
 
