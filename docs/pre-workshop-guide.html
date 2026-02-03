@@ -207,9 +207,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="pre-workshop-guide" class="section level1 hasAnchor">
 <h1>Pre-workshop guide<a href="pre-workshop-guide.html#pre-workshop-guide" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><br><br></p>
 <div id="what-will-we-learn" class="section level2 hasAnchor">
 <h2>What will we learn?<a href="pre-workshop-guide.html#what-will-we-learn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Day 1:</p>
+<p><strong>Day 1:</strong></p>
 <ul>
 <li><p>Linear vs Nonlinear models - What is the difference?</p></li>
 <li><p>Parameter estimation:</p>
@@ -220,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><p>Why Bayesian inference may be useful?</p></li>
 </ul>
-<p>Day 2:</p>
+<p><strong>Day 2:</strong></p>
 <ul>
 <li><p>Linearization - What is going on behind the scenes?</p></li>
 <li><p>Types of models: Mechanistic vs Phenomenological</p></li>
@@ -231,7 +232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Linearization</p></li>
 </ul></li>
 </ul>
-<p>Day 3:</p>
+<p><strong>Day 3:</strong></p>
 <ul>
 <li><p>Reasoning behind model selection - Mechanistic models and their meaning</p></li>
 <li><p>A Bayesian example: Bayesian Disease Progress Curve</p>
@@ -240,6 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li><p>Wrap-up</p></li>
 </ul>
+<p><br><br></p>
 </div>
 <div id="notation-guide" class="section level2 hasAnchor">
 <h2>Notation guide<a href="pre-workshop-guide.html#notation-guide" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -248,33 +250,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \varepsilon_i \sim N(0, \sigma^2)
 \]</span></p>
 <p>The Multivariate Normal distribution (MVN) is a compact way to represent multiple normally distributed observations together.</p>
+<p><br><br></p>
 <ul>
 <li>Scalar notation - Represents a single number</li>
 </ul>
 <p><span class="math display">\[
 y_i = \beta_0 + \beta_1*x_i + \varepsilon_i \\ \varepsilon_i \sim N(0, \sigma^2)
 \]</span></p>
+<p><br><br></p>
 <ul>
 <li>Vector notation - Represents a vector of numbers</li>
 </ul>
 <p><span class="math display">\[
-\mathbf{y} = \beta_0 + \beta_1*\mathbf{x}+\boldsymbol{\varepsilon} \\[10pt] \begin{bmatrix} y_1 \\ y_2 \\ ... \\ y_n \end{bmatrix} = \beta_0 + \beta_1*\begin{bmatrix} x_1 \\ x_2 \\ ... \\ x_n \end{bmatrix} + \begin{bmatrix} \varepsilon_1 \\ \varepsilon_2 \\ ... \\ \varepsilon_n \end{bmatrix} \\[15pt] \boldsymbol{\varepsilon} \sim MVN(\mathbf{0}, \mathbf{I}\sigma^2)
+\mathbf{y} = \beta_0 + \beta_1*\mathbf{x}+\boldsymbol{\varepsilon} \\[10pt] \begin{bmatrix} y_1 \\ y_2 \\ ... \\ y_n \end{bmatrix} = \beta_0 + \beta_1*\begin{bmatrix} x_1 \\ x_2 \\ ... \\ x_n \end{bmatrix} + \begin{bmatrix} \varepsilon_1 \\ \varepsilon_2 \\ ... \\ \varepsilon_n \end{bmatrix} \\[15pt] \boldsymbol{\varepsilon} \sim MVN(\mathbf{0}, \sigma^2\mathbf{I})
 \]</span></p>
+<p><br><br></p>
 <ul>
 <li>Matrix notation - Represents a matrix</li>
 </ul>
 <p><span class="math display">\[
-\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon} \\ \boldsymbol{\varepsilon} \sim MVN(\mathbf{0}, \mathbf{I}\sigma^2)
+\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon} \\ \boldsymbol{\varepsilon} \sim MVN(\mathbf{0}, \sigma^2\mathbf{I})
 \]</span></p>
+<p><br><br></p>
 <ul>
-<li><p>Probabilistic notation - Represents the distribution that we are assuming, a clear way to make our assumptions clear. The expected value, or mean, can be expressed using any of the previous notations. To follow the same structure of the workshop, scalar notation will be exemplified.</p>
+<li><p>Probabilistic notation - Represents the distribution that we are assuming, a clear way to make our assumptions transparent. The expected value, or mean, can be expressed using any of the previous notations. To follow the same structure of the workshop, scalar notation will be exemplified.</p>
 <ul>
-<li>In distributional notation, see how we demonstrate that the deterministic mathematical equation influences the expectation/mean. The variance, in here, is the same depicted within this part of our previous model: <span class="math inline">\(\varepsilon_i \sim N(0, \sigma^2)\)</span>.</li>
+<li><p>In distributional notation, see how we demonstrate that the deterministic mathematical equation influences the expectation/mean. The variance corresponds to the error term previously introduced as <span class="math inline">\(\varepsilon_i \sim N(0, \sigma^2)\)</span>.</p></li>
+<li><p>This notation reads: Observations <span class="math inline">\(y_i\)</span> arise from a normal distribution with the expectation/mean <span class="math inline">\(\mu_i\)</span> controlled by our mathematical equation and a given variance <span class="math inline">\(\sigma^2\)</span>. This variance relates to the observational level variance.</p></li>
+<li><p>This notation emphasizes that the model is a statement about how data are generated, combining a deterministic structure with stochastic variability.</p></li>
 </ul></li>
 </ul>
 <p><span class="math display">\[
 y_i \sim N(\mu_i, \sigma^2) \\ \mu_i = \beta_0 + \beta_1*x_i
 \]</span></p>
+<p><br><br></p>
+<center>
+Models are assumptions + Structure + Uncertainty!
+</center>
 
 </div>
 </div>
