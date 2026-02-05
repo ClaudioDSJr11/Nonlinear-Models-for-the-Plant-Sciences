@@ -257,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="why-logistic" class="section level4 hasAnchor">
 <h4>Why logistic?<a href="welcome-to-day-3.html#why-logistic" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>For 2023, fit the nonlinear logistic model to variety a and b. Extract <span class="math inline">\(K\)</span> and <span class="math inline">\(r\)</span> and check how genetic resistance affect these parameters.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" alt="" width="672" /></p>
 <table class="table" style="color: black; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -300,9 +300,9 @@ b
 <p>Repeat the previous question, but now, for 2024.</p>
 <p>How did it go? More specifically, where you able to fit it for variety b?</p>
 <p>What we have:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" /></p>
 <p>What we expect:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" alt="" width="672" /></p>
 <ul>
 <li>The blue line represents an exponential mathematical model:</li>
 </ul>
@@ -379,7 +379,7 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r
 <li>This is the strongest and most restrictive assumption!</li>
 </ul>
 <p>If we “relax” this assumption, and let <span class="math inline">\(K\)</span> vary a little more, let’s say <span class="math inline">\(K \sim N(1, 5)\)</span>, this what happens:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" alt="" width="672" /></p>
 <p>Now, do you think these values make sense?</p>
 <ul>
 <li><p><span class="math inline">\(K\)</span> has a biological meaning - Maximum disease potential.</p></li>
@@ -388,7 +388,7 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r
 <p><span class="math display">\[
 K \sim Beta(6, 2)
 \]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" alt="" width="672" /></p>
 <p>How we are choosing that?</p>
 <ul>
 <li><p>Beta distribution - Bounds - Support helps a lot!</p></li>
@@ -490,7 +490,7 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 <span id="cb39-16"><a href="welcome-to-day-3.html#cb39-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;black&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
 <span id="cb39-17"><a href="welcome-to-day-3.html#cb39-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;black&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672" /></p>
 <p>How about the parameters?</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="welcome-to-day-3.html#cb40-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
@@ -507,7 +507,7 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 <span id="cb40-12"><a href="welcome-to-day-3.html#cb40-12" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(par_post[,<span class="dv">4</span>]), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
 <span id="cb40-13"><a href="welcome-to-day-3.html#cb40-13" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" alt="" width="672" /></p>
 <p>How posterior compare to prior?</p>
 <ul>
 <li><p>Let’s look at <span class="math inline">\(r\)</span>.</p></li>
@@ -517,12 +517,12 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="welcome-to-day-3.html#cb41-1" tabindex="-1"></a><span class="co"># Post. dist. r</span></span>
 <span id="cb41-2"><a href="welcome-to-day-3.html#cb41-2" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">runif</span>(<span class="dv">1000</span>,<span class="fl">0.1</span>, <span class="fl">0.5</span>), <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Prior dist. r&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;[r]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;r&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>))</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-83-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" alt="" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="welcome-to-day-3.html#cb42-1" tabindex="-1"></a><span class="co"># Pior dist. r</span></span>
 <span id="cb42-2"><a href="welcome-to-day-3.html#cb42-2" tabindex="-1"></a><span class="fu">hist</span>(par_post[,<span class="dv">3</span>], <span class="at">ylab =</span> <span class="st">&quot;[r]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;r&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Posterior dist. r&quot;</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>))</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-83-2.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-2.png" alt="" width="672" /></p>
 <p><br><br></p>
 </div>
 <div id="why-bayesian-might-be-helpful" class="section level4 hasAnchor">
@@ -637,7 +637,7 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 <span id="cb45-4"><a href="welcome-to-day-3.html#cb45-4" tabindex="-1"></a><span class="fu">lines</span>(df_pred<span class="sc">$</span>time, df_pred<span class="sc">$</span>pred_ub, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
 <span id="cb45-5"><a href="welcome-to-day-3.html#cb45-5" tabindex="-1"></a><span class="fu">lines</span>(df_pred<span class="sc">$</span>time, df_pred<span class="sc">$</span>pred_lb, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" alt="" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="welcome-to-day-3.html#cb46-1" tabindex="-1"></a><span class="co"># Plot predictions with interval for Bayesian model</span></span>
 <span id="cb46-2"><a href="welcome-to-day-3.html#cb46-2" tabindex="-1"></a><span class="co"># Quantiles for 95% Credible Interval</span></span>
@@ -657,10 +657,10 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 <span id="cb46-16"><a href="welcome-to-day-3.html#cb46-16" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.lb, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
 <span id="cb46-17"><a href="welcome-to-day-3.html#cb46-17" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.ub, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-86-2.png" alt="" width="672" /></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-87-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-60-2.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" alt="" width="672" /></p>
 <p>How about the parameters?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-88-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" alt="" width="672" /></p>
 <p><br><br></p>
 <table class="table" style="color: black; margin-left: auto; margin-right: auto;">
 <thead>
@@ -742,13 +742,13 @@ Bayesian
 K
 </td>
 <td style="text-align:center;">
-0.8366702
+0.8378173
 </td>
 <td style="text-align:center;">
-0.6189120
+0.6167258
 </td>
 <td style="text-align:center;">
-0.9744694
+0.9764098
 </td>
 </tr>
 <tr>
@@ -759,13 +759,13 @@ Bayesian
 r
 </td>
 <td style="text-align:center;">
-0.1250087
+0.1254790
 </td>
 <td style="text-align:center;">
-0.1032116
+0.1033071
 </td>
 <td style="text-align:center;">
-0.1436959
+0.1438087
 </td>
 </tr>
 <tr>
@@ -776,13 +776,13 @@ Bayesian
 y0
 </td>
 <td style="text-align:center;">
-0.0019052
+0.0018562
 </td>
 <td style="text-align:center;">
-0.0010205
+0.0010190
 </td>
 <td style="text-align:center;">
-0.0043641
+0.0043715
 </td>
 </tr>
 </tbody>

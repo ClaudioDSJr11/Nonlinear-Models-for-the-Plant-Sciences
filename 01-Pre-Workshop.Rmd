@@ -132,4 +132,4 @@ Constraint = A restriction or boundary placed on model parameters. Often based o
 
 Random variable = Numerical value arising from a probability distribution. Formally: A function that connects the outcome of a random experiment to real numbers.
 
-Support = Values it can assume.
+Support of a probability distribution = Values a random variable arising from this distribution can assume.

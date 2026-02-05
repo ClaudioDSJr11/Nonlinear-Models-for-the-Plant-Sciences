@@ -256,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="section-3-exercises-from-day-1" class="section level3 hasAnchor">
 <h3>Section 3: Exercises from day 1<a href="welcome-to-day-2.html#section-3-exercises-from-day-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You were asked to work with this data:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" alt="" width="672" /></p>
 <p><strong>What is it really about?</strong></p>
 <center>
 <img src="Rust.jpg" width="397" />
@@ -294,12 +294,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb25-19"><a href="welcome-to-day-2.html#cb25-19" tabindex="-1"></a><span class="fu">plot</span>(a_24<span class="sc">$</span>time, a_24<span class="sc">$</span>l_sev, <span class="at">ylab =</span> <span class="st">&quot;Logit(y)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="dv">5</span>))</span>
 <span id="cb25-20"><a href="welcome-to-day-2.html#cb25-20" tabindex="-1"></a><span class="fu">lines</span>(m1_pred<span class="sc">$</span>time, m1_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" alt="" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="welcome-to-day-2.html#cb26-1" tabindex="-1"></a><span class="fu">plot</span>(a_24<span class="sc">$</span>time, a_24<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;y_prop.&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>))</span>
 <span id="cb26-2"><a href="welcome-to-day-2.html#cb26-2" tabindex="-1"></a><span class="fu">lines</span>(m1_pred<span class="sc">$</span>time, m1_pred<span class="sc">$</span>inv_logit, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;gold&quot;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-58-2.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-2.png" alt="" width="672" /></p>
 <p>What is actually going on here?</p>
 <p>Logit:</p>
 <p><span class="math display">\[
@@ -385,7 +385,7 @@ log(\frac{y_i}{1 - y_i}) = log(\frac{y_0}{1 - y_0}) + \beta_1*x_i + \varepsilon_
 <span id="cb29-8"><a href="welcome-to-day-2.html#cb29-8" tabindex="-1"></a><span class="fu">plot</span>(a_24<span class="sc">$</span>time, a_24<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>), <span class="at">main =</span> <span class="st">&quot;Polynomial&quot;</span>)</span>
 <span id="cb29-9"><a href="welcome-to-day-2.html#cb29-9" tabindex="-1"></a><span class="fu">lines</span>(m3_pred<span class="sc">$</span>time, m3_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="welcome-to-day-2.html#cb30-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 </details>
@@ -413,7 +413,7 @@ log(\frac{y_i}{1 - y_i}) = log(\frac{y_0}{1 - y_0}) + \beta_1*x_i + \varepsilon_
 </ul></li>
 </ul>
 <p>To understand what is causes, look at the parameters of our model for both years with Wald confidence intervals<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" alt="" width="672" /></p>
 <ul>
 <li>High uncertainty around parameter estimates! - Classical symptom of weak identifiability</li>
 </ul>
@@ -470,7 +470,7 @@ log(\frac{y_i}{1 - y_i}) = log(\frac{y_0}{1 - y_0}) + \beta_1*x_i + \varepsilon_
 <div id="fixing-weakly-identifiable-parameters---variety-a-in-2023" class="section level4 hasAnchor">
 <h4>Fixing weakly identifiable parameters - Variety a in 2023<a href="welcome-to-day-2.html#fixing-weakly-identifiable-parameters---variety-a-in-2023" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Recall 2023 disease data for progress in time:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-39-1.png" alt="" width="672" /></p>
 <p>If we are very interested in <span class="math inline">\(r\)</span>, so we can understand how fast is growth, we can fixate other parameters. Let’s assume <span class="math inline">\(K = 1\)</span>:</p>
 <p><span class="math display">\[
 y_i = \frac{1}{1+(\frac{1 - y_0}{y_0})*e^{-rx_i + \varepsilon_i}}
@@ -493,11 +493,11 @@ y_i = \frac{1}{1+(\frac{1 - y_0}{y_0})*e^{-rx_i + \varepsilon_i}}
 <span id="cb33-15"><a href="welcome-to-day-2.html#cb33-15" tabindex="-1"></a><span class="fu">plot</span>(a_23<span class="sc">$</span>time, a_23<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>))</span>
 <span id="cb33-16"><a href="welcome-to-day-2.html#cb33-16" tabindex="-1"></a><span class="fu">lines</span>(m4_pred<span class="sc">$</span>time, m4_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" alt="" width="672" /></p>
 <p>How it compares to estimating <span class="math inline">\(K\)</span>?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" alt="" width="672" /></p>
 <p>How about the parameters?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" alt="" width="672" /></p>
 <center>
 <strong>The data does not inform</strong> <span class="math inline">\(K\)</span> <strong>when we fix it, we inform it!</strong>
 </center>
