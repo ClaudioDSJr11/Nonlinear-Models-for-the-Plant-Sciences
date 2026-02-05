@@ -1,12 +1,12 @@
 # Welcome to day 1!
 
--   In this workshop material, theory and R codes are mixed. Throughout the workshop days, our main focus will be on understanding the *why*. Our main goal is to demonstrate that all codes in this workshop are used after deep understanding of what is going on behind it, after we thought about our models in depth.
+-   In this workshop material, theory and R codes are mixed. Throughout the workshop, our main focus will be on understanding the *why*. We want to demonstrate that all codes in this workshop are used after deep understanding of what is going on behind them, after we thought about our models in depth.
 
--   We will follow a step-wise structure:
+-   We will have the following structure:
 
     -   Day 1: Linear models and parameter estimation
 
-    -   Day 2: Nonlinear models and their challenges
+    -   Day 2: Nonlinear models
 
     -   Day 3: Bayesian nonlinear models
 
@@ -18,39 +18,45 @@
 
 <br><br>
 
-## Linear models
+## Linear models and parameter estimation
 
 <div>
 
 **Outline:**
 
-1.  What is and what isn't a linear model
+Section 1: What is and what isn't a linear model
 
-2.  Estimation and Inference: A linear model example using:
+Section 2: Estimation and Inference: A linear model example using:
 
-    -   Loss function approach
+-   Loss function approach
 
-    -   Likelihood-based approach
+-   Likelihood-based approach
 
-    -   Bayesian approach
+-   Bayesian approach
 
-3.  Why use Bayesian
+Why Bayesian may be useful?
 
-4.  Practice questions
+Questions
 
-    -   Fixation day 1 (Optional)
+-   Recommended - Base for Day 2
 
-    -   Pre-day 2 (Recomended)
+Optional - For practice only!
 
-**What is day 1 about?**
+<br><br>
 
-Understanding linear models and estimation conceptually
+**What we expect you to learn on Day 1:**
+
+-   What is a linear model and what is not
+
+-   There are different types of estimation, and they have different assumptions
+
+-   When it is wroth it to work with more assumption heavy approaches
 
 </div>
 
 <br><br>
 
-### 1. What is and what isn't a linear model
+### Section 1: What is and what isn't a linear model
 
 #### Recap on linear models
 
@@ -79,7 +85,7 @@ data_lm$pred <- predict(lin_fit)
 plot(data_lm$x, data_lm$pred, type = "l", ylab = "y", xlab = "x")
 ```
 
-#### Now, what makes a model linear?
+#### What makes a model linear?
 
 <center>**A model is linear if it is linear in its parameters.**</center>
 
@@ -120,10 +126,6 @@ plot(data_spl$x, data_spl$pred, type = "l", ylab = "y", xlab = "x")
 
 <center>
 
-Yes, this is linear!
-
-Linearity is about the geometry of the parameter space, not about the shape of the curve in the data.
-
 Shape $\neq$ Linearity
 
 Linear models $\neq$ Simplicity
@@ -159,7 +161,7 @@ set.seed(2026)
 data_exp <- data.frame(
   x = seq(1, 100, by = 1)
 )
-data_exp$y = runif(1, 0, 20)*exp(runif(1, 0.005, 0.075)*data_exp$x + runif(100, 0, 5))
+data_exp$y = runif(1, 0, 20)*exp(runif(1, 0.005, 0.075)*data_exp$x) + runif(100, 0, 5)
 
 exp_fit <- nls(y ~ a*exp(b*x), data = data_exp, start = list(a = 13, b = 0.1))
 data_exp$pred <- predict(exp_fit)
@@ -193,17 +195,33 @@ How do we work with nonlinear models?
 
 -   What do you know about what you are investigating?
 
--   What do you want from the parameters?
+-   What do you want from the model?
 
     -   Focus: Inference? Prediction? Both?
 
 <br><br>
 
-### 2. Estimation and Inference: A linear model example
+::: important
+**Highlight from Section 1:**
 
-Estimation: Getting actual numbers for the model parameters
+<center>
 
-Inference: Making sense of these numbers regarding the population being studied
+Shape $\neq$ Linearity: Not being a line does not mean it is not linear!
+
+Linear models $\neq$ Simplicity: Linear models can be quite complex (e.g. Splines).
+
+Model selection is more of a philosophical question, but some points might help you on the decision.
+
+</center>
+:::
+
+<br><br>
+
+### Section 2: Estimation and Inference: A linear model example
+
+Estimation: The process of obtaining numerical values for the unknown quantities (parameters) of a model from observed data.
+
+Inference: Interpreting these estimated parameters in the context of the population or data-generating process (model). Inference is made on **non-observable quantities** of interest, like the parameters (e.g. $\beta_1$) and involves quantifying **uncertainty** and **drawing conclusions beyond the observed sample**.
 
 <br><br>
 
@@ -214,7 +232,7 @@ Details from [Palmero et al. 2024](https://link.springer.com/article/10.1186/s13
 A simple intercept-slope linear model:
 
 $$
-y_i = \beta_0 + \beta_1x_i + \varepsilon
+y_i = \beta_0 + \beta_1x_i + \varepsilon_i
 $$
 
 in which:
@@ -249,10 +267,19 @@ segments(x0 = x, y0 = y, x1 = x, y1 = yhat, lty = 2)
 Loss function: How we calculate the distance between observed and predicted by the model.
 
 -   Several different options, the most famous: Least Square - $\sum_{i = 1}^n(y_i - \beta_0 - \beta_1x_i)^2$
+    -   Least Square characteristics: Small residuals = Small loss / Large residuals = Large loss
 
 This approach produces a line of best fit based on values for $\beta_0$ and $\beta_1$ that minimizes the distance.
 
-<center>**No uncertainty around estimation, no p-values, no inference, only parameter values!**</center>
+<center>
+
+At this point: **No uncertainty around estimation, no p-values, no inference, only parameter values!**
+
+A loss function by itself gives no inference. Inference comes from assumptions on the residuals ($\varepsilon_i$)
+
+**Here:** $\varepsilon_i = y_i - \hat{y}_i$
+
+</center>
 
 <br><br>
 
@@ -302,15 +329,13 @@ abline(v = thetahat_loss, lwd = 3, lty = 2, col = "green")
 
 Instead of minimizing the distance, we now maximize the likelihood function.
 
--   The question is: "If these parameter values were true, how plausible is the data I actually observe?".
+What likelihood do?
 
--   Likelihood is about explaining the data you already have[^02-linear-models-4].
+-   According to the data-generating process (model + assumption) and data, estimate values of the parameters that are more plausible.
 
--   No more a line of best fit, but an expectation!
+-   No more a line of best fit, but an expectation/mean.
 
-[^02-linear-models-4]: Finding the parameter values under which the observed data are most plausible according to the assumed data-generating process.
-
-To define a likelihood, we must introduce assumptions about how the data were generated. We make a **distributional assumption** for the random error term:
+To define a likelihood, we make a **distributional assumption** for the random error term. The most common:
 
 $$
 \varepsilon_i \sim N(0, \sigma^2)
@@ -380,6 +405,12 @@ Fit a simple intercept-slope linear model to data using least squares and calcul
 
 $$ y_i = \beta_0 + \beta_1x_i + \varepsilon_i \\ \varepsilon_i \sim N(0, \sigma^2) $$
 
+or
+
+$$
+y_i \sim N(\beta_0 + \beta_1x_i, \sigma^2)
+$$
+
 ```{r, message=FALSE, warning=FALSE}
 library(nlme)
 # Fit the model
@@ -394,9 +425,9 @@ thetahat_ml <- -b0hat_ml/b1hat_ml # calculate theta
 thetahat_ml
 ```
 
-Here we can construct confidence intervals by approximating the standard errors using delta method[^02-linear-models-5].
+Here we can construct confidence intervals by approximating the standard errors using delta method[^02-linear-models-4].
 
-[^02-linear-models-5]: The Delta Method approximates the uncertainty of a transformed estimator (derived quantity), assuming it was originally approximately normal.
+[^02-linear-models-4]: The Delta Method approximates the uncertainty of a transformed estimator (derived quantity), assuming it was originally approximately normal.
 
 ```{r, message=FALSE, warning=FALSE}
 library(msm)
@@ -416,11 +447,11 @@ abline(v = theta_ci[1], lwd = 1, lty = 2, col = "green")
 abline(v = theta_ci[2], lwd = 1, lty = 2, col = "green")
 ```
 
-What are we gaining here?
+What changes from the loss function approach?
 
 -   More complexity;
 
--   Uncertainty around estimated $\hat{\theta}$;
+-   Uncertainty estimation (around estimated $\hat{\theta}$);
 
 -   We could also explore uncertainty for the expected value (red line).
 
@@ -430,13 +461,11 @@ What are we gaining here?
 
 **How does it work?**
 
-Now, we do not focus on the most likely value of the parameter, we focus on it's whole distribution, all values it can assume.
+The focus now is not on the most likely value of the parameter, it is on the whole distribution, all values it can assume.
 
-In this approach, we have additional assumptions concerning our unknown parameters.
+In this approach, we have additional assumptions on the unknown parameters.
 
-<center>"Bayesian statistical models provide a useful way to obtain inference and predictions for **unobserved quantities** [parameters] in nature based on a solid foundation of mathematical rules pertaining to probability." ()</center>
-
-Through Bayesian approach, it is very straight forward to account for and explicitly demonstrate uncertainty.
+<center>"Bayesian statistical models provide a useful way to obtain inference and predictions for **unobserved quantities** [parameters] in nature based on a solid foundation of mathematical rules pertaining to probability." ([Hooten and Hefley, 2019](https://www.taylorfrancis.com/books/mono/10.1201/9780429243653/bringing-bayesian-models-life-trevor-hefley-mevin-hooten))</center>
 
 We use **prior knowledge** about the system, to inform our parameters to be estimated.
 
@@ -465,40 +494,12 @@ Fit a simple intercept-slope linear model to data using least squares and calcul
 
 $$ y_i = \beta_0 + \beta_1x_i + \varepsilon_i \\ \varepsilon_i \sim N(0, \sigma^2)$$
 
-We will re-write this model, using a different notation:
+We will re-write this model, using distributional notation and adding our additional assumptions for other unknown quantities:
 
 $$
 \mathbf{y} \sim N(\boldsymbol{\beta_0} + \boldsymbol{\beta_1}\mathbf{x}, \boldsymbol{\sigma}^2) \\ \boldsymbol{\beta_0} \sim N(0, 10^6) \\ \boldsymbol{\beta_1} \sim N(0, 10^6) \\ \boldsymbol{\sigma} \sim Gamma(2.5, 0.05)
 $$\
 This notation helps to clearly identify our assumptions!
-
-```{r, message=FALSE, warning=FALSE, eval=FALSE, echo=FALSE}
-# Writting the model
-
-sink("model.txt")
-cat("
-    model {
-    
-    # Likelihood
-    for(i in 1:N){
-      y[i] ~ dnorm(mu[i], tau)
-      mu[i] <- b0 + b1*(x[i])
-    }
-    
-    #x.bar <- mean(x)
-    sigma <- 1/sqrt(tau)
-    
-    # Priors
-    b0 ~ dnorm(0, 1/10^6)
-    b1 ~ dnorm(0, 1/10^6)
-    tau ~ dgamma(2.5, 0.05)
-    
-    # Derived quantity
-    theta <- -b0/b1
-    }
-    ")
-sink()
-```
 
 ```{r, message=FALSE, warning=FALSE, results='hide'}
 library(rjags)
@@ -606,7 +607,7 @@ knitr::kable(df_table, align = "c") %>%
 
 <br><br>
 
-### 3. Why use Bayesian?
+#### Why Bayesian might be useful?
 
 ```{r, message=FALSE, warning=FALSE}
 df_b <- df[which(df$Scenario == "Scenario B"),]
@@ -614,7 +615,9 @@ plot(df_b$Ndfa, df_b$PartNbalance, xlab = "Ndfa (%)", ylab = "Partial N balance 
 abline(a = 0, b = 0, lwd = 3, col = "gold")
 ```
 
-You should be concerned about uncertainty here! Let's try a likelihood approach:
+Considerably less observations and balance ($\theta$) is never observed.
+
+Using Likelihood:
 
 ```{r, message=FALSE, warning=FALSE}
 # Fit the model
@@ -637,7 +640,7 @@ abline(v = theta_ci2[1], lwd = 1, lty = 2, col = "green")
 abline(v = theta_ci2[2], lwd = 1, lty = 2, col = "green")
 ```
 
-How about Bayesian?
+Using Bayesian:
 
 ```{r, message=FALSE, warning=FALSE, results='hide'}
 set.seed(2026)
@@ -702,21 +705,169 @@ Why?
 
 -   Deficient information about $\theta$ in this dataset.
 
--   Bayesian offers the opportunity to utilize prior information and a constraint $\hat{\theta}$.
+-   Bayesian offers the opportunity to utilize prior information to constraint $\hat{\theta}$.
 
 -   We treat $\theta$ as a **random variable.**
 
--   Similar assumptions across approaches.
+::: important
+**Highlight from Section 2:**
+
+<center>
+
+There are different approaches to estimate the model parameters, some, rely more heavily on data (Loss function and Likelihood), and some less (Bayesian).
+
+Estimation can interfere with inference when few observations are available or low information regarding a specific parameter.
+
+Loss function approaches do not allow inference. Inference comes with a price, assumptions!
+
+More assumptions, more difficult to work with the model. Choose your battles, it is not always worth to go this route!
+
+</center>
+:::
 
 <br><br>
 
-### 4. Practice for day 1
+### Questions
 
 -   Sample code is provided for some questions. Code used on the class examples can also be used to work on this practice.
 
-#### Fixation day 1
+#### Recommended - Based for Day 2
 
-**I.** Using the field pea and white lupine data, experiment fitting the simple intercept-slope linear model ($y_i = \beta_0 + \beta_1*xi + \varepsilon_i$) using the likelihood approach.
+On Days 2 and 3 we will work with an example of logistic growth curve. Growth curves are widely used in biology to study population dynamics. A good reading: [Analysis of logistic growth models - Tsoularis and Wallace (2002)](https://www.sciencedirect.com/science/article/pii/S0025556402000962).
+
+Here we will apply it to plant disease growth on time. We will use this model:
+
+$$
+y_i = \frac{K}{1 + (\frac{K - y_0}{y_0})e^{-rt_i}} + \varepsilon_i
+$$
+
+In which the parameters have meaning:
+
+-   $K$ - Maximum disease potential - Maximum severity level
+
+-   $r$ - Disease rate of growth - How fast it grows
+
+-   $y_0$ - Initial disease level
+
+The disease data is in the file "nonlin.csv". In this data, $y_i$ represent disease severity (column: severity, % of leaf area affected by the disease). Our goal is to model severity by time (column = time, days).
+
+What else is in this data?
+
+-   Year (column: year) - Two different seasons, 2023 with less disease and 2024 with more
+
+-   Variety (column: var) - A moderately resistant variety (b) and a susceptible one (a)
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+# Data
+nl_df <- read.csv("nonlin.csv")
+nl_24 <- nl_df[which(nl_df$year == 2024 & nl_df$var == "a"),]
+nl_24$p_sev <- nl_24$severity/100
+nl_23 <- nl_df[which(nl_df$year == 2023 & nl_df$var == "a"),]
+nl_23$p_sev <- nl_23$severity/100
+```
+
+Recall that to work with non-linear models, we either linearize it or fit as it is.
+
+First, use linearization to fit a linear model for 2024. We will use a logit transformation:
+
+$$ logit(y_i) = \beta_0 + \beta_1*x_i + \varepsilon_i $$
+
+Where $\beta_1 \sim r$ from the nonlinear form.
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+# Example for 2024
+
+# For this, we assume K = 1
+nl_24$p_sev <- nl_24$p_sev + 0.001 # Correction for log
+nl_24$l_sev <- log(nl_24$p_sev/(1-nl_24$p_sev))
+
+# Fit the linear model to the logit transformed y
+m1 <- lm(l_sev ~ time, data = nl_24)
+
+# Make predictions
+logit_pred <- data.frame(
+  time = seq(min(nl_24$time), max(nl_24$time), 1))
+
+logit_pred$pred <- predict(m1, newdata = logit_pred)
+
+# Plot predictions
+plot(nl_24$time, nl_24$l_sev, ylab = "Logit(y)", xlab = "Days", ylim = c(-7, 5))
+lines(logit_pred$time, logit_pred$pred, lwd = 3, col = "red")
+```
+
+Now, fit the non-linear model for 2024 and 2023. Plot data and predictions. Save models for the next question.
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+# Example for 2024
+
+# Fit the logistic model
+m2 <- nls(p_sev ~ K/(1 + ((K-y0)/y0)*exp(-r*time)), data = nl_24, start = list(K = 0.7, y0 = 0.001, r = 0.2))
+
+# Predict using the logistic curve
+nl_pred <- data.frame(
+  time = seq(min(nl_24$time), max(nl_24$time), 1))
+
+nl_pred$pred <- predict(m2, newdata = nl_pred)
+
+# Plot predictions
+plot(nl_24$time, nl_24$p_sev, ylab = "Severity (prop.)", xlab = "Days", ylim = c(-0.1, 1))
+lines(nl_pred$time, nl_pred$pred, lwd = 3, col = "red")
+```
+
+Extract model parameters. Check the Wald Confidence Intervals. Do you think these values make sense?
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+summary(m2) # Overall model summary
+
+# Example - For K:
+## Extract the estimated value
+K <- as.numeric(coef(m2)[1])
+
+## Calculate Wald Confidence Interval for the parameter estimate
+K_sd <- sqrt(vcov(m2)[1])
+K_lb <- K-1.96*K_sd # CI Lower
+K_ub <- K+1.96*K_sd # CI Upper
+
+# Notes for you:
+## nls in R uses least squares, a loss function approach. Recall: Minimize the loss function. 
+
+## To get CI here we are making additional assumptions that we do not make for loss function approach: iid normal residuals.
+
+## This is possible because LS = ML under iid Normal errors with constant variance.
+
+## Why 1.96? It represents the 97.5th percentile of the std N distribution.
+```
+
+Try fitting a polynomial to this data. Does the predicted curve make sense visually?
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+# Example for 2024
+
+# Fit the model
+m3 <- lm(p_sev ~ poly(time, degree = 3), data = nl_24)
+
+# Make predictions
+poly_pred <- data.frame(
+  time = seq(min(nl_24$time), max(nl_24$time), 1))
+
+poly_pred$pred <- predict(m3, newdata = poly_pred)
+
+# Plot predictions
+plot(nl_24$time, nl_24$p_sev, ylab = "Severity (prop.)", xlab = "Days", ylim = c(-0.1, 1))
+lines(poly_pred$time, poly_pred$pred, lwd = 3, col = "red")
+```
+
+Are the parameters still carrying biological meaning? How fast is the disease growing?
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+summary(m3)
+```
+
+<br><br>
+
+#### Optional - For practice only!
+
+Using the field pea and white lupine data, experiment fitting the simple intercept-slope linear model ($y_i = \beta_0 + \beta_1*xi + \varepsilon_i$) using the likelihood approach.
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
 # Data
@@ -727,9 +878,9 @@ fp <- df[which(df$Scenario == "Scenario A"),]
 wl <- df[which(df$Scenario == "Scenario B"),]
 ```
 
-**II.** Calculate the derived quantity $\hat{\theta}$, and use delta method and bootstrap to obtain confidence intervals. Compare the intervals between the two datasets.
+Calculate the derived quantity $\hat{\theta}$, and use delta method and bootstrap to obtain confidence intervals. Compare the intervals between the two datasets.
 
--   Bootstrap will be revisited on day 3, please, have a look at it beforehand!
+-   Bootstrap is another option to get predictive intervals, instead of using the delta method.
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
 # Bootstrap for field pea (fp)
@@ -775,127 +926,3 @@ Steps:
 -   Plot the calculated statistics which forms the bootstrap distribution
 
 -   Using the bootstrap distribution of desired statistics calculate the 95% CI
-
-#### Pre-day 2 - Nonlinear models
-
-**I.** Fit an logistic model to the data of plant disease progress over time in "nonlin.csv".
-
-```{r, message=FALSE, warning=FALSE, eval=FALSE}
-# Data
-nl_df <- read.csv("nonlin.csv")
-nl_24 <- nl_df[which(nl_df$year == 2024 & nl_df$var == "a"),]
-nl_24$p_sev <- nl_24$severity/100
-nl_23 <- nl_df[which(nl_df$year == 2023 & nl_df$var == "a"),]
-nl_23$p_sev <- nl_23$severity/100
-```
-
-**I.a.** Use linearization to fit a linear model for 2024. We will use a logit transformation:
-
-$$
-logit(y_i) = \beta_0 + \beta_1*x_i + \varepsilon_i
-$$
-
-Where $\beta_1 \sim r$ from the nonlinear form.
-
-```{r, message=FALSE, warning=FALSE, eval=FALSE}
-# Example for 2024
-
-# For this, we assume K = 1
-nl_24$p_sev <- nl_24$p_sev + 0.001
-nl_24$l_sev <- log(nl_24$p_sev/(1-nl_24$p_sev))
-
-# Fit the linear model to the logit transformed y
-m1 <- lm(l_sev ~ time, data = nl_24)
-
-# Make predictions
-logit_pred <- data.frame(
-  time = seq(min(nl_24$time), max(nl_24$time), 1))
-
-logit_pred$pred <- predict(m1, newdata = logit_pred)
-
-# Plot predictions
-plot(nl_24$time, nl_24$l_sev, ylab = "Logit(y)", xlab = "Days", ylim = c(-7, 5))
-lines(logit_pred$time, logit_pred$pred, lwd = 3, col = "red")
-```
-
-**I.b.** Use the nls function. First, fit for the year of 2024, then, do it for the year of 2023. Make a plot with predictions. Save models for the next question.
-
-$$
-y_i = \frac{K}{1 + (\frac{K - y_0}{y_0})e^{-rt_i}} + \varepsilon_i
-$$
-
-```{r, message=FALSE, warning=FALSE, eval=FALSE}
-# Example for 2024
-
-# Fit the logistic model
-m2 <- nls(p_sev ~ K/(1 + ((K-y0)/y0)*exp(-r*time)), data = nl_24, start = list(K = 0.7, y0 = 0.001, r = 0.2))
-
-# Predict using the logistic curve
-nl_pred <- data.frame(
-  time = seq(min(nl_24$time), max(nl_24$time), 1))
-
-nl_pred$pred <- predict(m2, newdata = nl_pred)
-
-# Plot predictions
-plot(nl_24$time, nl_24$p_sev, ylab = "Severity (prop.)", xlab = "Days", ylim = c(-0.1, 1))
-lines(nl_pred$time, nl_pred$pred, lwd = 3, col = "red")
-```
-
-**II.** Extract model parameters. Check the parameter meaning below. Check the Wald CI. Are values making sense?
-
--   Disease severity: Percentage of tissue area affected by the disease (in this case, percentage of the leaf area affected)
-
--   Logistic disease progress curve model parameter meaning:
-
-    -   $K$ - Maximum disease potential - Maximum severity level
-
-    -   $r$ - Disease rate of growth - How fast it grows
-
-    -   $y_0$ - Initial disease level
-
-```{r, message=FALSE, warning=FALSE, eval=FALSE}
-summary(m2) # Overall model summary
-
-# Example - For K:
-## Extract the estimated value
-K <- as.numeric(coef(m2)[1])
-
-## Calculate Wald Confidence Interval for the parameter estimate
-K_sd <- sqrt(vcov(m2)[1])
-K_lb <- K-1.96*K_sd # CI Lower
-K_ub <- K+1.96*K_sd # CI Upper
-
-# Notes for you:
-## nls in R uses least squares, a loss function approach. Recall: Minimize the loss function. 
-
-## To get CI here we are making additional assumptions that we do not make for loss function approach: iid normal residuals.
-
-## This is possible because LS = ML under iid Normal errors with constant variance.
-
-## Why 1.96? It represents the 97.5th percentile of the std N distribution.
-```
-
-**III.** Try fitting a polynomial to this data. Does the predicted curve make sense visually?
-
-```{r, message=FALSE, warning=FALSE, eval=FALSE}
-# Example for 2024
-
-# Fit the model
-m3 <- lm(p_sev ~ poly(time, degree = 3), data = nl_24)
-
-# Make predictions
-poly_pred <- data.frame(
-  time = seq(min(nl_24$time), max(nl_24$time), 1))
-
-poly_pred$pred <- predict(m3, newdata = poly_pred)
-
-# Plot predictions
-plot(nl_24$time, nl_24$p_sev, ylab = "Severity (prop.)", xlab = "Days", ylim = c(-0.1, 1))
-lines(poly_pred$time, poly_pred$pred, lwd = 3, col = "red")
-```
-
-About the parameters, are they still carrying biological meaning? How fast is the disease growing?
-
-```{r, message=FALSE, warning=FALSE, eval=FALSE}
-summary(m3)
-```

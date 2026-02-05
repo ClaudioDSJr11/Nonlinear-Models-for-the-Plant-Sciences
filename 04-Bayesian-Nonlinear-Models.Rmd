@@ -6,9 +6,9 @@ What have we learned so far?
 
     -   What is and what isn't a linear model.
 
-    -   Estimation methods: Loss function; Likelihood-based; Bayesian.
+    -   Estimation approaches: Loss function; Likelihood-based; Bayesian.
 
-    -   When they are similar (e.g. normal errors).
+    -   When they are similar (normal errors).
 
 -   Day 2
 
@@ -18,11 +18,7 @@ What have we learned so far?
 
     -   Practical identifiability of parameters -\> When our data cannot inform our model parameters.
 
-        -   How to work with weak identifiability:
-
-            -   Fixing parameters.
-
-            -   Simplifying the model.
+        -   How to work with weak identifiability.
 
 <br><br>
 
@@ -32,26 +28,36 @@ What have we learned so far?
 
 **Outline:**
 
-1.  Exercises from day 2
+Section 5: Exercises from day 2
 
-    -   Questions I and IV - Model selection, why?
+-   Model selection, why?
 
-2.  Bayesian nonlinear models
+Section 6: Bayesian nonlinear models
 
-    -   Bayesian logistic disease progress curve
-    -   Why use Bayesian?
+-   Bayesian logistic disease progress curve
+-   Why Bayesian might be helpful?
 
-3.  Wrap-up
+Wrap-up
 
-**What is day 3 about?**
+<br><br>
 
-Imposing constraint on parameters using prior knowledge is done using Bayesian statistics. In Bayesian models, this is done through probabilistic assumptions on parameters, making uncertainty and modeling decisions explicit, while supporting biologically driven decisions.
+**What we expect you to learn on Day 3:**
+
+-   We have different approaches for choosing the mathematical model, however, once these models have biological meaning, this should be the most important to consider.
+
+-   Bayesian models expand what we did before by adding more assumptions.
+
+-   The way we write Bayesian models make these assumption explicit.
+
+-   A prior distribution is built based on what we already know (prior knowledge), and it helps constraining our model parameters.
+
+-   Constraining the parameters with prior knowledge helps to remedy weak identifiability.
 
 </div>
 
 <br><br>
 
-### 1. Exercises from day 2
+### Section 5: Exercises from day 2
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 # Data
@@ -59,9 +65,9 @@ df <- read.csv("nonlin.csv")
 df$p_sev <- df$severity/100
 ```
 
-#### Questions I and IV - Model selection, why?
+#### Why logistic?
 
-**I.** For 2023, fit the nonlinear logistic model to variety a and b. Extract $K$ and $r$ and discuss the effect of genetic resistance in these parameters.
+For 2023, fit the nonlinear logistic model to variety a and b. Extract $K$ and $r$ and check how genetic resistance affect these parameters.
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 # Data
@@ -103,7 +109,7 @@ knitr::kable(df_table, align = "c") %>%
   kable_styling(full_width = TRUE, position = "center")
 ```
 
-**VI.** Repeat question **I** for 2024.
+Repeat the previous question, but now, for 2024.
 
 How did it go? More specifically, where you able to fit it for variety b?
 
@@ -145,7 +151,7 @@ plot(time, yl, ylab = "Severity", xlab = "Days", type = "l", col = "red")
 lines(time, ye, col = "blue")
 ```
 
--   The blue line represents an exponential model:
+-   The blue line represents an exponential mathematical model:
 
 $$
 y_i = y_0*e^{r_e*x_i}
@@ -157,9 +163,17 @@ Why don't we use this model instead? I have been pushing the logistic model for 
 
 <br><br>
 
-### 2. Bayesian nonlinear models
+::: imporant
+**Highlight from Section 5:**
 
--   Data alone was insufficient, we need more assumptions!
+<center>Different techniques can help with model selection, however, for mechanistic models that have deep biological meaning, this criteria should be the first to be considered.</center>
+:::
+
+<br><br>
+
+### Section 6: Bayesian nonlinear models
+
+-   We need more assumptions, one of our parameters is non-identifiable.
 
 -   A parallel with day 2:
 
@@ -179,31 +193,7 @@ Why don't we use this model instead? I have been pushing the logistic model for 
 
 <br><br>
 
-When using a Bayesian approach, we will be making assumptions, but not as deterministic as $K = 1$, or changing the model structure.
-
-We will treat all parameters as **random variables**. What does it mean?
-
--   When we write the model:
-
-$$
-y_i = \beta_0 + \beta_1*x_i + \varepsilon_i \\[10pt] \varepsilon_i \sim N(0, \sigma^2)
-$$
-
--   Is equivalent to write:
-
-$$
-y_i \sim N(\mu_i, \sigma^2) \\[10pt] \mu_i = \beta_0 + \beta_1*x_i
-$$
-
-And this reads: $y_i$ arises from a normal distribution with **expectation** controlled by the mathematical model and variance $\sigma^2$.
-
--   What is expectation? It is **where the distribution centers**, the **mean**.
-
-$\mathbf{y}$ is a random variable[^04-bayesian-nonlinear-models-1] that arises from a distribution.
-
-[^04-bayesian-nonlinear-models-1]: By definition, a random variable assigns a numerical value to the outcome of a random experiment.
-
-Now, what have we been doing so far with the logistic model?
+What have we been doing so far with the logistic model (now depicted by distributional notation)?
 
 $$
 y_i \sim N(\mu_i, \sigma^2) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r*x_i}}
@@ -211,17 +201,17 @@ $$
 
 -   This is not Bayesian.
 
--   Recall, under this assumption: LS = ML
-
 -   This is not working because of weak identifiability.
 
--   But we want this logistic equation, let's make more assumptions!
+-   But we want this logistic equation, so let's make more assumptions!
 
 <br><br>
 
 #### Bayesian logistic disease progress curve
 
-The first assumption we can make regards our response variable.
+The first assumption we can make regards our response variable!
+
+"If you are already in the rain, do not fear getting wet!"
 
 Is our model matching the data generating process?
 
@@ -271,7 +261,7 @@ hist(rbeta(1000, 6, 2), freq = FALSE, xlab = "K", main = NULL)
 
 How we are choosing that?
 
--   Beta distribution - Bounds.
+-   Beta distribution - Bounds - Support helps a lot!
 
 -   Leaning towards higher values - $K$ represents the maximum disease potential.
 
@@ -295,32 +285,7 @@ Priors are constructed using:
 
 -   Published information.
 
-<br><br>
-
-How does it look like for our remaining parameters?
-
-$y_0$ \~ $Unif(0.001, 0.1)$
-
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
-set.seed(2026)
-hist(runif(1000, 0.001, 0.1), freq = FALSE, xlab = "y0", main = NULL)
-```
-
-$r$ \~ $Unif(0.1, 0.5)$
-
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
-set.seed(2026)
-hist(runif(1000, 0.1, 0.5), freq = FALSE, xlab = "y0", main = NULL)
-```
-
-$\phi$ \~ $Gamma(24, 2)$
-
-```{r, message=FALSE, warning=FALSE, echo=FALSE}
-set.seed(2026)
-hist(rgamma(1000, 24, 2), freq = FALSE, xlab = "phi", main = NULL)
-```
-
--   Dispersion parameter \~ Inverse of the variance
+-   Simulation/previous studies.
 
 <br><br>
 
@@ -391,9 +356,9 @@ par_post <- as.matrix(samples[,c(1, 2, 3, 4)])
 pred_post <- as.matrix(samples[,c(5:61)])
 ```
 
-How the predictions (expected value) looks like with 95% Posterior Predictive Interval[^04-bayesian-nonlinear-models-2]:
+How the predictions (expected value) looks like with 95% Posterior Predictive Interval[^04-bayesian-nonlinear-models-1]:
 
-[^04-bayesian-nonlinear-models-2]: Intervals:
+[^04-bayesian-nonlinear-models-1]: Intervals:
 
     -   Credible Interval (Bayesian) - An interval that contains a given proportion (95% in the example) of the posterior distribution, representing the probability that the parameter lies within that range given the model and the data. It is a global interval considering the parameter space (all values the parameter can assume).
 
@@ -460,9 +425,9 @@ hist(par_post[,3], ylab = "[r]", xlab = "r", main = "Posterior dist. r", freq = 
 
 <br><br>
 
-#### Why use Bayesian?
+#### Why Bayesian might be helpful?
 
--   Let's use variety a in 2023.
+-   Let's use variety a in 2023 for and example.
 
 ```{r, message=FALSE, warning=FALSE, results='hide'}
 #### Fit the Bayesian model for 2024 var a ####
@@ -592,7 +557,7 @@ lines(bay_pred$x.pred, bay_pred$y.lb, lty = 2, col = 'red')
 lines(bay_pred$x.pred, bay_pred$y.ub, lty = 2, col = 'red')
 ```
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 # Likelihood uncertainty width
 lt1 <- df_pred$pred_ub[1] - df_pred$pred_lb[1]
 lt2 <- df_pred$pred_ub[37] - df_pred$pred_lb[37]
@@ -604,21 +569,16 @@ bt2 <- bay_pred$y.ub[37] - bay_pred$y.lb[37]
 bt3 <- bay_pred$y.ub[73] - bay_pred$y.lb[73]
 
 # Table with distance
-library(knitr)
-library(kableExtra)
-
 table_data <- data.frame(
-  Estimation = c("Min. Assump.", "Bayesian"),
-  Day_1_Width = c(round(lt1, 4), round(bt1, 4)),
-  Relative_uncertainty = c(" ", round((bt1/lt1)*100, 2)),
-  Day_37_Width = c(round(lt2, 4), round(bt2, 4)),
-  Relative_uncertainty = c(" ", round((bt2/lt2)*100, 2)),
-  Day_73_Width = c(round(lt3, 4), round(bt3, 4)),
-  Relative_uncertainty = c(" ", round((bt3/lt3)*100, 2))
+  Day = c(1, 37, 73, 1, 37, 73),
+  ub = c(df_pred$pred_lb[1], df_pred$pred_lb[37], df_pred$pred_lb[73], bay_pred$y.lb[1], bay_pred$y.lb[37], bay_pred$y.lb[73]), 
+  lb = c(df_pred$pred_ub[1], df_pred$pred_ub[37], df_pred$pred_ub[73], bay_pred$y.ub[1], bay_pred$y.ub[37], bay_pred$y.ub[73]),
+  Estimation = c(rep("Min. Assump.", 3), rep("Bayesian", 3))
 )
 
-knitr::kable(table_data, align = "c") %>%
-  kable_styling(full_width = TRUE, position = "center")
+ggplot(table_data, aes(x = factor(Day), ymin = lb, ymax = ub, color = Estimation)) +
+  geom_linerange(position = position_dodge(width = 0.4), linewidth = 1.2) +
+  labs(x = "Day", y = "Uncertainty width", color = "Estimation")
 ```
 
 How about the parameters?
@@ -658,7 +618,35 @@ knitr::kable(table_data, align = "c") %>%
   kable_styling(full_width = TRUE, position = "center")
 ```
 
-### 3. Wrap-up
+<br><br>
+
+::: important
+**Highlight from Section 6:**
+
+<center>
+
+Prior knowledge involves what we already now before even seeing the data.
+
+Prior distributions are selected based in prior knowledge. We treat parameters as random variables that arise from probability distributions.
+
+A straight forward to check if a distribution make sense for a parameter or the data generating process involves understand it's support.
+
+Bayesian models do not "resolve" weak identifiability, but remedy it by constraining parameters using prior knowledge.
+
+In Bayesian models, prior distribution is "updated" by the observed data, resulting in the posterior distribution.
+
+Bayesian models are heavy in assumptions, but also very explicit about them.
+
+By mindful! Assumptions introduce bias, therefore, they need to be deeply considered.
+
+Making more assumptions is adequate to mitigate deficiencies in the data. If there are none, there is no reason not to use the simple. As you learned, it works just the same!
+
+</center>
+:::
+
+<br><br>
+
+### Wrap-up
 
 -   There is no right or wrong! There are different assumptions, and each carry advantages and disadvantages.
 
