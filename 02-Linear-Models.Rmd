@@ -110,10 +110,10 @@ plot(data_poly$x, data_poly$pred, type = "l", ylab = "y", xlab = "x")
 
 **Regression splines:**
 
-In this type of model, $x$ is partitioned by $K$ points and within each space between these points, a polynomial model is fitted. Splines are a special case of piecewise degree-d polynomial, in which a constraint ensures that it is continuous. This means that at each "knot" ($K$), that define a breaks in $x$, the line remains continuous. Simple piecewise polynomial regression exist, but they do not ensure this continuity.
+In this type of model, $x$ is partitioned by $K$ points and within each space between these points (pieces), a polynomial model is fitted. Splines are a special case of piecewise degree-d polynomial, in which a constraint ensures that it is continuous. This means that at each "knot" ($K$), that define a breaks in $x$, the line remains continuous. Piecewise polynomial regression also exists, but they do not ensure this continuity.
 
 $$
-y_i = \beta_0 + \beta_1b_1(x_i) + \beta_2b_{K + 2}(x_i) + \varepsilon_i
+y_i = \beta_0 + \sum_{j = 1}^{K+2}\beta_jb_j(x_i) + \varepsilon_i
 $$
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
@@ -237,11 +237,11 @@ $$
 
 in which:
 
--   $y_i$ represents the proportion (%) of nitrogen (N) derived from the atmosphere (Ndfa)
+-   $x_i$ represents the proportion (%) of nitrogen (N) derived from the atmosphere (Ndfa)
 
--   $x_i$ represents the partial N balance (fixed N - removed N by grains) in kg/ha
+-   $y_i$ represents the partial N balance (fixed N - removed N by grains) in kg/ha
 
-The research question: Which Ndfa ($y_i$) leads to a neutral N balance ($x_i = 0$)?
+The research question: Which Ndfa ($y_i$) leads to a neutral N balance ($x_i = 0$)? Or: At which proportion of N fixation all the nitrogen removed by the grain comes only from the atmosphere?
 
 ```{r, message=FALSE, warning=FALSE}
 # Data preparation
@@ -401,7 +401,7 @@ ggplot() +
 
 **For our example:**
 
-Fit a simple intercept-slope linear model to data using least squares and calculate the value of Ndfa that is needed to achieve a neutral N balance ($\theta$).
+Fit a simple intercept-slope linear model to data using maximum likelihood and calculate the value of Ndfa that is needed to achieve a neutral N balance ($\theta$).
 
 $$ y_i = \beta_0 + \beta_1x_i + \varepsilon_i \\ \varepsilon_i \sim N(0, \sigma^2) $$
 
@@ -528,10 +528,10 @@ model_string <- "model {
     b0 ~ dnorm(0, 1/10^6)
     b1 ~ dnorm(0, 1/10^6)
     sigma ~ dgamma(2.5, 0.05)
+    tau <- 1/(sigma^2)
     
     # Derived quantity
     theta <- -b0/b1
-    tau <- 1/(sigma^2)
 }"
 
 m3 <- jags.model(textConnection(model_string), inits = initials, data = data_line, n.chains = 1)
@@ -601,7 +601,7 @@ knitr::kable(df_table, align = "c") %>%
 
 **Why?**
 
--   Simple model
+-   Similar assumptions across methods
 
 -   Lot's of observations - No deficiency on informational content
 
@@ -631,6 +631,8 @@ thetahat_ml2 <- -b0hat_ml2/b1hat_ml2 # calculate theta
 
 theta_se2 <- deltamethod(~ -x1/x2, mean = coef(m4), cov = vcov(m4))
 theta_ci2 <- c(thetahat_ml2-1.96*theta_se2, thetahat_ml2+1.96*theta_se2)
+
+thetahat_ml2
 
 plot(df_b$Ndfa, df_b$PartNbalance, xlim = c(0, 110), ylim = c(-100, 100), xlab = "Ndfa (%)", ylab = "Partial N Balance (kg/ha)")
 abline(a = 0, b = 0, lwd = 3, col = "gold")
@@ -685,9 +687,8 @@ samples2 <- coda.samples(m5, variable.names = c("b0", "b1", "tau", "theta", "sig
 draws2 <- as.matrix(samples2)
 
 theta_hat2 <- mean(draws2[, "theta"])
-b1_hat2 <- mean(draws2[, "b1"])
 
-pred_mean2 <- b1_hat2* + b1_hat2*x
+theta_hat2
 ```
 
 ```{r, message=FALSE, warning=FALSE}
@@ -703,11 +704,13 @@ abline(v = (theta_CrI2[2])*100, lwd = 1, lty = 2, col = "green")
 
 Why?
 
--   Deficient information about $\theta$ in this dataset.
+-   Deficient information about $\theta$ in the data (the data alone does not have enough information on this parameter).
 
--   Bayesian offers the opportunity to utilize prior information to constraint $\hat{\theta}$.
+-   Bayesian offers the opportunity to utilize prior information to constraint $\hat{\theta}$ (data + prior knowldge).
 
--   We treat $\theta$ as a **random variable.**
+-   We treat $\theta$ as a **random variable** allowing us to choose a prior distribution for it.
+
+<br><br>
 
 ::: important
 **Highlight from Section 2:**
@@ -721,6 +724,8 @@ Estimation can interfere with inference when few observations are available or l
 Loss function approaches do not allow inference. Inference comes with a price, assumptions!
 
 More assumptions, more difficult to work with the model. Choose your battles, it is not always worth to go this route!
+
+The Bayesian approach does not automatically solve modeling problems. It allows us to introduce additional assumptions that, when appropriate, can help address those problems.
 
 </center>
 :::

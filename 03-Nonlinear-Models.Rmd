@@ -16,7 +16,7 @@ Yesterday we:
 
     -   Bayesian approach - Prior knowledge + data = Values the parameter can assume with different probability - Whole distribution (posterior distribution).
 
--   Discussed briefly when they are equal (e.g., independent and individualy distributied normal errors) and when they are not (violate this assumption).
+-   Discussed briefly when they are equal and when they are not (similar assumptions across methods).
 
 ## Nonlinear models
 

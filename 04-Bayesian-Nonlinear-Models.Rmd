@@ -8,7 +8,7 @@ What have we learned so far?
 
     -   Estimation approaches: Loss function; Likelihood-based; Bayesian.
 
-    -   When they are similar (normal errors).
+    -   When they are similar.
 
 -   Day 2
 
