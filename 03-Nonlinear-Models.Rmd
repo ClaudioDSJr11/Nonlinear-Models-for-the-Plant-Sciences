@@ -8,6 +8,14 @@ Yesterday we:
 
     -   We showed that linear models $\neq$ simplicity.
 
+-   Recall how to differentiate linear from nonlinear models:
+
+    -   All unknown parameter only multiplies known quantities
+
+    -   All parameters are added together
+
+    -   All parameters are outside nonlinear functions.
+
 -   Discussed different estimation approaches.
 
     -   Loss function approach - Minimize the residual sum (distance between obs and pred.).
@@ -16,7 +24,17 @@ Yesterday we:
 
     -   Bayesian approach - Prior knowledge + data = Values the parameter can assume with different probability - Whole distribution (posterior distribution).
 
+        -   Two common questions from yesterday:
+
+            -   About $\hat{\theta}$
+
+            -   How to define priors (flax vs informative) - Day 3
+
+-   Recall that complexity increases, especially because we have space for more assumptions. Assumptions help with addressing "problems".
+
 -   Discussed briefly when they are equal and when they are not (similar assumptions across methods).
+
+<br><br>
 
 ## Nonlinear models
 
@@ -89,6 +107,8 @@ par(mfrow = c(1, 1))
     -   a -\> Susceptible
 
     -   b -\> Moderately resistant
+
+<center>For all examples today we will use ML with the assumption: $\varepsilon_i \sim i.i.d. N(0, \sigma^2)$</center>
 
 <br><br>
 
@@ -182,15 +202,19 @@ $$
 
 Pros: Simple to use; require less information from the data collected to fit.
 
-Cons: No inference on important parameters such as $K$ and $y_0$; more complex to make sense of the response variable $logit(severity)$; sensibility to extreme values (close to 0 or 100); $\beta_1$ and $r$ do not have the same meaning ($\beta_1*x_i$ adds, while $r*x_i$ is exponential).
+Cons: No inference on important parameters such as $K$ and $y_0$; more complex to make sense of the response variable $logit(severity)$; sensibility to extreme values (close to 0 or 100); $\beta_1$ and $r$ do not have the same meaning ($\beta_1*x_i$ adds, while $r*x_i$ is exponential); change the error structure (additive to multiplicative).
 
-<center>
+Inverse of the logit transformation:
 
-Also, more assumptions = More bias!
+$$
+\frac{1}{1-e^{-x}}
+$$
 
-To be discussed on day 3!
+Our inverse transformed model looks like this:
 
-</center>
+$$
+y_i^{inv} = \frac{1}{1+(\frac{1-y_0}{y_0})e^{-\beta_1x_i\varepsilon_i}}
+$$
 
 <br><br>
 
@@ -232,11 +256,25 @@ lines(m3_pred$time, m3_pred$pred, lwd = 3, col = "red")
 par(mfrow = c(1, 1))
 ```
 
-What is the difference? Why would we choose one or the other?
+What is the difference? Why would we choose one or the other? What is the disease rate of growth?
 
--   Board
+-   Mechanistic:
 
--   What is the disease rate of growth?
+    -   Represent underlying processes - Parameters
+
+    -   Parameters with biological meaning - Inference
+
+    -   Can be very useful for extrapolation (prediction outside observed region) - Parameter natural biological constrain (not always)
+
+-   Phenomenological:
+
+    -   Represent pattern observed in the data, the phenomena itself
+
+    -   Does not explicitly model underlying processes (we can have an idea - slope)
+
+    -   Pattern exploration
+
+    -   Very good for interpolation (prediction inside observed region), can also be good for extrapolation, but with some considerations (highly adaptable to the observations)
 
 <br><br>
 
@@ -296,6 +334,20 @@ ggplot(table_data, aes(as.factor(year), estimate)) +
 
 -   High uncertainty around parameter estimates! - Classical symptom of weak identifiability
 
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+df <- read.csv("nonlin.csv")
+df$p_sev <- df$severity/100
+df_a <- df[which(df$var == "a"),]
+
+par(mfrow = c(1, 2))
+
+plot(df_a$time[df_a$year == 2023], df_a$p_sev[df_a$year == 2023], main = "2023", xlab = "Days", ylab = "Severity (prop.)", xlim = c(0, 55))
+
+plot(df_a$time[df_a$year == 2024], df_a$p_sev[df_a$year == 2024], main = "2024", xlab = "Days", ylab = "Severity (prop.)", xlim = c(0, 55))
+
+par(mfrow = c(1, 1))
+```
+
 Another classical symptom is correlation between parameters. How does it look like for our models?
 
 -   2023 correlation matrix
@@ -318,9 +370,7 @@ Why it happens?
 
 -   The data inform combinations of parameters instead of individual parameters
 
--   It created dependencies - Dependencies between r and K in this case.
-
--   Recall how our data looks like: [Section 3: Exercises from day 1]
+-   It created dependencies - Dependencies between $r$ and $K$ in 2023 and between $r$ and $y_0$ in 2024.
 
 <br><br>
 
@@ -331,13 +381,13 @@ Why it happens?
 
 Linearization is an option, but it is heavy in underlying assumptions and works on a transformed scale.
 
-Depending on your goal (prediction [phenomenological route] or parameter inference [mechanistic route]), more complex linear models might be enough, and you not necessarily require a nonlinear model.
+Depending on your goal (capture the pattern [phenomenological route] or parameter inference [mechanistic route]), more complex linear models might be enough, and you not necessarily require a nonlinear model.
 
 Weak identifiability, in general terms, happens when your data has low information about an specific parameters.
 
-Weak identifiability is an important and recurrent topic in nonlinear models, and your can remedy (but note "resolve") it with different strategies. These strategies require more assumptions.
+Weak identifiability is an important and recurrent topic in nonlinear models, and you can remedy (but note "resolve") it with different strategies. These strategies require more assumptions.
 
-Assumptions introduce bias, bias reduce variance, this is why assumptions need to be deeply considered, they are should not be lightly taken.
+Assumptions introduce bias, bias reduce variance, this is why assumptions need to be deeply considered, they should not be lightly taken.
 
 </center>
 :::
@@ -372,10 +422,10 @@ plot(df_a$time[df_a$year == 2023], df_a$p_sev[df_a$year == 2023], main = "2023",
 abline(v = max(df_a$time[df_a$year == 2023]) + 1, lwd = 3, col = "gold")
 ```
 
-If we are very interested in $r$, so we can understand how fast is growth, we can fixate other parameters. Let's assume $K = 1$:
+If we are very interested only on how fast the disease is growing over time ($r$), we can fixate other parameters, to try to reduce uncertainty on it. Let's assume $K = 1$:
 
 $$
-y_i = \frac{1}{1+(\frac{1 - y_0}{y_0})*e^{-rx_i + \varepsilon_i}}
+y_i = \frac{1}{1+(\frac{1 - y_0}{y_0})*e^{-rx_i}} + \varepsilon_i
 $$
 
 ```{r, message=FALSE, warning=FALSE}
@@ -448,6 +498,48 @@ ggplot(table_data, aes(as.factor(models), estimate)) +
 
 <br><br>
 
+Let's look at the estimated parameter values and correlation matrix
+
+For $K = 1$
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+round(coef(m4), 4)
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+vcov_m4 <- vcov(m4) 
+cor_m4 <- cov2cor(vcov_m4) 
+cor_m4
+```
+
+<br><br>
+
+For $K$ estimated
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+round(coef(m5), 4)
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+vcov_m5 <- vcov(m5) 
+cor_m5 <- cov2cor(vcov_m5) 
+cor_m5
+```
+
+<br><br>
+
+Consider that:
+
+-   We lose any inference on $K$
+
+-   We cannot predict how uncertainty will be spread around other parameters
+
+-   We are saying $K$ is 100% when it actually might not be!
+
+-   We underestimate $r$ (why?)
+
+<br><br>
+
 ::: important
 **Highlight from Section 4:**
 
@@ -455,7 +547,7 @@ ggplot(table_data, aes(as.factor(models), estimate)) +
 
 Some assumptions are very strong, such as $K = 1$, but depending on your research question, they might make sense.
 
-All assumptions have a cost, being worth this cost depends on your objectives with the analysis.
+All assumptions have a cost. If the cost is worth it, it depends on your objectives with the analysis.
 
 </center>
 :::
@@ -481,7 +573,7 @@ All assumptions have a cost, being worth this cost depends on your objectives wi
     -   Logistic Disease Progress Curve (nonlinear, mechanistic):
 
     $$
-    y_i = \frac{K}{1 + (\frac{K - y_0}{y_0})e^{-r*x_i + \varepsilon_i}}
+    y_i = \frac{K}{1 + (\frac{K - y_0}{y_0})e^{-r*x_i}}+ \varepsilon_i
     $$
 
     -   Logit-transformed linear model (linear, phenomenological):

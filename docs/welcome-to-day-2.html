@@ -26,7 +26,7 @@ emphasis on interpretation, uncertainty, and conscient implementation in R.</p>"
 <meta name="author" content="Claudio Dias da Silva Jr &amp; Trevor Hefley" />
 
 
-<meta name="date" content="2026-02-08" />
+<meta name="date" content="2026-02-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -215,14 +215,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>We showed that linear models <span class="math inline">\(\neq\)</span> lines.</p></li>
 <li><p>We showed that linear models <span class="math inline">\(\neq\)</span> simplicity.</p></li>
 </ul></li>
+<li><p>Recall how to differentiate linear from nonlinear models:</p>
+<ul>
+<li><p>All unknown parameter only multiplies known quantities</p></li>
+<li><p>All parameters are added together</p></li>
+<li><p>All parameters are outside nonlinear functions.</p></li>
+</ul></li>
 <li><p>Discussed different estimation approaches.</p>
 <ul>
 <li><p>Loss function approach - Minimize the residual sum (distance between obs and pred.).</p></li>
 <li><p>Likelihood-based approach - Maximize likelihood = Values of parameters that maximize the probability of the observed data under the model we assumed.</p></li>
-<li><p>Bayesian approach - Prior knowledge + data = Values the parameter can assume with different probability - Whole distribution (posterior distribution).</p></li>
+<li><p>Bayesian approach - Prior knowledge + data = Values the parameter can assume with different probability - Whole distribution (posterior distribution).</p>
+<ul>
+<li><p>Two common questions from yesterday:</p>
+<ul>
+<li><p>About <span class="math inline">\(\hat{\theta}\)</span></p></li>
+<li><p>How to define priors (flax vs informative) - Day 3</p></li>
 </ul></li>
+</ul></li>
+</ul></li>
+<li><p>Recall that complexity increases, especially because we have space for more assumptions. Assumptions help with addressing “problems”.</p></li>
 <li><p>Discussed briefly when they are equal and when they are not (similar assumptions across methods).</p></li>
 </ul>
+<p><br><br></p>
 <div id="nonlinear-models" class="section level2 hasAnchor">
 <h2>Nonlinear models<a href="welcome-to-day-2.html#nonlinear-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div>
@@ -256,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="section-3-exercises-from-day-1" class="section level3 hasAnchor">
 <h3>Section 3: Exercises from day 1<a href="welcome-to-day-2.html#section-3-exercises-from-day-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You were asked to work with this data:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" /></p>
 <p><strong>What is it really about?</strong></p>
 <center>
 <img src="Rust.jpg" width="397" />
@@ -269,6 +284,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>b -&gt; Moderately resistant</p></li>
 </ul></li>
 </ul>
+<center>
+For all examples today we will use ML with the assumption: <span class="math inline">\(\varepsilon_i \sim i.i.d. N(0, \sigma^2)\)</span>
+</center>
 <p><br><br></p>
 <div id="linearized-logistic-model-for-2024-variety-a" class="section level4 hasAnchor">
 <h4>Linearized logistic model for 2024, variety a<a href="welcome-to-day-2.html#linearized-logistic-model-for-2024-variety-a" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -294,12 +312,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb27-19"><a href="welcome-to-day-2.html#cb27-19" tabindex="-1"></a><span class="fu">plot</span>(a_24<span class="sc">$</span>time, a_24<span class="sc">$</span>l_sev, <span class="at">ylab =</span> <span class="st">&quot;Logit(y)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="dv">5</span>))</span>
 <span id="cb27-20"><a href="welcome-to-day-2.html#cb27-20" tabindex="-1"></a><span class="fu">lines</span>(m1_pred<span class="sc">$</span>time, m1_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" alt="" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="welcome-to-day-2.html#cb28-1" tabindex="-1"></a><span class="fu">plot</span>(a_24<span class="sc">$</span>time, a_24<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;y_prop.&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="fl">1.1</span>))</span>
 <span id="cb28-2"><a href="welcome-to-day-2.html#cb28-2" tabindex="-1"></a><span class="fu">lines</span>(m1_pred<span class="sc">$</span>time, m1_pred<span class="sc">$</span>inv_logit, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;gold&quot;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-46-2.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-2.png" alt="" width="672" /></p>
 <p>What is actually going on here?</p>
 <p>Logit:</p>
 <p><span class="math display">\[
@@ -345,11 +363,15 @@ logit(y) = log(\frac{y}{K-y})
 log(\frac{y_i}{1 - y_i}) = log(\frac{y_0}{1 - y_0}) + \beta_1*x_i + \varepsilon_i
 \]</span></p>
 <p>Pros: Simple to use; require less information from the data collected to fit.</p>
-<p>Cons: No inference on important parameters such as <span class="math inline">\(K\)</span> and <span class="math inline">\(y_0\)</span>; more complex to make sense of the response variable <span class="math inline">\(logit(severity)\)</span>; sensibility to extreme values (close to 0 or 100); <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(r\)</span> do not have the same meaning (<span class="math inline">\(\beta_1*x_i\)</span> adds, while <span class="math inline">\(r*x_i\)</span> is exponential).</p>
-<center>
-<p>Also, more assumptions = More bias!</p>
-<p>To be discussed on day 3!</p>
-</center>
+<p>Cons: No inference on important parameters such as <span class="math inline">\(K\)</span> and <span class="math inline">\(y_0\)</span>; more complex to make sense of the response variable <span class="math inline">\(logit(severity)\)</span>; sensibility to extreme values (close to 0 or 100); <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(r\)</span> do not have the same meaning (<span class="math inline">\(\beta_1*x_i\)</span> adds, while <span class="math inline">\(r*x_i\)</span> is exponential); change the error structure (additive to multiplicative).</p>
+<p>Inverse of the logit transformation:</p>
+<p><span class="math display">\[
+\frac{1}{1-e^{-x}}
+\]</span></p>
+<p>Our inverse transformed model looks like this:</p>
+<p><span class="math display">\[
+y_i^{inv} = \frac{1}{1+(\frac{1-y_0}{y_0})e^{-\beta_1x_i\varepsilon_i}}
+\]</span></p>
 <p><br><br></p>
 </div>
 <div id="mechanistic-vs-phenomenological-models---logistic-and-polynomial-models-for-2024-variety-a" class="section level4 hasAnchor">
@@ -385,14 +407,25 @@ log(\frac{y_i}{1 - y_i}) = log(\frac{y_0}{1 - y_0}) + \beta_1*x_i + \varepsilon_
 <span id="cb31-8"><a href="welcome-to-day-2.html#cb31-8" tabindex="-1"></a><span class="fu">plot</span>(a_24<span class="sc">$</span>time, a_24<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>), <span class="at">main =</span> <span class="st">&quot;Polynomial&quot;</span>)</span>
 <span id="cb31-9"><a href="welcome-to-day-2.html#cb31-9" tabindex="-1"></a><span class="fu">lines</span>(m3_pred<span class="sc">$</span>time, m3_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" alt="" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="welcome-to-day-2.html#cb32-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 </details>
-<p>What is the difference? Why would we choose one or the other?</p>
+<p>What is the difference? Why would we choose one or the other? What is the disease rate of growth?</p>
 <ul>
-<li><p>Board</p></li>
-<li><p>What is the disease rate of growth?</p></li>
+<li><p>Mechanistic:</p>
+<ul>
+<li><p>Represent underlying processes - Parameters</p></li>
+<li><p>Parameters with biological meaning - Inference</p></li>
+<li><p>Can be very useful for extrapolation (prediction outside observed region) - Parameter natural biological constrain (not always)</p></li>
+</ul></li>
+<li><p>Phenomenological:</p>
+<ul>
+<li><p>Represent pattern observed in the data, the phenomena itself</p></li>
+<li><p>Does not explicitly model underlying processes (we can have an idea - slope)</p></li>
+<li><p>Pattern exploration</p></li>
+<li><p>Very good for interpolation (prediction inside observed region), can also be good for extrapolation, but with some considerations (highly adaptable to the observations)</p></li>
+</ul></li>
 </ul>
 <p><br><br></p>
 </div>
@@ -413,10 +446,11 @@ log(\frac{y_i}{1 - y_i}) = log(\frac{y_0}{1 - y_0}) + \beta_1*x_i + \varepsilon_
 </ul></li>
 </ul>
 <p>To understand what is causes, look at the parameters of our model for both years with Wald confidence intervals<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672" /></p>
 <ul>
 <li>High uncertainty around parameter estimates! - Classical symptom of weak identifiability</li>
 </ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" alt="" width="672" /></p>
 <p>Another classical symptom is correlation between parameters. How does it look like for our models?</p>
 <ul>
 <li>2023 correlation matrix</li>
@@ -435,18 +469,17 @@ log(\frac{y_i}{1 - y_i}) = log(\frac{y_0}{1 - y_0}) + \beta_1*x_i + \varepsilon_
 <p>Why it happens?</p>
 <ul>
 <li><p>The data inform combinations of parameters instead of individual parameters</p></li>
-<li><p>It created dependencies - Dependencies between r and K in this case.</p></li>
-<li><p>Recall how our data looks like: <a href="welcome-to-day-2.html#section-3-exercises-from-day-1">Section 3: Exercises from day 1</a></p></li>
+<li><p>It created dependencies - Dependencies between <span class="math inline">\(r\)</span> and <span class="math inline">\(K\)</span> in 2023 and between <span class="math inline">\(r\)</span> and <span class="math inline">\(y_0\)</span> in 2024.</p></li>
 </ul>
 <p><br><br></p>
 <div class="important">
 <p><strong>Highlight from Section 3:</strong></p>
 <center>
 <p>Linearization is an option, but it is heavy in underlying assumptions and works on a transformed scale.</p>
-<p>Depending on your goal (prediction [phenomenological route] or parameter inference [mechanistic route]), more complex linear models might be enough, and you not necessarily require a nonlinear model.</p>
+<p>Depending on your goal (capture the pattern [phenomenological route] or parameter inference [mechanistic route]), more complex linear models might be enough, and you not necessarily require a nonlinear model.</p>
 <p>Weak identifiability, in general terms, happens when your data has low information about an specific parameters.</p>
-<p>Weak identifiability is an important and recurrent topic in nonlinear models, and your can remedy (but note “resolve”) it with different strategies. These strategies require more assumptions.</p>
-<p>Assumptions introduce bias, bias reduce variance, this is why assumptions need to be deeply considered, they are should not be lightly taken.</p>
+<p>Weak identifiability is an important and recurrent topic in nonlinear models, and you can remedy (but note “resolve”) it with different strategies. These strategies require more assumptions.</p>
+<p>Assumptions introduce bias, bias reduce variance, this is why assumptions need to be deeply considered, they should not be lightly taken.</p>
 </center>
 </div>
 <p><br><br></p>
@@ -470,10 +503,10 @@ log(\frac{y_i}{1 - y_i}) = log(\frac{y_0}{1 - y_0}) + \beta_1*x_i + \varepsilon_
 <div id="fixing-weakly-identifiable-parameters---variety-a-in-2023" class="section level4 hasAnchor">
 <h4>Fixing weakly identifiable parameters - Variety a in 2023<a href="welcome-to-day-2.html#fixing-weakly-identifiable-parameters---variety-a-in-2023" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Recall 2023 disease data for progress in time:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" alt="" width="672" /></p>
-<p>If we are very interested in <span class="math inline">\(r\)</span>, so we can understand how fast is growth, we can fixate other parameters. Let’s assume <span class="math inline">\(K = 1\)</span>:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" alt="" width="672" /></p>
+<p>If we are very interested only on how fast the disease is growing over time (<span class="math inline">\(r\)</span>), we can fixate other parameters, to try to reduce uncertainty on it. Let’s assume <span class="math inline">\(K = 1\)</span>:</p>
 <p><span class="math display">\[
-y_i = \frac{1}{1+(\frac{1 - y_0}{y_0})*e^{-rx_i + \varepsilon_i}}
+y_i = \frac{1}{1+(\frac{1 - y_0}{y_0})*e^{-rx_i}} + \varepsilon_i
 \]</span></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="welcome-to-day-2.html#cb35-1" tabindex="-1"></a><span class="co"># Data variety a, 2023</span></span>
@@ -493,20 +526,44 @@ y_i = \frac{1}{1+(\frac{1 - y_0}{y_0})*e^{-rx_i + \varepsilon_i}}
 <span id="cb35-15"><a href="welcome-to-day-2.html#cb35-15" tabindex="-1"></a><span class="fu">plot</span>(a_23<span class="sc">$</span>time, a_23<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.1</span>, <span class="dv">1</span>))</span>
 <span id="cb35-16"><a href="welcome-to-day-2.html#cb35-16" tabindex="-1"></a><span class="fu">lines</span>(m4_pred<span class="sc">$</span>time, m4_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" alt="" width="672" /></p>
 <p>How it compares to estimating <span class="math inline">\(K\)</span>?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" alt="" width="672" /></p>
 <p>How about the parameters?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" alt="" width="672" /></p>
 <center>
 <strong>The data does not inform</strong> <span class="math inline">\(K\)</span> <strong>when we fix it, we inform it!</strong>
 </center>
+<p><br><br></p>
+<p>Let’s look at the estimated parameter values and correlation matrix</p>
+<p>For <span class="math inline">\(K = 1\)</span></p>
+<pre><code>##     y0      r 
+## 0.0015 0.1145</code></pre>
+<pre><code>##            y0          r
+## y0  1.0000000 -0.9979509
+## r  -0.9979509  1.0000000</code></pre>
+<p><br><br></p>
+<p>For <span class="math inline">\(K\)</span> estimated</p>
+<pre><code>##      K     y0      r 
+## 0.6684 0.0000 0.3361</code></pre>
+<pre><code>##             K         y0          r
+## K   1.0000000  0.9761482 -0.9771736
+## y0  0.9761482  1.0000000 -0.9999097
+## r  -0.9771736 -0.9999097  1.0000000</code></pre>
+<p><br><br></p>
+<p>Consider that:</p>
+<ul>
+<li><p>We lose any inference on <span class="math inline">\(K\)</span></p></li>
+<li><p>We cannot predict how uncertainty will be spread around other parameters</p></li>
+<li><p>We are saying <span class="math inline">\(K\)</span> is 100% when it actually might not be!</p></li>
+<li><p>We underestimate <span class="math inline">\(r\)</span> (why?)</p></li>
+</ul>
 <p><br><br></p>
 <div class="important">
 <p><strong>Highlight from Section 4:</strong></p>
 <center>
 <p>Some assumptions are very strong, such as <span class="math inline">\(K = 1\)</span>, but depending on your research question, they might make sense.</p>
-<p>All assumptions have a cost, being worth this cost depends on your objectives with the analysis.</p>
+<p>All assumptions have a cost. If the cost is worth it, it depends on your objectives with the analysis.</p>
 </center>
 </div>
 <p><br><br></p>
@@ -530,7 +587,7 @@ y_i = \frac{1}{1+(\frac{1 - y_0}{y_0})*e^{-rx_i + \varepsilon_i}}
 <li>Logistic Disease Progress Curve (nonlinear, mechanistic):</li>
 </ul>
 <p><span class="math display">\[
-y_i = \frac{K}{1 + (\frac{K - y_0}{y_0})e^{-r*x_i + \varepsilon_i}}
+y_i = \frac{K}{1 + (\frac{K - y_0}{y_0})e^{-r*x_i}}+ \varepsilon_i
 \]</span></p>
 <ul>
 <li>Logit-transformed linear model (linear, phenomenological):</li>
@@ -566,50 +623,50 @@ K = 1
 <li>Sample code is provided for some questions. Code used on the class examples can also be used to work on this practice.</li>
 </ul>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="welcome-to-day-2.html#cb36-1" tabindex="-1"></a><span class="co"># Data</span></span>
-<span id="cb36-2"><a href="welcome-to-day-2.html#cb36-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;nonlin.csv&quot;</span>)</span>
-<span id="cb36-3"><a href="welcome-to-day-2.html#cb36-3" tabindex="-1"></a>df<span class="sc">$</span>p_sev <span class="ot">&lt;-</span> df<span class="sc">$</span>severity<span class="sc">/</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="welcome-to-day-2.html#cb40-1" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb40-2"><a href="welcome-to-day-2.html#cb40-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;nonlin.csv&quot;</span>)</span>
+<span id="cb40-3"><a href="welcome-to-day-2.html#cb40-3" tabindex="-1"></a>df<span class="sc">$</span>p_sev <span class="ot">&lt;-</span> df<span class="sc">$</span>severity<span class="sc">/</span><span class="dv">100</span></span></code></pre></div>
 </details>
 <div id="recommended---base-for-day-3" class="section level4 hasAnchor">
 <h4>Recommended - Base for day 3<a href="welcome-to-day-2.html#recommended---base-for-day-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>For 2023, fit the nonlinear logistic model to variety a and b. Extract <span class="math inline">\(K\)</span> and <span class="math inline">\(r\)</span> and check how genetic resistance affect these parameters.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="welcome-to-day-2.html#cb37-1" tabindex="-1"></a><span class="co"># Let&#39;s fit the model for each variety individually</span></span>
-<span id="cb37-2"><a href="welcome-to-day-2.html#cb37-2" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="welcome-to-day-2.html#cb37-3" tabindex="-1"></a><span class="co"># Data</span></span>
-<span id="cb37-4"><a href="welcome-to-day-2.html#cb37-4" tabindex="-1"></a>a_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]</span>
-<span id="cb37-5"><a href="welcome-to-day-2.html#cb37-5" tabindex="-1"></a>b_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),]</span>
-<span id="cb37-6"><a href="welcome-to-day-2.html#cb37-6" tabindex="-1"></a></span>
-<span id="cb37-7"><a href="welcome-to-day-2.html#cb37-7" tabindex="-1"></a><span class="co"># Fit the models</span></span>
-<span id="cb37-8"><a href="welcome-to-day-2.html#cb37-8" tabindex="-1"></a>ma <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> K<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((K<span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">data =</span> a_23, <span class="at">start =</span> <span class="fu">c</span>(<span class="at">K =</span> <span class="fl">0.7</span>, <span class="at">y0 =</span> <span class="fl">0.0001</span>, <span class="at">r =</span> <span class="fl">0.2</span>))</span>
-<span id="cb37-9"><a href="welcome-to-day-2.html#cb37-9" tabindex="-1"></a>mb <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> K<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((K<span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">data =</span> b_23, <span class="at">start =</span> <span class="fu">c</span>(<span class="at">K =</span> <span class="fl">0.7</span>, <span class="at">y0 =</span> <span class="fl">0.0001</span>, <span class="at">r =</span> <span class="fl">0.2</span>))</span>
-<span id="cb37-10"><a href="welcome-to-day-2.html#cb37-10" tabindex="-1"></a></span>
-<span id="cb37-11"><a href="welcome-to-day-2.html#cb37-11" tabindex="-1"></a><span class="co"># Make predictions</span></span>
-<span id="cb37-12"><a href="welcome-to-day-2.html#cb37-12" tabindex="-1"></a>pred_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb37-13"><a href="welcome-to-day-2.html#cb37-13" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">min</span>(a_23<span class="sc">$</span>time), <span class="fu">max</span>(a_23<span class="sc">$</span>time))</span>
-<span id="cb37-14"><a href="welcome-to-day-2.html#cb37-14" tabindex="-1"></a>)</span>
-<span id="cb37-15"><a href="welcome-to-day-2.html#cb37-15" tabindex="-1"></a></span>
-<span id="cb37-16"><a href="welcome-to-day-2.html#cb37-16" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_a <span class="ot">&lt;-</span> <span class="fu">predict</span>(ma, <span class="at">newdata =</span> pred_df)</span>
-<span id="cb37-17"><a href="welcome-to-day-2.html#cb37-17" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_b <span class="ot">&lt;-</span> <span class="fu">predict</span>(mb, <span class="at">newdata =</span> pred_df)</span>
-<span id="cb37-18"><a href="welcome-to-day-2.html#cb37-18" tabindex="-1"></a></span>
-<span id="cb37-19"><a href="welcome-to-day-2.html#cb37-19" tabindex="-1"></a><span class="co"># Plot predictions</span></span>
-<span id="cb37-20"><a href="welcome-to-day-2.html#cb37-20" tabindex="-1"></a><span class="fu">plot</span>(a_23<span class="sc">$</span>time, a_23<span class="sc">$</span>p_sev, <span class="at">type =</span> <span class="st">&quot;p&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>)</span>
-<span id="cb37-21"><a href="welcome-to-day-2.html#cb37-21" tabindex="-1"></a><span class="fu">points</span>(b_23<span class="sc">$</span>time, b_23<span class="sc">$</span>p_sev, <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb37-22"><a href="welcome-to-day-2.html#cb37-22" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_a, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb37-23"><a href="welcome-to-day-2.html#cb37-23" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_b, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;gold&#39;</span>)</span>
-<span id="cb37-24"><a href="welcome-to-day-2.html#cb37-24" tabindex="-1"></a></span>
-<span id="cb37-25"><a href="welcome-to-day-2.html#cb37-25" tabindex="-1"></a><span class="co"># Extract parameters</span></span>
-<span id="cb37-26"><a href="welcome-to-day-2.html#cb37-26" tabindex="-1"></a><span class="do">## K</span></span>
-<span id="cb37-27"><a href="welcome-to-day-2.html#cb37-27" tabindex="-1"></a>K_a <span class="ot">&lt;-</span> <span class="fu">coef</span>(ma)[<span class="dv">1</span>]</span>
-<span id="cb37-28"><a href="welcome-to-day-2.html#cb37-28" tabindex="-1"></a>K_a</span>
-<span id="cb37-29"><a href="welcome-to-day-2.html#cb37-29" tabindex="-1"></a>K_b <span class="ot">&lt;-</span> <span class="fu">coef</span>(mb)[<span class="dv">1</span>]</span>
-<span id="cb37-30"><a href="welcome-to-day-2.html#cb37-30" tabindex="-1"></a>K_b</span>
-<span id="cb37-31"><a href="welcome-to-day-2.html#cb37-31" tabindex="-1"></a></span>
-<span id="cb37-32"><a href="welcome-to-day-2.html#cb37-32" tabindex="-1"></a><span class="do">## r</span></span>
-<span id="cb37-33"><a href="welcome-to-day-2.html#cb37-33" tabindex="-1"></a>r_a <span class="ot">&lt;-</span> <span class="fu">coef</span>(ma)[<span class="dv">3</span>]</span>
-<span id="cb37-34"><a href="welcome-to-day-2.html#cb37-34" tabindex="-1"></a>r_a</span>
-<span id="cb37-35"><a href="welcome-to-day-2.html#cb37-35" tabindex="-1"></a>r_b <span class="ot">&lt;-</span> <span class="fu">coef</span>(mb)[<span class="dv">3</span>]</span>
-<span id="cb37-36"><a href="welcome-to-day-2.html#cb37-36" tabindex="-1"></a>r_b</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="welcome-to-day-2.html#cb41-1" tabindex="-1"></a><span class="co"># Let&#39;s fit the model for each variety individually</span></span>
+<span id="cb41-2"><a href="welcome-to-day-2.html#cb41-2" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="welcome-to-day-2.html#cb41-3" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb41-4"><a href="welcome-to-day-2.html#cb41-4" tabindex="-1"></a>a_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]</span>
+<span id="cb41-5"><a href="welcome-to-day-2.html#cb41-5" tabindex="-1"></a>b_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),]</span>
+<span id="cb41-6"><a href="welcome-to-day-2.html#cb41-6" tabindex="-1"></a></span>
+<span id="cb41-7"><a href="welcome-to-day-2.html#cb41-7" tabindex="-1"></a><span class="co"># Fit the models</span></span>
+<span id="cb41-8"><a href="welcome-to-day-2.html#cb41-8" tabindex="-1"></a>ma <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> K<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((K<span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">data =</span> a_23, <span class="at">start =</span> <span class="fu">c</span>(<span class="at">K =</span> <span class="fl">0.7</span>, <span class="at">y0 =</span> <span class="fl">0.0001</span>, <span class="at">r =</span> <span class="fl">0.2</span>))</span>
+<span id="cb41-9"><a href="welcome-to-day-2.html#cb41-9" tabindex="-1"></a>mb <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> K<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((K<span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">data =</span> b_23, <span class="at">start =</span> <span class="fu">c</span>(<span class="at">K =</span> <span class="fl">0.7</span>, <span class="at">y0 =</span> <span class="fl">0.0001</span>, <span class="at">r =</span> <span class="fl">0.2</span>))</span>
+<span id="cb41-10"><a href="welcome-to-day-2.html#cb41-10" tabindex="-1"></a></span>
+<span id="cb41-11"><a href="welcome-to-day-2.html#cb41-11" tabindex="-1"></a><span class="co"># Make predictions</span></span>
+<span id="cb41-12"><a href="welcome-to-day-2.html#cb41-12" tabindex="-1"></a>pred_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb41-13"><a href="welcome-to-day-2.html#cb41-13" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">min</span>(a_23<span class="sc">$</span>time), <span class="fu">max</span>(a_23<span class="sc">$</span>time))</span>
+<span id="cb41-14"><a href="welcome-to-day-2.html#cb41-14" tabindex="-1"></a>)</span>
+<span id="cb41-15"><a href="welcome-to-day-2.html#cb41-15" tabindex="-1"></a></span>
+<span id="cb41-16"><a href="welcome-to-day-2.html#cb41-16" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_a <span class="ot">&lt;-</span> <span class="fu">predict</span>(ma, <span class="at">newdata =</span> pred_df)</span>
+<span id="cb41-17"><a href="welcome-to-day-2.html#cb41-17" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_b <span class="ot">&lt;-</span> <span class="fu">predict</span>(mb, <span class="at">newdata =</span> pred_df)</span>
+<span id="cb41-18"><a href="welcome-to-day-2.html#cb41-18" tabindex="-1"></a></span>
+<span id="cb41-19"><a href="welcome-to-day-2.html#cb41-19" tabindex="-1"></a><span class="co"># Plot predictions</span></span>
+<span id="cb41-20"><a href="welcome-to-day-2.html#cb41-20" tabindex="-1"></a><span class="fu">plot</span>(a_23<span class="sc">$</span>time, a_23<span class="sc">$</span>p_sev, <span class="at">type =</span> <span class="st">&quot;p&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>)</span>
+<span id="cb41-21"><a href="welcome-to-day-2.html#cb41-21" tabindex="-1"></a><span class="fu">points</span>(b_23<span class="sc">$</span>time, b_23<span class="sc">$</span>p_sev, <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb41-22"><a href="welcome-to-day-2.html#cb41-22" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_a, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb41-23"><a href="welcome-to-day-2.html#cb41-23" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_b, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;gold&#39;</span>)</span>
+<span id="cb41-24"><a href="welcome-to-day-2.html#cb41-24" tabindex="-1"></a></span>
+<span id="cb41-25"><a href="welcome-to-day-2.html#cb41-25" tabindex="-1"></a><span class="co"># Extract parameters</span></span>
+<span id="cb41-26"><a href="welcome-to-day-2.html#cb41-26" tabindex="-1"></a><span class="do">## K</span></span>
+<span id="cb41-27"><a href="welcome-to-day-2.html#cb41-27" tabindex="-1"></a>K_a <span class="ot">&lt;-</span> <span class="fu">coef</span>(ma)[<span class="dv">1</span>]</span>
+<span id="cb41-28"><a href="welcome-to-day-2.html#cb41-28" tabindex="-1"></a>K_a</span>
+<span id="cb41-29"><a href="welcome-to-day-2.html#cb41-29" tabindex="-1"></a>K_b <span class="ot">&lt;-</span> <span class="fu">coef</span>(mb)[<span class="dv">1</span>]</span>
+<span id="cb41-30"><a href="welcome-to-day-2.html#cb41-30" tabindex="-1"></a>K_b</span>
+<span id="cb41-31"><a href="welcome-to-day-2.html#cb41-31" tabindex="-1"></a></span>
+<span id="cb41-32"><a href="welcome-to-day-2.html#cb41-32" tabindex="-1"></a><span class="do">## r</span></span>
+<span id="cb41-33"><a href="welcome-to-day-2.html#cb41-33" tabindex="-1"></a>r_a <span class="ot">&lt;-</span> <span class="fu">coef</span>(ma)[<span class="dv">3</span>]</span>
+<span id="cb41-34"><a href="welcome-to-day-2.html#cb41-34" tabindex="-1"></a>r_a</span>
+<span id="cb41-35"><a href="welcome-to-day-2.html#cb41-35" tabindex="-1"></a>r_b <span class="ot">&lt;-</span> <span class="fu">coef</span>(mb)[<span class="dv">3</span>]</span>
+<span id="cb41-36"><a href="welcome-to-day-2.html#cb41-36" tabindex="-1"></a>r_b</span></code></pre></div>
 </details>
 <p>Repeat the previous question, but now, for 2024.</p>
 <p><br><br></p>
@@ -619,72 +676,72 @@ K = 1
 <p>Write down the model you are using on the first question and which assumption you are making.</p>
 <p>Repeat what you did in the first question, but assume <span class="math inline">\(K = 1\)</span>. Can you see differences?</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="welcome-to-day-2.html#cb38-1" tabindex="-1"></a><span class="co"># Let&#39;s fit the model for each variety individually</span></span>
-<span id="cb38-2"><a href="welcome-to-day-2.html#cb38-2" tabindex="-1"></a></span>
-<span id="cb38-3"><a href="welcome-to-day-2.html#cb38-3" tabindex="-1"></a><span class="co"># Data</span></span>
-<span id="cb38-4"><a href="welcome-to-day-2.html#cb38-4" tabindex="-1"></a>a_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]</span>
-<span id="cb38-5"><a href="welcome-to-day-2.html#cb38-5" tabindex="-1"></a>b_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),]</span>
-<span id="cb38-6"><a href="welcome-to-day-2.html#cb38-6" tabindex="-1"></a></span>
-<span id="cb38-7"><a href="welcome-to-day-2.html#cb38-7" tabindex="-1"></a><span class="co"># Fit the models</span></span>
-<span id="cb38-8"><a href="welcome-to-day-2.html#cb38-8" tabindex="-1"></a>ma <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((<span class="dv">1</span><span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">data =</span> a_23, <span class="at">start =</span> <span class="fu">c</span>(<span class="at">y0 =</span> <span class="fl">0.0001</span>, <span class="at">r =</span> <span class="fl">0.2</span>))</span>
-<span id="cb38-9"><a href="welcome-to-day-2.html#cb38-9" tabindex="-1"></a>mb <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((<span class="dv">1</span><span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">data =</span> b_23, <span class="at">start =</span> <span class="fu">c</span>(<span class="at">y0 =</span> <span class="fl">0.0001</span>, <span class="at">r =</span> <span class="fl">0.2</span>))</span>
-<span id="cb38-10"><a href="welcome-to-day-2.html#cb38-10" tabindex="-1"></a></span>
-<span id="cb38-11"><a href="welcome-to-day-2.html#cb38-11" tabindex="-1"></a><span class="co"># Make predictions</span></span>
-<span id="cb38-12"><a href="welcome-to-day-2.html#cb38-12" tabindex="-1"></a>pred_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb38-13"><a href="welcome-to-day-2.html#cb38-13" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">min</span>(a_23<span class="sc">$</span>time), <span class="fu">max</span>(a_23<span class="sc">$</span>time))</span>
-<span id="cb38-14"><a href="welcome-to-day-2.html#cb38-14" tabindex="-1"></a>)</span>
-<span id="cb38-15"><a href="welcome-to-day-2.html#cb38-15" tabindex="-1"></a></span>
-<span id="cb38-16"><a href="welcome-to-day-2.html#cb38-16" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_a <span class="ot">&lt;-</span> <span class="fu">predict</span>(ma, <span class="at">newdata =</span> pred_df)</span>
-<span id="cb38-17"><a href="welcome-to-day-2.html#cb38-17" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_b <span class="ot">&lt;-</span> <span class="fu">predict</span>(mb, <span class="at">newdata =</span> pred_df)</span>
-<span id="cb38-18"><a href="welcome-to-day-2.html#cb38-18" tabindex="-1"></a></span>
-<span id="cb38-19"><a href="welcome-to-day-2.html#cb38-19" tabindex="-1"></a><span class="co"># Plot predictions</span></span>
-<span id="cb38-20"><a href="welcome-to-day-2.html#cb38-20" tabindex="-1"></a><span class="fu">plot</span>(a_23<span class="sc">$</span>time, a_23<span class="sc">$</span>p_sev, <span class="at">type =</span> <span class="st">&quot;p&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>)</span>
-<span id="cb38-21"><a href="welcome-to-day-2.html#cb38-21" tabindex="-1"></a><span class="fu">points</span>(b_23<span class="sc">$</span>time, b_23<span class="sc">$</span>p_sev, <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb38-22"><a href="welcome-to-day-2.html#cb38-22" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_a, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb38-23"><a href="welcome-to-day-2.html#cb38-23" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_b, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;gold&#39;</span>)</span>
-<span id="cb38-24"><a href="welcome-to-day-2.html#cb38-24" tabindex="-1"></a></span>
-<span id="cb38-25"><a href="welcome-to-day-2.html#cb38-25" tabindex="-1"></a><span class="co"># Extract parameters</span></span>
-<span id="cb38-26"><a href="welcome-to-day-2.html#cb38-26" tabindex="-1"></a><span class="do">## r</span></span>
-<span id="cb38-27"><a href="welcome-to-day-2.html#cb38-27" tabindex="-1"></a>r_a <span class="ot">&lt;-</span> <span class="fu">coef</span>(ma)[<span class="dv">2</span>]</span>
-<span id="cb38-28"><a href="welcome-to-day-2.html#cb38-28" tabindex="-1"></a>r_a</span>
-<span id="cb38-29"><a href="welcome-to-day-2.html#cb38-29" tabindex="-1"></a>r_b <span class="ot">&lt;-</span> <span class="fu">coef</span>(mb)[<span class="dv">2</span>]</span>
-<span id="cb38-30"><a href="welcome-to-day-2.html#cb38-30" tabindex="-1"></a>r_b</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="welcome-to-day-2.html#cb42-1" tabindex="-1"></a><span class="co"># Let&#39;s fit the model for each variety individually</span></span>
+<span id="cb42-2"><a href="welcome-to-day-2.html#cb42-2" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="welcome-to-day-2.html#cb42-3" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb42-4"><a href="welcome-to-day-2.html#cb42-4" tabindex="-1"></a>a_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]</span>
+<span id="cb42-5"><a href="welcome-to-day-2.html#cb42-5" tabindex="-1"></a>b_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),]</span>
+<span id="cb42-6"><a href="welcome-to-day-2.html#cb42-6" tabindex="-1"></a></span>
+<span id="cb42-7"><a href="welcome-to-day-2.html#cb42-7" tabindex="-1"></a><span class="co"># Fit the models</span></span>
+<span id="cb42-8"><a href="welcome-to-day-2.html#cb42-8" tabindex="-1"></a>ma <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((<span class="dv">1</span><span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">data =</span> a_23, <span class="at">start =</span> <span class="fu">c</span>(<span class="at">y0 =</span> <span class="fl">0.0001</span>, <span class="at">r =</span> <span class="fl">0.2</span>))</span>
+<span id="cb42-9"><a href="welcome-to-day-2.html#cb42-9" tabindex="-1"></a>mb <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((<span class="dv">1</span><span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">data =</span> b_23, <span class="at">start =</span> <span class="fu">c</span>(<span class="at">y0 =</span> <span class="fl">0.0001</span>, <span class="at">r =</span> <span class="fl">0.2</span>))</span>
+<span id="cb42-10"><a href="welcome-to-day-2.html#cb42-10" tabindex="-1"></a></span>
+<span id="cb42-11"><a href="welcome-to-day-2.html#cb42-11" tabindex="-1"></a><span class="co"># Make predictions</span></span>
+<span id="cb42-12"><a href="welcome-to-day-2.html#cb42-12" tabindex="-1"></a>pred_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb42-13"><a href="welcome-to-day-2.html#cb42-13" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">min</span>(a_23<span class="sc">$</span>time), <span class="fu">max</span>(a_23<span class="sc">$</span>time))</span>
+<span id="cb42-14"><a href="welcome-to-day-2.html#cb42-14" tabindex="-1"></a>)</span>
+<span id="cb42-15"><a href="welcome-to-day-2.html#cb42-15" tabindex="-1"></a></span>
+<span id="cb42-16"><a href="welcome-to-day-2.html#cb42-16" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_a <span class="ot">&lt;-</span> <span class="fu">predict</span>(ma, <span class="at">newdata =</span> pred_df)</span>
+<span id="cb42-17"><a href="welcome-to-day-2.html#cb42-17" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_b <span class="ot">&lt;-</span> <span class="fu">predict</span>(mb, <span class="at">newdata =</span> pred_df)</span>
+<span id="cb42-18"><a href="welcome-to-day-2.html#cb42-18" tabindex="-1"></a></span>
+<span id="cb42-19"><a href="welcome-to-day-2.html#cb42-19" tabindex="-1"></a><span class="co"># Plot predictions</span></span>
+<span id="cb42-20"><a href="welcome-to-day-2.html#cb42-20" tabindex="-1"></a><span class="fu">plot</span>(a_23<span class="sc">$</span>time, a_23<span class="sc">$</span>p_sev, <span class="at">type =</span> <span class="st">&quot;p&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>)</span>
+<span id="cb42-21"><a href="welcome-to-day-2.html#cb42-21" tabindex="-1"></a><span class="fu">points</span>(b_23<span class="sc">$</span>time, b_23<span class="sc">$</span>p_sev, <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb42-22"><a href="welcome-to-day-2.html#cb42-22" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_a, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb42-23"><a href="welcome-to-day-2.html#cb42-23" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_b, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;gold&#39;</span>)</span>
+<span id="cb42-24"><a href="welcome-to-day-2.html#cb42-24" tabindex="-1"></a></span>
+<span id="cb42-25"><a href="welcome-to-day-2.html#cb42-25" tabindex="-1"></a><span class="co"># Extract parameters</span></span>
+<span id="cb42-26"><a href="welcome-to-day-2.html#cb42-26" tabindex="-1"></a><span class="do">## r</span></span>
+<span id="cb42-27"><a href="welcome-to-day-2.html#cb42-27" tabindex="-1"></a>r_a <span class="ot">&lt;-</span> <span class="fu">coef</span>(ma)[<span class="dv">2</span>]</span>
+<span id="cb42-28"><a href="welcome-to-day-2.html#cb42-28" tabindex="-1"></a>r_a</span>
+<span id="cb42-29"><a href="welcome-to-day-2.html#cb42-29" tabindex="-1"></a>r_b <span class="ot">&lt;-</span> <span class="fu">coef</span>(mb)[<span class="dv">2</span>]</span>
+<span id="cb42-30"><a href="welcome-to-day-2.html#cb42-30" tabindex="-1"></a>r_b</span></code></pre></div>
 </details>
 <p>Use the logit transformation on the data and fit a linear model. Compare the disease progress in varieties a and b.</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="welcome-to-day-2.html#cb39-1" tabindex="-1"></a><span class="co"># Data</span></span>
-<span id="cb39-2"><a href="welcome-to-day-2.html#cb39-2" tabindex="-1"></a>a_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]</span>
-<span id="cb39-3"><a href="welcome-to-day-2.html#cb39-3" tabindex="-1"></a>a_23<span class="sc">$</span>p_sev <span class="ot">&lt;-</span> a_23<span class="sc">$</span>p_sev <span class="sc">+</span> <span class="fl">0.001</span></span>
-<span id="cb39-4"><a href="welcome-to-day-2.html#cb39-4" tabindex="-1"></a>a_23<span class="sc">$</span>l_sev <span class="ot">&lt;-</span> <span class="fu">log</span>(a_23<span class="sc">$</span>p_sev<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>a_23<span class="sc">$</span>p_sev))</span>
-<span id="cb39-5"><a href="welcome-to-day-2.html#cb39-5" tabindex="-1"></a></span>
-<span id="cb39-6"><a href="welcome-to-day-2.html#cb39-6" tabindex="-1"></a>b_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),]</span>
-<span id="cb39-7"><a href="welcome-to-day-2.html#cb39-7" tabindex="-1"></a>b_23<span class="sc">$</span>p_sev <span class="ot">&lt;-</span> b_23<span class="sc">$</span>p_sev <span class="sc">+</span> <span class="fl">0.001</span></span>
-<span id="cb39-8"><a href="welcome-to-day-2.html#cb39-8" tabindex="-1"></a>b_23<span class="sc">$</span>l_sev <span class="ot">&lt;-</span> <span class="fu">log</span>(b_23<span class="sc">$</span>p_sev<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>b_23<span class="sc">$</span>p_sev))</span>
-<span id="cb39-9"><a href="welcome-to-day-2.html#cb39-9" tabindex="-1"></a></span>
-<span id="cb39-10"><a href="welcome-to-day-2.html#cb39-10" tabindex="-1"></a><span class="co"># Fit the models</span></span>
-<span id="cb39-11"><a href="welcome-to-day-2.html#cb39-11" tabindex="-1"></a>ma <span class="ot">&lt;-</span> <span class="fu">lm</span>(l_sev <span class="sc">~</span> time, <span class="at">data =</span> a_23)</span>
-<span id="cb39-12"><a href="welcome-to-day-2.html#cb39-12" tabindex="-1"></a>mb <span class="ot">&lt;-</span> <span class="fu">lm</span>(l_sev <span class="sc">~</span> time, <span class="at">data =</span> b_23)</span>
-<span id="cb39-13"><a href="welcome-to-day-2.html#cb39-13" tabindex="-1"></a></span>
-<span id="cb39-14"><a href="welcome-to-day-2.html#cb39-14" tabindex="-1"></a><span class="co"># Make predictions</span></span>
-<span id="cb39-15"><a href="welcome-to-day-2.html#cb39-15" tabindex="-1"></a>pred_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb39-16"><a href="welcome-to-day-2.html#cb39-16" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">min</span>(a_23<span class="sc">$</span>time), <span class="fu">max</span>(a_23<span class="sc">$</span>time))</span>
-<span id="cb39-17"><a href="welcome-to-day-2.html#cb39-17" tabindex="-1"></a>)</span>
-<span id="cb39-18"><a href="welcome-to-day-2.html#cb39-18" tabindex="-1"></a></span>
-<span id="cb39-19"><a href="welcome-to-day-2.html#cb39-19" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_a <span class="ot">&lt;-</span> <span class="fu">predict</span>(ma, <span class="at">newdata =</span> pred_df)</span>
-<span id="cb39-20"><a href="welcome-to-day-2.html#cb39-20" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_b <span class="ot">&lt;-</span> <span class="fu">predict</span>(mb, <span class="at">newdata =</span> pred_df)</span>
-<span id="cb39-21"><a href="welcome-to-day-2.html#cb39-21" tabindex="-1"></a></span>
-<span id="cb39-22"><a href="welcome-to-day-2.html#cb39-22" tabindex="-1"></a><span class="co"># Plot predictions</span></span>
-<span id="cb39-23"><a href="welcome-to-day-2.html#cb39-23" tabindex="-1"></a><span class="fu">plot</span>(a_23<span class="sc">$</span>time, a_23<span class="sc">$</span>l_sev, <span class="at">type =</span> <span class="st">&quot;p&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Logit(y)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>)</span>
-<span id="cb39-24"><a href="welcome-to-day-2.html#cb39-24" tabindex="-1"></a><span class="fu">points</span>(b_23<span class="sc">$</span>time, b_23<span class="sc">$</span>l_sev, <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb39-25"><a href="welcome-to-day-2.html#cb39-25" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_a, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
-<span id="cb39-26"><a href="welcome-to-day-2.html#cb39-26" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_b, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;gold&#39;</span>)</span>
-<span id="cb39-27"><a href="welcome-to-day-2.html#cb39-27" tabindex="-1"></a></span>
-<span id="cb39-28"><a href="welcome-to-day-2.html#cb39-28" tabindex="-1"></a><span class="co"># Extract parameters</span></span>
-<span id="cb39-29"><a href="welcome-to-day-2.html#cb39-29" tabindex="-1"></a><span class="do">## b1</span></span>
-<span id="cb39-30"><a href="welcome-to-day-2.html#cb39-30" tabindex="-1"></a>b1_a <span class="ot">&lt;-</span> <span class="fu">coef</span>(ma)[<span class="dv">2</span>]</span>
-<span id="cb39-31"><a href="welcome-to-day-2.html#cb39-31" tabindex="-1"></a>b1_a</span>
-<span id="cb39-32"><a href="welcome-to-day-2.html#cb39-32" tabindex="-1"></a>b1_b <span class="ot">&lt;-</span> <span class="fu">coef</span>(mb)[<span class="dv">2</span>]</span>
-<span id="cb39-33"><a href="welcome-to-day-2.html#cb39-33" tabindex="-1"></a>b1_b</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="welcome-to-day-2.html#cb43-1" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb43-2"><a href="welcome-to-day-2.html#cb43-2" tabindex="-1"></a>a_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span>),]</span>
+<span id="cb43-3"><a href="welcome-to-day-2.html#cb43-3" tabindex="-1"></a>a_23<span class="sc">$</span>p_sev <span class="ot">&lt;-</span> a_23<span class="sc">$</span>p_sev <span class="sc">+</span> <span class="fl">0.001</span></span>
+<span id="cb43-4"><a href="welcome-to-day-2.html#cb43-4" tabindex="-1"></a>a_23<span class="sc">$</span>l_sev <span class="ot">&lt;-</span> <span class="fu">log</span>(a_23<span class="sc">$</span>p_sev<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>a_23<span class="sc">$</span>p_sev))</span>
+<span id="cb43-5"><a href="welcome-to-day-2.html#cb43-5" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="welcome-to-day-2.html#cb43-6" tabindex="-1"></a>b_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span> <span class="sc">&amp;</span> df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;b&quot;</span>),]</span>
+<span id="cb43-7"><a href="welcome-to-day-2.html#cb43-7" tabindex="-1"></a>b_23<span class="sc">$</span>p_sev <span class="ot">&lt;-</span> b_23<span class="sc">$</span>p_sev <span class="sc">+</span> <span class="fl">0.001</span></span>
+<span id="cb43-8"><a href="welcome-to-day-2.html#cb43-8" tabindex="-1"></a>b_23<span class="sc">$</span>l_sev <span class="ot">&lt;-</span> <span class="fu">log</span>(b_23<span class="sc">$</span>p_sev<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>b_23<span class="sc">$</span>p_sev))</span>
+<span id="cb43-9"><a href="welcome-to-day-2.html#cb43-9" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="welcome-to-day-2.html#cb43-10" tabindex="-1"></a><span class="co"># Fit the models</span></span>
+<span id="cb43-11"><a href="welcome-to-day-2.html#cb43-11" tabindex="-1"></a>ma <span class="ot">&lt;-</span> <span class="fu">lm</span>(l_sev <span class="sc">~</span> time, <span class="at">data =</span> a_23)</span>
+<span id="cb43-12"><a href="welcome-to-day-2.html#cb43-12" tabindex="-1"></a>mb <span class="ot">&lt;-</span> <span class="fu">lm</span>(l_sev <span class="sc">~</span> time, <span class="at">data =</span> b_23)</span>
+<span id="cb43-13"><a href="welcome-to-day-2.html#cb43-13" tabindex="-1"></a></span>
+<span id="cb43-14"><a href="welcome-to-day-2.html#cb43-14" tabindex="-1"></a><span class="co"># Make predictions</span></span>
+<span id="cb43-15"><a href="welcome-to-day-2.html#cb43-15" tabindex="-1"></a>pred_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb43-16"><a href="welcome-to-day-2.html#cb43-16" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="fu">min</span>(a_23<span class="sc">$</span>time), <span class="fu">max</span>(a_23<span class="sc">$</span>time))</span>
+<span id="cb43-17"><a href="welcome-to-day-2.html#cb43-17" tabindex="-1"></a>)</span>
+<span id="cb43-18"><a href="welcome-to-day-2.html#cb43-18" tabindex="-1"></a></span>
+<span id="cb43-19"><a href="welcome-to-day-2.html#cb43-19" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_a <span class="ot">&lt;-</span> <span class="fu">predict</span>(ma, <span class="at">newdata =</span> pred_df)</span>
+<span id="cb43-20"><a href="welcome-to-day-2.html#cb43-20" tabindex="-1"></a>pred_df<span class="sc">$</span>pred_b <span class="ot">&lt;-</span> <span class="fu">predict</span>(mb, <span class="at">newdata =</span> pred_df)</span>
+<span id="cb43-21"><a href="welcome-to-day-2.html#cb43-21" tabindex="-1"></a></span>
+<span id="cb43-22"><a href="welcome-to-day-2.html#cb43-22" tabindex="-1"></a><span class="co"># Plot predictions</span></span>
+<span id="cb43-23"><a href="welcome-to-day-2.html#cb43-23" tabindex="-1"></a><span class="fu">plot</span>(a_23<span class="sc">$</span>time, a_23<span class="sc">$</span>l_sev, <span class="at">type =</span> <span class="st">&quot;p&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Logit(y)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>)</span>
+<span id="cb43-24"><a href="welcome-to-day-2.html#cb43-24" tabindex="-1"></a><span class="fu">points</span>(b_23<span class="sc">$</span>time, b_23<span class="sc">$</span>l_sev, <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb43-25"><a href="welcome-to-day-2.html#cb43-25" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_a, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb43-26"><a href="welcome-to-day-2.html#cb43-26" tabindex="-1"></a><span class="fu">lines</span>(pred_df<span class="sc">$</span>time, pred_df<span class="sc">$</span>pred_b, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;gold&#39;</span>)</span>
+<span id="cb43-27"><a href="welcome-to-day-2.html#cb43-27" tabindex="-1"></a></span>
+<span id="cb43-28"><a href="welcome-to-day-2.html#cb43-28" tabindex="-1"></a><span class="co"># Extract parameters</span></span>
+<span id="cb43-29"><a href="welcome-to-day-2.html#cb43-29" tabindex="-1"></a><span class="do">## b1</span></span>
+<span id="cb43-30"><a href="welcome-to-day-2.html#cb43-30" tabindex="-1"></a>b1_a <span class="ot">&lt;-</span> <span class="fu">coef</span>(ma)[<span class="dv">2</span>]</span>
+<span id="cb43-31"><a href="welcome-to-day-2.html#cb43-31" tabindex="-1"></a>b1_a</span>
+<span id="cb43-32"><a href="welcome-to-day-2.html#cb43-32" tabindex="-1"></a>b1_b <span class="ot">&lt;-</span> <span class="fu">coef</span>(mb)[<span class="dv">2</span>]</span>
+<span id="cb43-33"><a href="welcome-to-day-2.html#cb43-33" tabindex="-1"></a>b1_b</span></code></pre></div>
 </details>
 <p>Write down the model you are using in the previous questions and which assumptions are you making.</p>
 
