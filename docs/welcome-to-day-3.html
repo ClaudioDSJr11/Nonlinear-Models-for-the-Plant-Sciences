@@ -26,7 +26,7 @@ emphasis on interpretation, uncertainty, and conscient implementation in R.</p>"
 <meta name="author" content="Claudio Dias da Silva Jr &amp; Trevor Hefley" />
 
 
-<meta name="date" content="2026-02-09" />
+<meta name="date" content="2026-02-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -216,14 +216,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Estimation approaches: Loss function; Likelihood-based; Bayesian.</p></li>
 <li><p>When they are similar.</p></li>
 </ul></li>
-<li><p>Day 2</p>
+</ul>
+<p>Day 2</p>
 <ul>
 <li><p>Linearization -&gt; From a curve, to a line… to a curve.</p></li>
 <li><p>Mechanistic and Phenomenological models -&gt; Describe what causes patterns vs Describe the patterns.</p></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" alt="" width="672" /></p>
+<ul>
 <li><p>Practical identifiability of parameters -&gt; When our data cannot inform our model parameters.</p>
 <ul>
 <li>How to work with weak identifiability.</li>
-</ul></li>
 </ul></li>
 </ul>
 <p><br><br></p>
@@ -244,8 +247,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br><br></p>
 <p><strong>What we expect you to learn on Day 3:</strong></p>
 <ul>
-<li><p>We have different approaches for choosing the mathematical model, however, once these models have biological meaning, this should be the most important to consider.</p></li>
-<li><p>Bayesian models expand what we did before by adding more assumptions.</p></li>
+<li><p>We have different approaches for choosing the mathematical model, however, once these models have biological meaning, this should be the most important information to consider.</p></li>
+<li><p>Bayesian models expand what we did before by adding more/different assumptions.</p></li>
 <li><p>The way we write Bayesian models make these assumption explicit.</p></li>
 <li><p>A prior distribution is built based on what we already know (prior knowledge), and it helps constraining our model parameters.</p></li>
 <li><p>Constraining the parameters with prior knowledge helps to remedy weak identifiability.</p></li>
@@ -257,7 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="why-logistic" class="section level4 hasAnchor">
 <h4>Why logistic?<a href="welcome-to-day-3.html#why-logistic" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>For 2023, fit the nonlinear logistic model to variety a and b. Extract <span class="math inline">\(K\)</span> and <span class="math inline">\(r\)</span> and check how genetic resistance affect these parameters.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" alt="" width="672" /></p>
 <table class="table" style="color: black; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -300,9 +303,9 @@ b
 <p>Repeat the previous question, but now, for 2024.</p>
 <p>How did it go? More specifically, where you able to fit it for variety b?</p>
 <p>What we have:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" alt="" width="672" /></p>
 <p>What we expect:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" alt="" width="672" /></p>
 <ul>
 <li>The blue line represents an exponential mathematical model:</li>
 </ul>
@@ -311,13 +314,14 @@ y_i = y_0*e^{r_e*x_i}
 \]</span></p>
 <p>Why don’t we use this model instead? I have been pushing the logistic model for this data, even if it might not be the one that “best fit” it. Why?</p>
 <ul>
-<li>Discussion</li>
+<li>Should we be using tests to select the model?</li>
+<li>Should we focus on selection criteria such as AIC/BIC?</li>
 </ul>
 <p><br><br></p>
 <div class="imporant">
 <p><strong>Highlight from Section 5:</strong></p>
 <center>
-Different techniques can help with model selection, however, for mechanistic models that have deep biological meaning, this criteria should be the first to be considered.
+Different techniques can help with model selection, however, for mechanistic models that have deep biological meaning, selection criteria might not make sense. We should focus on the biological meaning.
 </center>
 </div>
 <p><br><br></p>
@@ -326,7 +330,7 @@ Different techniques can help with model selection, however, for mechanistic mod
 <div id="section-6-bayesian-nonlinear-models" class="section level3 hasAnchor">
 <h3>Section 6: Bayesian nonlinear models<a href="welcome-to-day-3.html#section-6-bayesian-nonlinear-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><p>We need more assumptions, one of our parameters is non-identifiable.</p></li>
+<li><p>We need more assumptions, one of our parameters is almost non-identifiable.</p></li>
 <li><p>A parallel with day 2:</p>
 <ul>
 <li><p>When data was insufficient, we made assumptions:</p>
@@ -343,20 +347,24 @@ Different techniques can help with model selection, however, for mechanistic mod
 </ul>
 <p>*Bayesian makes assumptions explicit vs previous approaches.</p>
 <p><br><br></p>
-<p>What have we been doing so far with the logistic model (now depicted by distributional notation)?</p>
+<p>What have we been doing so far with the logistic model?</p>
 <p><span class="math display">\[
 y_i \sim N(\mu_i, \sigma^2) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r*x_i}}
 \]</span></p>
 <ul>
 <li><p>This is not Bayesian.</p></li>
-<li><p>This is not working because of weak identifiability.</p></li>
-<li><p>But we want this logistic equation, so let’s make more assumptions!</p></li>
+<li><p>This is not working because of weak identifiability (our data lack information in some parameters).</p>
+<ul>
+<li><p>We could simplify the model in other ways (recall: reparametrization; linearization; parameter fixation).</p></li>
+<li><p>We could collect more data/repeat the experiment.</p></li>
+</ul></li>
+<li><p>But what if we can’t collect more data and are not happy about the assumptions of other methods?</p></li>
+<li><p>We want this logistic equation, so let’s make more assumptions!</p></li>
 </ul>
 <p><br><br></p>
 <div id="bayesian-logistic-disease-progress-curve" class="section level4 hasAnchor">
 <h4>Bayesian logistic disease progress curve<a href="welcome-to-day-3.html#bayesian-logistic-disease-progress-curve" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The first assumption we can make regards our response variable!</p>
-<p>“If you are already in the rain, do not fear getting wet!”</p>
 <p>Is our model matching the data generating process?</p>
 <ul>
 <li><p>Severity = Proportion -&gt; Bounded 0 - 1</p></li>
@@ -366,7 +374,7 @@ y_i \sim N(\mu_i, \sigma^2) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-
 y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r*x_i}}
 \]</span></p>
 <ul>
-<li><p>This still not Bayesian. We are just choosing a more appropriate distribution for our response variable.</p>
+<li><p><strong>This still not Bayesian.</strong> We are just choosing a more appropriate distribution for our response variable.</p>
 <ul>
 <li>We can do that using likelihood-based estimation.</li>
 </ul></li>
@@ -379,7 +387,7 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r
 <li>This is the strongest and most restrictive assumption!</li>
 </ul>
 <p>If we “relax” this assumption, and let <span class="math inline">\(K\)</span> vary a little more, let’s say <span class="math inline">\(K \sim N(1, 5)\)</span>, this what happens:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" alt="" width="672" /></p>
 <p>Now, do you think these values make sense?</p>
 <ul>
 <li><p><span class="math inline">\(K\)</span> has a biological meaning - Maximum disease potential.</p></li>
@@ -388,7 +396,7 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r
 <p><span class="math display">\[
 K \sim Beta(6, 2)
 \]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" alt="" width="672" /></p>
 <p>How we are choosing that?</p>
 <ul>
 <li><p>Beta distribution - Bounds - Support helps a lot!</p></li>
@@ -490,7 +498,7 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 <span id="cb45-16"><a href="welcome-to-day-3.html#cb45-16" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;black&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
 <span id="cb45-17"><a href="welcome-to-day-3.html#cb45-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;black&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-114-1.png" alt="" width="672" /></p>
 <p>How about the parameters?</p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="welcome-to-day-3.html#cb46-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
@@ -507,7 +515,7 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 <span id="cb46-12"><a href="welcome-to-day-3.html#cb46-12" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(par_post[,<span class="dv">4</span>]), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
 <span id="cb46-13"><a href="welcome-to-day-3.html#cb46-13" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-115-1.png" alt="" width="672" /></p>
 <p>How posterior compare to prior?</p>
 <ul>
 <li><p>Let’s look at <span class="math inline">\(r\)</span>.</p></li>
@@ -517,19 +525,27 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="welcome-to-day-3.html#cb47-1" tabindex="-1"></a><span class="co"># Post. dist. r</span></span>
 <span id="cb47-2"><a href="welcome-to-day-3.html#cb47-2" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">runif</span>(<span class="dv">1000</span>,<span class="fl">0.1</span>, <span class="fl">0.5</span>), <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Prior dist. r&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;[r]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;r&quot;</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>))</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-116-1.png" alt="" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="welcome-to-day-3.html#cb48-1" tabindex="-1"></a><span class="co"># Pior dist. r</span></span>
 <span id="cb48-2"><a href="welcome-to-day-3.html#cb48-2" tabindex="-1"></a><span class="fu">hist</span>(par_post[,<span class="dv">3</span>], <span class="at">ylab =</span> <span class="st">&quot;[r]&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;r&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Posterior dist. r&quot;</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>))</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-81-2.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-116-2.png" alt="" width="672" /></p>
 <p><br><br></p>
 </div>
 <div id="why-bayesian-might-be-helpful" class="section level4 hasAnchor">
 <h4>Why Bayesian might be helpful?<a href="welcome-to-day-3.html#why-bayesian-might-be-helpful" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
-<li>Let’s use variety a in 2023 for and example.</li>
+<li>Let’s use variety a in 2023 for example.</li>
 </ul>
+<p>Minimal assumptions: Likelihood approach:</p>
+<p><span class="math display">\[
+y_i \sim N(\frac{K}{1+(\frac{K-y_0}{y_0})e^{-rt_i}}, \sigma^2)
+\]</span></p>
+<p>Bayesian:</p>
+<p><span class="math display">\[
+y_i \sim Beta(\frac{K}{1+(\frac{K-y_0}{y_0})e^{-rt_i}}, \phi) \\[20pt] K \sim Beta(6, 2) \\[10pt] y_0 \sim Unif(0.001, 0.1) \\[10pt] r \sim Unif(0.1, 0.5) \\[10pt] \phi \sim Gamma(24, 2)
+\]</span></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="welcome-to-day-3.html#cb49-1" tabindex="-1"></a><span class="do">#### Fit the Bayesian model for 2024 var a ####</span></span>
 <span id="cb49-2"><a href="welcome-to-day-3.html#cb49-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
@@ -587,14 +603,14 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 </details>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="welcome-to-day-3.html#cb50-1" tabindex="-1"></a><span class="do">#### Fit the model using likelihood to 2023 var a ####</span></span>
-<span id="cb50-2"><a href="welcome-to-day-3.html#cb50-2" tabindex="-1"></a>a_24 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span> <span class="sc">&amp;</span> df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span>),]</span>
+<span id="cb50-2"><a href="welcome-to-day-3.html#cb50-2" tabindex="-1"></a>a_23 <span class="ot">&lt;-</span> df[<span class="fu">which</span>(df<span class="sc">$</span>var <span class="sc">==</span> <span class="st">&quot;a&quot;</span> <span class="sc">&amp;</span> df<span class="sc">$</span>year <span class="sc">==</span> <span class="dv">2023</span>),]</span>
 <span id="cb50-3"><a href="welcome-to-day-3.html#cb50-3" tabindex="-1"></a></span>
 <span id="cb50-4"><a href="welcome-to-day-3.html#cb50-4" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb50-5"><a href="welcome-to-day-3.html#cb50-5" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> K<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((K<span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">start =</span> <span class="fu">c</span>(<span class="at">K =</span> <span class="fl">0.7</span>, <span class="at">r =</span> <span class="fl">0.2</span>, <span class="at">y0 =</span> <span class="fl">0.001</span>), <span class="at">data =</span> a_24)</span>
+<span id="cb50-5"><a href="welcome-to-day-3.html#cb50-5" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">nls</span>(p_sev <span class="sc">~</span> K<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span>((K<span class="sc">-</span>y0)<span class="sc">/</span>y0)<span class="sc">*</span><span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>time)), <span class="at">start =</span> <span class="fu">c</span>(<span class="at">K =</span> <span class="fl">0.7</span>, <span class="at">r =</span> <span class="fl">0.2</span>, <span class="at">y0 =</span> <span class="fl">0.001</span>), <span class="at">data =</span> a_23)</span>
 <span id="cb50-6"><a href="welcome-to-day-3.html#cb50-6" tabindex="-1"></a></span>
 <span id="cb50-7"><a href="welcome-to-day-3.html#cb50-7" tabindex="-1"></a><span class="co"># Predictions with prediction interval</span></span>
 <span id="cb50-8"><a href="welcome-to-day-3.html#cb50-8" tabindex="-1"></a>df_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb50-9"><a href="welcome-to-day-3.html#cb50-9" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">max</span>(a_24<span class="sc">$</span>time)<span class="sc">+</span><span class="dv">20</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb50-9"><a href="welcome-to-day-3.html#cb50-9" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">max</span>(a_23<span class="sc">$</span>time)<span class="sc">+</span><span class="dv">20</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
 <span id="cb50-10"><a href="welcome-to-day-3.html#cb50-10" tabindex="-1"></a>)</span>
 <span id="cb50-11"><a href="welcome-to-day-3.html#cb50-11" tabindex="-1"></a></span>
 <span id="cb50-12"><a href="welcome-to-day-3.html#cb50-12" tabindex="-1"></a><span class="fu">library</span>(mvtnorm) <span class="co"># Package for multivariate normal</span></span>
@@ -632,12 +648,12 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 </details>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="welcome-to-day-3.html#cb51-1" tabindex="-1"></a><span class="co"># Plot predictions with interval for iid normal assumption</span></span>
-<span id="cb51-2"><a href="welcome-to-day-3.html#cb51-2" tabindex="-1"></a><span class="fu">plot</span>(a_24<span class="sc">$</span>time, a_24<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Likelihood approach with minimal assumptions&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">1.1</span>))</span>
+<span id="cb51-2"><a href="welcome-to-day-3.html#cb51-2" tabindex="-1"></a><span class="fu">plot</span>(a_23<span class="sc">$</span>time, a_23<span class="sc">$</span>p_sev, <span class="at">ylab =</span> <span class="st">&quot;Severity (prop.)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Days&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Likelihood approach with minimal assumptions&quot;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">1.1</span>))</span>
 <span id="cb51-3"><a href="welcome-to-day-3.html#cb51-3" tabindex="-1"></a><span class="fu">lines</span>(df_pred<span class="sc">$</span>time, df_pred<span class="sc">$</span>pred, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
 <span id="cb51-4"><a href="welcome-to-day-3.html#cb51-4" tabindex="-1"></a><span class="fu">lines</span>(df_pred<span class="sc">$</span>time, df_pred<span class="sc">$</span>pred_ub, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
 <span id="cb51-5"><a href="welcome-to-day-3.html#cb51-5" tabindex="-1"></a><span class="fu">lines</span>(df_pred<span class="sc">$</span>time, df_pred<span class="sc">$</span>pred_lb, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-119-1.png" alt="" width="672" /></p>
 <details class=chunk-details><summary class=chunk-summary><span class=chunk-summary-text>Code</span></summary>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="welcome-to-day-3.html#cb52-1" tabindex="-1"></a><span class="co"># Plot predictions with interval for Bayesian model</span></span>
 <span id="cb52-2"><a href="welcome-to-day-3.html#cb52-2" tabindex="-1"></a><span class="co"># Quantiles for 95% Credible Interval</span></span>
@@ -657,10 +673,10 @@ y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1 + (\frac{K - y_0}{y_0})*e
 <span id="cb52-16"><a href="welcome-to-day-3.html#cb52-16" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.lb, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
 <span id="cb52-17"><a href="welcome-to-day-3.html#cb52-17" tabindex="-1"></a><span class="fu">lines</span>(bay_pred<span class="sc">$</span>x.pred, bay_pred<span class="sc">$</span>y.ub, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 </details>
-<p><img src="_main_files/figure-html/unnamed-chunk-84-2.png" alt="" width="672" /></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-85-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-119-2.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-120-1.png" alt="" width="672" /></p>
 <p>How about the parameters?</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-121-1.png" alt="" width="672" /></p>
 <p><br><br></p>
 <table class="table" style="color: black; margin-left: auto; margin-right: auto;">
 <thead>
@@ -742,13 +758,13 @@ Bayesian
 K
 </td>
 <td style="text-align:center;">
-0.8370906
+0.8363597
 </td>
 <td style="text-align:center;">
-0.6162103
+0.6234953
 </td>
 <td style="text-align:center;">
-0.9758093
+0.9759603
 </td>
 </tr>
 <tr>
@@ -759,13 +775,13 @@ Bayesian
 r
 </td>
 <td style="text-align:center;">
-0.1250899
+0.1251313
 </td>
 <td style="text-align:center;">
-0.1028065
+0.1034701
 </td>
 <td style="text-align:center;">
-0.1432741
+0.1439165
 </td>
 </tr>
 <tr>
@@ -776,13 +792,13 @@ Bayesian
 y0
 </td>
 <td style="text-align:center;">
-0.0018963
+0.0018843
 </td>
 <td style="text-align:center;">
-0.0010183
+0.0010179
 </td>
 <td style="text-align:center;">
-0.0044473
+0.0043329
 </td>
 </tr>
 </tbody>
@@ -793,11 +809,12 @@ y0
 <center>
 <p>Prior knowledge involves what we already now before even seeing the data.</p>
 <p>Prior distributions are selected based in prior knowledge. We treat parameters as random variables that arise from probability distributions.</p>
-<p>A straight forward to check if a distribution make sense for a parameter or the data generating process involves understand it’s support.</p>
+<p>A straight forward way to check if a distribution make sense for a parameter or the data generating process involves understand it’s support.</p>
 <p>Bayesian models do not “resolve” weak identifiability, but remedy it by constraining parameters using prior knowledge.</p>
 <p>In Bayesian models, prior distribution is “updated” by the observed data, resulting in the posterior distribution.</p>
 <p>Bayesian models are heavy in assumptions, but also very explicit about them.</p>
 <p>By mindful! Assumptions introduce bias, therefore, they need to be deeply considered.</p>
+<p>Also, Bayesian is not doing magic, but allowing us to work with mode assumptions to constrain our parameters.</p>
 <p>Making more assumptions is adequate to mitigate deficiencies in the data. If there are none, there is no reason not to use the simple. As you learned, it works just the same!</p>
 </center>
 </div>
@@ -815,8 +832,13 @@ y0
 <li><p>Now: Other options -&gt; Less uncertainty = More assumptions</p></li>
 </ul></li>
 <li><p>All workshop material is available on this page. Feel free to contact us as well if you have questions!</p></li>
-<li><p>Thank you very much for you attention and for attending this workshop, this was a great opportunity for us all to learn more together! Stay tuned for the next workshop “<a href="https://www.k-state.edu/engagement/innovation-and-partnerships/interdisciplinary-institutes/digital-ag-advanced-analytics/about/analytics-workshops.html">Bayesian Modeling of Designed Experiments</a>” on March 2, 4, and 5.</p></li>
+<li><p>Thank you very much for you attention and for attending this workshop, this was a great opportunity for us all to learn more together! Stay tuned for the next workshop <a href="https://www.k-state.edu/engagement/innovation-and-partnerships/interdisciplinary-institutes/digital-ag-advanced-analytics/about/analytics-workshops.html">Bayesian Modeling of Designed Experiments</a> on March 2, 4, and 5 (registration has already started!).</p></li>
+<li><p>Please, take a time to give us a feedback about this workshop, we would love to know your thoughts: <a href="https://kstate.qualtrics.com/jfe/form/SV_8wgktl4walXUc2q" class="uri">https://kstate.qualtrics.com/jfe/form/SV_8wgktl4walXUc2q</a>.</p></li>
+<li><p>You can also use this QR code:</p></li>
 </ul>
+<center>
+<p><img src="qrcode_feedback.png" /></p>
+</center>
 
 </div>
 </div>

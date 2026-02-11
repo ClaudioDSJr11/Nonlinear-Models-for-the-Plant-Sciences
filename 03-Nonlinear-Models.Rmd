@@ -28,7 +28,7 @@ Yesterday we:
 
             -   About $\hat{\theta}$
 
-            -   How to define priors (flax vs informative) - Day 3
+            -   How to define priors (flat vs informative) - Day 3
 
 -   Recall that complexity increases, especially because we have space for more assumptions. Assumptions help with addressing "problems".
 

@@ -10,15 +10,45 @@ What have we learned so far?
 
     -   When they are similar.
 
--   Day 2
+Day 2
 
-    -   Linearization -\> From a curve, to a line... to a curve.
+-   Linearization -\> From a curve, to a line... to a curve.
 
-    -   Mechanistic and Phenomenological models -\> Describe what causes patterns vs Describe the patterns.
+-   Mechanistic and Phenomenological models -\> Describe what causes patterns vs Describe the patterns.
 
-    -   Practical identifiability of parameters -\> When our data cannot inform our model parameters.
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+# Data
+df <- read.csv("nonlin.csv")
+df$p_sev <- df$severity/100
+a_24 <- df[which(df$year == 2024 & df$var == "a"),]
 
-        -   How to work with weak identifiability.
+# Fit the logistic and polynomial model
+ml_test <- nls(p_sev ~ K/(1 + ((K-y0)/y0)*exp(-r*time)), data = a_24, start = list(K = 0.7, y0 = 0.001, r = 0.2))
+mp_test <- lm(p_sev ~ poly(time, degree = 3), data = a_24)
+
+# Make predictions
+pred <- data.frame(
+  time = 1:100)
+
+pred$pred_p <- predict(mp_test, newdata = pred)
+pred$pred_l <- predict(ml_test, newdata = pred)
+
+par(mfrow = c(1, 2))
+
+# Plot predictions for logistic
+plot(a_24$time, a_24$p_sev, ylab = "Severity (prop.)", xlab = "Days", ylim = c(-0.1, 1), main = "Logistic", xlim = c(0, 100))
+lines(pred$time, pred$pred_l, lwd = 3, col = "red")
+
+# Plot predictions for polynomial
+plot(a_24$time, a_24$p_sev, ylab = "Severity (prop.)", xlab = "Days", ylim = c(-0.1, 1), main = "Polynomial", xlim = c(0, 100))
+lines(pred$time, pred$pred_p, lwd = 3, col = "red")
+
+par(mfrow = c(1, 1))
+```
+
+-   Practical identifiability of parameters -\> When our data cannot inform our model parameters.
+
+    -   How to work with weak identifiability.
 
 <br><br>
 
@@ -43,9 +73,9 @@ Wrap-up
 
 **What we expect you to learn on Day 3:**
 
--   We have different approaches for choosing the mathematical model, however, once these models have biological meaning, this should be the most important to consider.
+-   We have different approaches for choosing the mathematical model, however, once these models have biological meaning, this should be the most important information to consider.
 
--   Bayesian models expand what we did before by adding more assumptions.
+-   Bayesian models expand what we did before by adding more/different assumptions.
 
 -   The way we write Bayesian models make these assumption explicit.
 
@@ -159,21 +189,22 @@ $$
 
 Why don't we use this model instead? I have been pushing the logistic model for this data, even if it might not be the one that "best fit" it. Why?
 
--   Discussion
+-   Should we be using tests to select the model?
+-   Should we focus on selection criteria such as AIC/BIC?
 
 <br><br>
 
 ::: imporant
 **Highlight from Section 5:**
 
-<center>Different techniques can help with model selection, however, for mechanistic models that have deep biological meaning, this criteria should be the first to be considered.</center>
+<center>Different techniques can help with model selection, however, for mechanistic models that have deep biological meaning, selection criteria might not make sense. We should focus on the biological meaning.</center>
 :::
 
 <br><br>
 
 ### Section 6: Bayesian nonlinear models
 
--   We need more assumptions, one of our parameters is non-identifiable.
+-   We need more assumptions, one of our parameters is almost non-identifiable.
 
 -   A parallel with day 2:
 
@@ -193,7 +224,7 @@ Why don't we use this model instead? I have been pushing the logistic model for 
 
 <br><br>
 
-What have we been doing so far with the logistic model (now depicted by distributional notation)?
+What have we been doing so far with the logistic model?
 
 $$
 y_i \sim N(\mu_i, \sigma^2) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r*x_i}}
@@ -201,17 +232,21 @@ $$
 
 -   This is not Bayesian.
 
--   This is not working because of weak identifiability.
+-   This is not working because of weak identifiability (our data lack information in some parameters).
 
--   But we want this logistic equation, so let's make more assumptions!
+    -   We could simplify the model in other ways (recall: reparametrization; linearization; parameter fixation).
+
+    -   We could collect more data/repeat the experiment.
+
+-   But what if we can't collect more data and are not happy about the assumptions of other methods?
+
+-   We want this logistic equation, so let's make more assumptions!
 
 <br><br>
 
 #### Bayesian logistic disease progress curve
 
 The first assumption we can make regards our response variable!
-
-"If you are already in the rain, do not fear getting wet!"
 
 Is our model matching the data generating process?
 
@@ -223,7 +258,7 @@ $$
 y_i \sim Beta(\mu_i, \phi) \\[10pt] \mu_i = \frac{K}{1+(\frac{K-y_0}{y_0})*e^{-r*x_i}}
 $$
 
--   This still not Bayesian. We are just choosing a more appropriate distribution for our response variable.
+-   **This still not Bayesian.** We are just choosing a more appropriate distribution for our response variable.
 
     -   We can do that using likelihood-based estimation.
 
@@ -427,7 +462,19 @@ hist(par_post[,3], ylab = "[r]", xlab = "r", main = "Posterior dist. r", freq = 
 
 #### Why Bayesian might be helpful?
 
--   Let's use variety a in 2023 for and example.
+-   Let's use variety a in 2023 for example.
+
+Minimal assumptions: Likelihood approach:
+
+$$
+y_i \sim N(\frac{K}{1+(\frac{K-y_0}{y_0})e^{-rt_i}}, \sigma^2)
+$$
+
+Bayesian:
+
+$$
+y_i \sim Beta(\frac{K}{1+(\frac{K-y_0}{y_0})e^{-rt_i}}, \phi) \\[20pt] K \sim Beta(6, 2) \\[10pt] y_0 \sim Unif(0.001, 0.1) \\[10pt] r \sim Unif(0.1, 0.5) \\[10pt] \phi \sim Gamma(24, 2)
+$$
 
 ```{r, message=FALSE, warning=FALSE, results='hide'}
 #### Fit the Bayesian model for 2024 var a ####
@@ -487,14 +534,14 @@ pred_post <- as.matrix(samples[, c(5:77)])
 
 ```{r, message=FALSE, warning=FALSE}
 #### Fit the model using likelihood to 2023 var a ####
-a_24 <- df[which(df$var == "a" & df$year == 2023),]
+a_23 <- df[which(df$var == "a" & df$year == 2023),]
 
 # Fit the model
-m3 <- nls(p_sev ~ K/(1+((K-y0)/y0)*exp(-r*time)), start = c(K = 0.7, r = 0.2, y0 = 0.001), data = a_24)
+m3 <- nls(p_sev ~ K/(1+((K-y0)/y0)*exp(-r*time)), start = c(K = 0.7, r = 0.2, y0 = 0.001), data = a_23)
 
 # Predictions with prediction interval
 df_pred <- data.frame(
-  time = seq(1, max(a_24$time)+20, by = 1)
+  time = seq(1, max(a_23$time)+20, by = 1)
 )
 
 library(mvtnorm) # Package for multivariate normal
@@ -533,7 +580,7 @@ df_pred$pred_lb <- apply(sim.save, 2, quantile, 0.025)
 
 ```{r, message=FALSE, warning=FALSE}
 # Plot predictions with interval for iid normal assumption
-plot(a_24$time, a_24$p_sev, ylab = "Severity (prop.)", xlab = "Days", main = "Likelihood approach with minimal assumptions", ylim = c(-0.5, 1.1))
+plot(a_23$time, a_23$p_sev, ylab = "Severity (prop.)", xlab = "Days", main = "Likelihood approach with minimal assumptions", ylim = c(-0.5, 1.1))
 lines(df_pred$time, df_pred$pred, lwd = 3, col = 'red')
 lines(df_pred$time, df_pred$pred_ub, lty = 2, col = 'red')
 lines(df_pred$time, df_pred$pred_lb, lty = 2, col = 'red')
@@ -629,7 +676,7 @@ Prior knowledge involves what we already now before even seeing the data.
 
 Prior distributions are selected based in prior knowledge. We treat parameters as random variables that arise from probability distributions.
 
-A straight forward to check if a distribution make sense for a parameter or the data generating process involves understand it's support.
+A straight forward way to check if a distribution make sense for a parameter or the data generating process involves understand it's support.
 
 Bayesian models do not "resolve" weak identifiability, but remedy it by constraining parameters using prior knowledge.
 
@@ -638,6 +685,8 @@ In Bayesian models, prior distribution is "updated" by the observed data, result
 Bayesian models are heavy in assumptions, but also very explicit about them.
 
 By mindful! Assumptions introduce bias, therefore, they need to be deeply considered.
+
+Also, Bayesian is not doing magic, but allowing us to work with mode assumptions to constrain our parameters.
 
 Making more assumptions is adequate to mitigate deficiencies in the data. If there are none, there is no reason not to use the simple. As you learned, it works just the same!
 
@@ -660,4 +709,14 @@ Making more assumptions is adequate to mitigate deficiencies in the data. If the
 
 -   All workshop material is available on this page. Feel free to contact us as well if you have questions!
 
--   Thank you very much for you attention and for attending this workshop, this was a great opportunity for us all to learn more together! Stay tuned for the next workshop "[Bayesian Modeling of Designed Experiments](https://www.k-state.edu/engagement/innovation-and-partnerships/interdisciplinary-institutes/digital-ag-advanced-analytics/about/analytics-workshops.html)" on March 2, 4, and 5.
+-   Thank you very much for you attention and for attending this workshop, this was a great opportunity for us all to learn more together! Stay tuned for the next workshop [Bayesian Modeling of Designed Experiments](https://www.k-state.edu/engagement/innovation-and-partnerships/interdisciplinary-institutes/digital-ag-advanced-analytics/about/analytics-workshops.html) on March 2, 4, and 5 (registration has already started!).
+
+-   Please, take a time to give us a feedback about this workshop, we would love to know your thoughts: <https://kstate.qualtrics.com/jfe/form/SV_8wgktl4walXUc2q>.
+
+-   You can also use this QR code:
+
+<center>
+
+![](qrcode_feedback.png)
+
+</center>
